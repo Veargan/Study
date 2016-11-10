@@ -1,0 +1,5 @@
+C:\Users\Svyatoslav\GitHub\ORT\Loops.Core\Loops.Core\bin\Debug\Loops.Core.dll
+C:\Users\Svyatoslav\GitHub\ORT\Loops.Core\Loops.Core\bin\Debug\Loops.Core.pdb
+C:\Users\Svyatoslav\GitHub\ORT\Loops.Core\Loops.Core\obj\Debug\Loops.Core.dll
+C:\Users\Svyatoslav\GitHub\ORT\Loops.Core\Loops.Core\obj\Debug\Loops.Core.pdb
+C:\Users\Svyatoslav\GitHub\ORT\Loops.Core\Loops.Core\obj\Debug\Loops.Core.csprojResolveAssemblyReference.cache

@@ -1,0 +1,4 @@
+C:\Users\Svyatoslav\GitHub\ORT\CS.Core\CS.Core\bin\Debug\CS.Core.dll
+C:\Users\Svyatoslav\GitHub\ORT\CS.Core\CS.Core\bin\Debug\CS.Core.pdb
+C:\Users\Svyatoslav\GitHub\ORT\CS.Core\CS.Core\obj\Debug\CS.Core.dll
+C:\Users\Svyatoslav\GitHub\ORT\CS.Core\CS.Core\obj\Debug\CS.Core.pdb
