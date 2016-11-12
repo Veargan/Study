@@ -2,10 +2,10 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace SeleniumTests
+
+namespace WEB.NUnitTests
 {
-    [TestFixture]
-    public class JSTest
+    public class HTMLTest
     {
         private IWebDriver driverGC;
         private string res;
@@ -33,7 +33,7 @@ namespace SeleniumTests
             driverGC.FindElement(By.Id("op")).SendKeys("+");
             driverGC.FindElement(By.Id("b")).SendKeys("6");
             driverGC.FindElement(By.Id("btn")).Click();
-       
+
             res = driverGC.FindElement(By.Id("oc")).GetAttribute("value");
 
             Assert.AreEqual("2", res);

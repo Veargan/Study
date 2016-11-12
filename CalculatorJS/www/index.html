@@ -9,16 +9,16 @@
 <body>
 	<div class="calc-container">
 		<form name="calculator">
-			<input id="a" type="number" /> <br/>
+			<input id="a" type="text"/> <br/>
 			<select id="op" name="operations">
 				<option value="+">+</option>
 				<option value="-">-</option>
 				<option value="*">*</option>
 				<option value="/">/</option>
 			</select> <br/>
-			<input id="b" type="number" /> <br/>
+			<input id="b" type="text" /> <br/>
 			<input id="oc" type="text" class="num" /> <br/>
-			<input id="btn" type="button" value="Calculate" onclick="calculate(Number(document.getElementById('a').value), Number(document.getElementById('b').value), document.getElementById('op').value)"/>
+			<input id="btn" type="button" value="Calculate" onclick="oc.value=calculate(a.value, b.value, op.value)"/>
 		</form>
 	</div>
 </body>

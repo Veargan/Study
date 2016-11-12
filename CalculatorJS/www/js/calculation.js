@@ -1,20 +1,22 @@
 function calculate(a, b, op) {
-	var oc = document.getElementById("oc");
+	var oc;
+	a = parseInt(a);
+	b = parseInt(b);
 	
 	switch (op) {
 		case "+":
-		oc.value = a + b;
+		oc = a + b;
 		break;
 		case "-":
-		oc.value = a - b;
+		oc= a - b;
 		break;
 		case "*":
-		oc.value = a * b;
+		oc= a * b;
 		break;
 		case "/":
-		oc.value = a / b;
+		oc = a / b;
 		break;
 	}
 
-	return oc.value;
+	return oc;
 }

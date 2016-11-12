@@ -7,3 +7,6 @@ c:\users\svyatoslav\documents\visual studio 2015\Projects\Calculator\Calculator\
 c:\users\svyatoslav\documents\visual studio 2015\Projects\Calculator\Calculator\obj\Debug\Calculator.exe
 c:\users\svyatoslav\documents\visual studio 2015\Projects\Calculator\Calculator\obj\Debug\Calculator.pdb
 C:\Users\Svyatoslav\Documents\Visual Studio 2015\Projects\Calculator\Calculator\obj\Debug\Calculator.csprojResolveAssemblyReference.cache
+C:\Users\Svyatoslav\GitHub\Study\Calculator\Calculator\bin\Debug\Calculator.exe.config
+C:\Users\Svyatoslav\GitHub\Study\Calculator\Calculator\obj\Debug\Calculator.exe
+C:\Users\Svyatoslav\GitHub\Study\Calculator\Calculator\obj\Debug\Calculator.pdb
