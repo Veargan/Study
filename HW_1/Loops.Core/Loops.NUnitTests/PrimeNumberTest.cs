@@ -19,6 +19,12 @@ namespace Loops.NUnitTests
             pm = new PrimeNumber();
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            pm = null;
+        }
+
         [Test]
         public void IsPrimeShouldReturnTrue()
         {

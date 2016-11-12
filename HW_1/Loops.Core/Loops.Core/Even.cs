@@ -27,7 +27,6 @@ namespace Loops.Core
         public int CountEvenNumbers()
         {
             int quantity = 0;
-
             int i = 1;
 
             do

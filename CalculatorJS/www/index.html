@@ -10,7 +10,7 @@
 	<div class="calc-container">
 		<form name="calculator">
 			<input id="a" type="number" /> <br/>
-			<select name="operations" id="operations">
+			<select id="op" name="operations">
 				<option value="+">+</option>
 				<option value="-">-</option>
 				<option value="*">*</option>
@@ -18,7 +18,7 @@
 			</select> <br/>
 			<input id="b" type="number" /> <br/>
 			<input id="oc" type="text" class="num" /> <br/>
-			<input type="button" value="Calculate" onclick="calculate()"/>
+			<input id="btn" type="button" value="Calculate" onclick="calculate(Number(document.getElementById('a').value), Number(document.getElementById('b').value), document.getElementById('op').value)"/>
 		</form>
 	</div>
 </body>

@@ -9,22 +9,24 @@ namespace Loops.Core
 {
     public class NaturalNumber
     {
-        public int CalculateRoot(int n)
+        public int CalculateRootLoop(int n)
         {
             int res = 1;
 
+            if ((n == 0) || (n < 0)) throw new ArgumentException("Not a valid value");
+            
             while (res*res < n) res++;
 
             return res;
         }
 
-        public int CalculateRootLoop(int n)
+        public int CalculateRoot(int n)
         {
             int res = 0;
 
-            if (n >= 1) res = (int) Round(Sqrt(n));
             if ((n == 0) || (n < 0)) throw new ArgumentException("Not a valid value");
-
+            if (n >= 1) res = (int) Round(Sqrt(n));
+            
             return res;
         }
     }

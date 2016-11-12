@@ -19,6 +19,12 @@ namespace Loops.NUnitTests
             e = new Even();
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            e = null;
+        }
+
         [Test]
         public void SumEvenNumbersShouldReturnCorrectValue()
         {

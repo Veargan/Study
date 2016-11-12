@@ -19,40 +19,22 @@ namespace Loops.NUnitTests
             nm = new NaturalNumber();
         }
 
-        [Test]
-        public void CalculateRootShouldReturnCorrectValue1()
+        [TearDown]
+        public void TearDown()
         {
-            Assert.AreEqual(2, nm.CalculateRoot(4));
-        }
-
-        [Test]
-        public void CalculateRootShouldReturnCorrectValue2()
-        {
-            Assert.AreEqual(3, nm.CalculateRoot(8));
-        }
-
-        [Test]
-        public void CalculateRootShouldReturnCorrectValue3()
-        {
-            Assert.AreEqual(2, nm.CalculateRoot(6));
+            nm = null;
         }
 
         [Test]
         public void CalculateRootLoopShouldReturnCorrectValue1()
         {
-            Assert.AreEqual(3, nm.CalculateRootLoop(9));
+            Assert.AreEqual(2, nm.CalculateRootLoop(4));
         }
 
         [Test]
         public void CalculateRootLoopShouldReturnCorrectValue2()
         {
-            Assert.AreEqual(2, nm.CalculateRootLoop(6));
-        }
-
-        [Test]
-        public void CalculateRootLoopShouldReturnCorrectValue3()
-        {
-            Assert.AreEqual(3, nm.CalculateRootLoop(9));
+            Assert.AreEqual(3, nm.CalculateRootLoop(6));
         }
 
         [Test]
@@ -65,6 +47,36 @@ namespace Loops.NUnitTests
         public void CalculateRootLoopShouldRaiseArgumentException2()
         {
             Assert.Throws<ArgumentException>(() => nm.CalculateRootLoop(-5));
+        }
+
+        [Test]
+        public void CalculateRootShouldReturnCorrectValue1()
+        {
+            Assert.AreEqual(3, nm.CalculateRoot(9));
+        }
+
+        [Test]
+        public void CalculateRootShouldReturnCorrectValue2()
+        {
+            Assert.AreEqual(2, nm.CalculateRoot(6));
+        }
+
+        [Test]
+        public void CalculateRootShouldReturnCorrectValue3()
+        {
+            Assert.AreEqual(3, nm.CalculateRoot(9));
+        }
+
+        [Test]
+        public void CalculateRootShouldRaiseArgumentException1()
+        {
+            Assert.Throws<ArgumentException>(() => nm.CalculateRoot(0));
+        }
+
+        [Test]
+        public void CalculateRootShouldRaiseArgumentException2()
+        {
+            Assert.Throws<ArgumentException>(() => nm.CalculateRoot(-5));
         }
     }
 }
