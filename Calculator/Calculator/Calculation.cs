@@ -24,6 +24,8 @@ namespace Calculator
                     res = a*b;
                     break;
                 case "/":
+                    if ((a == 0) && (b == 0)) throw new ArgumentNullException("NaN");
+                    if (b == 0) throw new DivideByZeroException("Divided by zero");
                     res  = a/b;
                     break;
             }
