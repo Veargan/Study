@@ -1,0 +1,12 @@
+﻿.calc-container {
+	border: 1px solid black;
+	font-family: verdana;
+	margin-left: 45%;
+	text-align: center;
+	padding-top: 10px;
+	height: 140px;
+	width: 200px;
+}
+.num {
+	margin: 10px;
+}

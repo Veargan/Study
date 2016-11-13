@@ -25,7 +25,7 @@ namespace WEB.NUnitTests
         }
 
         [Test]
-        public void JSCalculatorShouldReturnCorrectValuePlus()
+        public void HTMLShouldReturnCorrectValuePlus()
         {
             driverGC.Navigate().GoToUrl("file:///C:/Users/Svyatoslav/GitHub/Study/CalculatorJS/www/index.html");
 
@@ -40,7 +40,7 @@ namespace WEB.NUnitTests
         }
 
         [Test]
-        public void JSCalculatorShouldReturnCorrectValueMinus()
+        public void HTMLShouldReturnCorrectValueMinus()
         {
             driverGC.Navigate().GoToUrl("file:///C:/Users/Svyatoslav/GitHub/Study/CalculatorJS/www/index.html");
 
@@ -55,7 +55,7 @@ namespace WEB.NUnitTests
         }
 
         [Test]
-        public void JSCalculatorShouldReturnCorrectValueMultiply()
+        public void HTMLShouldReturnCorrectValueMultiply()
         {
             driverGC.Navigate().GoToUrl("file:///C:/Users/Svyatoslav/GitHub/Study/CalculatorJS/www/index.html");
 
@@ -70,13 +70,13 @@ namespace WEB.NUnitTests
         }
 
         [Test]
-        public void JSCalculatorShouldReturnCorrectValueDivide()
+        public void HTMLShouldReturnCorrectValueDivide()
         {
             driverGC.Navigate().GoToUrl("file:///C:/Users/Svyatoslav/GitHub/Study/CalculatorJS/www/index.html");
 
             driverGC.FindElement(By.Id("a")).SendKeys("1");
             driverGC.FindElement(By.Id("op")).SendKeys("/");
-            driverGC.FindElement(By.Id("b")).SendKeys("2");
+            driverGC.FindElement(By.Id("b")).SendKeys("2"); 
             driverGC.FindElement(By.Id("btn")).Click();
 
             res = driverGC.FindElement(By.Id("oc")).GetAttribute("value");
