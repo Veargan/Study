@@ -1,42 +1,24 @@
 function drawCustomLine() {
-	var size = prompt('enter ur brush size');
-	var md = false;
 	var canvas = document.getElementById('placeToDraw');
+	var context = canvas.getContext('2d');
+	var x,y;
 
 	canvas.addEventListener('mousedown', mouseDown);
-	canvas.addEventListener('mouseup', mouseUp);
 	canvas.addEventListener('mousemove', mouseMove);
 
-	function mouseDown() {
-		md = true;
+	function mouseDown(e)
+	{
+		x = e.x;
+		y = e.y;
+		context.moveTo(x, y);
 	}
 
-	function mouseUp() {
-		md = false;
-	}
-
-	function mouseMove(evt) {
-		var mousePos = getMousePos(canvas, evt);
-		var posx = mousePos.x;
-		var posy = mousePos.y;
-
-		draw(canvas, posx, posy);
-	}
-		
-	function getMousePos(canvas, evt) {
-		var rect = canvas.getBoundingClientRect();
-		
-		return {
-			x:evt.clientX - rect.left,
-			y:evt.clientY - rect.top
-		};
-	}
-
-	function draw(canvas, posx, posy) {
-		var context = canvas.getContext('2d');
-
-		if (md) {
-			context.fillRect(posx, posy, size, size);
-		}
+	function mouseMove(e)
+	{
+	   if(e.which  == 1)
+	   {	   
+	        context.lineTo(e.pageX, e.pageY);
+		    context.stroke();
+	   }
 	}
 }
