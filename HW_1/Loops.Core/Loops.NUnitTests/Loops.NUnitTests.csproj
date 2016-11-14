@@ -39,9 +39,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EvenTest.cs" />
+    <Compile Include="FactorialTest.cs" />
     <Compile Include="NaturalNumberTest.cs" />
     <Compile Include="PrimeNumberTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SumNumberTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
