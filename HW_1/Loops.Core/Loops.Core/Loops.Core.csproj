@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Even.cs" />
     <Compile Include="Factorial.cs" />
+    <Compile Include="MirrorNumber.cs" />
     <Compile Include="NaturalNumber.cs" />
     <Compile Include="PrimeNumber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="EvenTest.cs" />
     <Compile Include="FactorialTest.cs" />
+    <Compile Include="MirrorNumberTest.cs" />
     <Compile Include="NaturalNumberTest.cs" />
     <Compile Include="PrimeNumberTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
