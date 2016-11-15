@@ -1,8 +1,8 @@
-QUnit.test("calculate should correct value plus", function(assert) {
+QUnit.test("calculateShouldReturnCorrectValuePlus", function(assert) {
 	assert.equal(1, calculate(-4, 5, "+"), "Plus test succeed");
 });
 
-QUnit.test("calculateShouldReturnCorrectValuePlus", function(assert) {
+QUnit.test("calculateShouldReturnCorrectValueMinus", function(assert) {
 	assert.equal(-2, calculate(3, 5, "-"), "Minus test succeed");
 });
 
