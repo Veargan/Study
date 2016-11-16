@@ -16,12 +16,13 @@ namespace PaintWF.Core
         private int x;
         private int y;
         private Graphics g;
-
+        private Pen p;
 
         public Form1()
         {
             InitializeComponent();
             g = panel1.CreateGraphics();
+            p = new Pen(Color.Black, 1);
         }
 
         private void panel1_MouseUp(object sender, MouseEventArgs e)
@@ -37,7 +38,6 @@ namespace PaintWF.Core
             {
                 if ((x > 0) && (y > 0))
                 {
-                    Pen p = new Pen(Brushes.Black);
                     g.DrawLine(p, x, y, e.X, e.Y);
                 }
 
@@ -49,6 +49,21 @@ namespace PaintWF.Core
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
             draw = true;
+        }
+
+        private void ChangeColor_Click(object sender, EventArgs e)
+        {
+            DialogResult colorResult = colorDialog1.ShowDialog();
+
+            if (colorResult == DialogResult.OK)
+            {
+                p.Color = colorDialog1.Color;
+            }
+        }
+
+        private void brushSize_TextChanged(object sender, EventArgs e)
+        {
+            p.Width = float.Parse(brushSize.Text);
         }
     }
 }
