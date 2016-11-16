@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A32C2DEC-BB31-4549-B1DB-6787DDE2CCC0}</ProjectGuid>
+    <ProjectGuid>{2DCF6F31-8987-4A01-A6D3-077EB1A1403C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AList0.Core</RootNamespace>
-    <AssemblyName>AList0.Core</AssemblyName>
+    <RootNamespace>List.Core</RootNamespace>
+    <AssemblyName>List.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

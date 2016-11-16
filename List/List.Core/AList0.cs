@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AList0.Core
+namespace List.Core
 {
     public class AList0
     {

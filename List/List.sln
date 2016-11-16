@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AList0.Core", "AList0.Core\AList0.Core.csproj", "{A32C2DEC-BB31-4549-B1DB-6787DDE2CCC0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "List.Core", "List.Core\List.Core.csproj", "{2DCF6F31-8987-4A01-A6D3-077EB1A1403C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AList0.NUnitTests", "AList0.NUnitTests\AList0.NUnitTests.csproj", "{8EDF4429-251A-416D-BB68-93F227191BCF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "List.NUnitTests", "List.NUnitTests\List.NUnitTests.csproj", "{8EDF4429-251A-416D-BB68-93F227191BCF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,10 +13,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A32C2DEC-BB31-4549-B1DB-6787DDE2CCC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A32C2DEC-BB31-4549-B1DB-6787DDE2CCC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A32C2DEC-BB31-4549-B1DB-6787DDE2CCC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A32C2DEC-BB31-4549-B1DB-6787DDE2CCC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DCF6F31-8987-4A01-A6D3-077EB1A1403C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DCF6F31-8987-4A01-A6D3-077EB1A1403C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DCF6F31-8987-4A01-A6D3-077EB1A1403C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DCF6F31-8987-4A01-A6D3-077EB1A1403C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8EDF4429-251A-416D-BB68-93F227191BCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8EDF4429-251A-416D-BB68-93F227191BCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EDF4429-251A-416D-BB68-93F227191BCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
