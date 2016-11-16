@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,8 +14,9 @@ namespace Loops.Core
             long res = 1;
 
             if (n == 0 || n < 0) throw new ArgumentException("Not a valid value");
-            if (n > 0) {
-                for (int i = n; i >= 1; i--) res *= i;
+            if (n > 0)
+            {
+                for (int i = 1; i <= n; i++) res *= i;
             }
 
             return res;

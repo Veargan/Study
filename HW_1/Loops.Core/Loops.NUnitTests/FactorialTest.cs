@@ -54,5 +54,11 @@ namespace Loops.NUnitTests
         {
             Assert.AreEqual(5040, f.FindFactorial(7));
         }
+
+        [Test]
+        public void FindFactorialShouldReturnCorrectValue4()
+        {
+            Assert.AreEqual(1307674368000, f.FindFactorial(15));
+        }
     }
 }
