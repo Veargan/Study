@@ -886,7 +886,7 @@ namespace List.NUnitTests
         public void testHalfReversArr_4()
         {
             int[] zz = {10, 20, 30, 40};
-            int[] exp = {20, 10, 30, 40};
+            int[] exp = {20, 30, 10, 40};
             a.SetArray(zz);
             a.HalfReverse();
             int[] res = a.GetArray();
@@ -964,6 +964,53 @@ namespace List.NUnitTests
             a.AddEnd(5);
             int[] res = a.GetArray();
             CollectionAssert.AreEqual(exp, res);
+        }
+
+        [Test]
+        public void testToString_NULL()
+        {
+            int[] zz = null;
+            Assert.Throws<NullReferenceException>(() => a.SetArray(zz));
+        }
+
+        [Test]
+        public void testToString_0()
+        {
+            int[] zz = {};
+            string exp = "";
+            a.SetArray(zz);
+            string res = a.ToString();
+            Assert.AreEqual(exp, res);
+        }
+
+        [Test]
+        public void testToString_1()
+        {
+            int[] zz = {1};
+            string exp = "1 ";
+            a.SetArray(zz);
+            string res = a.ToString();
+            Assert.AreEqual(exp, res);
+        }
+
+        [Test]
+        public void testToString_2()
+        {
+            int[] zz = {1, 2};
+            string exp = "1 2 ";
+            a.SetArray(zz);
+            string res = a.ToString();
+            Assert.AreEqual(exp, res);
+        }
+
+        [Test]
+        public void testToString_many()
+        {
+            int[] zz = {1, 2, 3, 4, 5, 6, 7};
+            string exp = "1 2 3 4 5 6 7 ";
+            a.SetArray(zz);
+            string res = a.ToString();
+            Assert.AreEqual(exp, res);
         }
     }
 }

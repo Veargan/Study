@@ -284,5 +284,18 @@ namespace List.Core
 
             return temp;
         }
+
+        override
+        public string ToString()
+        {
+            string res = "";
+
+            for (int i = 0; i < index; i++)
+            {
+                res += arr[i] + " ";
+            }
+
+            return res;
+        }
     }
 }
