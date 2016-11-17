@@ -22,576 +22,576 @@ namespace List.NUnitTests
         }
 
         [Test]
-        public void SizeTestMethodZero()
+        public void SizeShouldReturn0()
         {
-            a.Init(new int[] {});
+            a.Init(new int[] { });
             Assert.AreEqual(0, a.Size());
         }
 
         [Test]
-        public void SizeTestMethodOne()
+        public void SizeShouldReturn1()
         {
-            a.Init(new[] {1});
+            a.Init(new[] { 1 });
             Assert.AreEqual(1, a.Size());
         }
 
         [Test]
-        public void SizeTestMethodTwo()
+        public void SizeShouldReturn2()
         {
-            a.Init(new[] {1, 2});
+            a.Init(new[] { 1, 2 });
             Assert.AreEqual(2, a.Size());
         }
 
         [Test]
-        public void SizeTestMethodMany()
+        public void SizeShouldReturnMany()
         {
-            a.Init(new[] {1, 2, 3, 4, 5, 6, 7});
+            a.Init(new[] { 1, 2, 3, 4, 5, 6, 7 });
             Assert.AreEqual(7, a.Size());
         }
 
         [Test]
-        public void ClearTestMethodZero()
+        public void ClearShouldReturn0()
         {
-            a.Init(new int[] {});
+            a.Init(new int[] { });
             a.Clear();
-            CollectionAssert.AreEqual(new int[] {}, a.ToArray());
+            CollectionAssert.AreEqual(new int[] { }, a.ToArray());
         }
 
         [Test]
-        public void ClearTestMethodOne()
+        public void ClearShouldReturn1()
         {
-            a.Init(new[] {1});
+            a.Init(new[] { 1 });
             a.Clear();
-            CollectionAssert.AreEqual(new int[] {}, a.ToArray());
+            CollectionAssert.AreEqual(new int[] { }, a.ToArray());
         }
 
         [Test]
-        public void ClearTestMethodTwo()
+        public void ClearShouldReturn2()
         {
-            a.Init(new[] {1, 2});
+            a.Init(new[] { 1, 2 });
             a.Clear();
-            CollectionAssert.AreEqual(new int[] {}, a.ToArray());
+            CollectionAssert.AreEqual(new int[] { }, a.ToArray());
         }
 
         [Test]
-        public void ClearTestMethodMany()
+        public void ClearShouldReturnMany()
         {
-            a.Init(new[] {1, 2, 3, 4, 5, 6, 7});
+            a.Init(new[] { 1, 2, 3, 4, 5, 6, 7 });
             a.Clear();
-            CollectionAssert.AreEqual(new int[] {}, a.ToArray());
+            CollectionAssert.AreEqual(new int[] { }, a.ToArray());
         }
 
         [Test]
-        public void InitTestMethodZero()
+        public void InitShouldReturn0()
         {
-            a.Init(new int[] {});
-            CollectionAssert.AreEqual(new int[] {}, a.ToArray());
+            a.Init(new int[] { });
+            CollectionAssert.AreEqual(new int[] { }, a.ToArray());
         }
 
         [Test]
-        public void InitTestMethodOne()
+        public void InitShouldReturn1()
         {
-            a.Init(new[] {1});
-            CollectionAssert.AreEqual(new[] {1}, a.ToArray());
+            a.Init(new[] { 1 });
+            CollectionAssert.AreEqual(new[] { 1 }, a.ToArray());
         }
 
         [Test]
-        public void InitTestMethodTwo()
+        public void InitShouldReturn2()
         {
-            a.Init(new[] {1, 2});
-            CollectionAssert.AreEqual(new[] {1, 2}, a.ToArray());
+            a.Init(new[] { 1, 2 });
+            CollectionAssert.AreEqual(new[] { 1, 2 }, a.ToArray());
         }
 
         [Test]
-        public void InitTestMethodMany()
+        public void InitShouldReturnMany()
         {
-            a.Init(new[] {1, 2, 3, 4, 5, 6, 7});
-            CollectionAssert.AreEqual(new[] {1, 2, 3, 4, 5, 6, 7}, a.ToArray());
+            a.Init(new[] { 1, 2, 3, 4, 5, 6, 7 });
+            CollectionAssert.AreEqual(new[] { 1, 2, 3, 4, 5, 6, 7 }, a.ToArray());
         }
 
         [Test]
-        public void InitTestMethodNull()
+        public void InitShouldRaiseNullReferenceException()
         {
             Assert.Throws<NullReferenceException>(() => a.Init(null));
         }
 
         [Test]
-        public void ToArrayTestMethodZero()
+        public void ToArrayShouldReturn0()
         {
-            a.Init(new int[] {});
-            Assert.AreEqual(new int[] {}, a.ToArray());
+            a.Init(new int[] { });
+            Assert.AreEqual(new int[] { }, a.ToArray());
         }
 
         [Test]
-        public void ToStringTestMethodZero()
+        public void ToStringShouldReturn0()
         {
-            a.Init(new int[] {});
+            a.Init(new int[] { });
             Assert.AreEqual("", a.ToString());
         }
 
         [Test]
-        public void ToStringTestMethodOne()
+        public void ToStringShouldReturn1()
         {
-            a.Init(new[] {1});
+            a.Init(new[] { 1 });
             Assert.AreEqual("1 ", a.ToString());
         }
 
         [Test]
-        public void ToStringTestMethodTwo()
+        public void ToStringShouldReturn2()
         {
-            a.Init(new[] {1, 2});
+            a.Init(new[] { 1, 2 });
             Assert.AreEqual("1 2 ", a.ToString());
         }
 
         [Test]
-        public void ToStringTestMethodMany()
+        public void ToStringShouldReturnMany()
         {
-            a.Init(new[] {1, 2, 3, 4, 5, 6, 7});
+            a.Init(new[] { 1, 2, 3, 4, 5, 6, 7 });
             Assert.AreEqual("1 2 3 4 5 6 7 ", a.ToString());
         }
 
         [Test]
-        public void AddStartTestMethodZero()
+        public void AddStartShouldReturn0()
         {
-            a.Init(new int[] {});
+            a.Init(new int[] { });
             a.AddStart(1);
-            CollectionAssert.AreEqual(new[] {1}, a.ToArray());
+            CollectionAssert.AreEqual(new[] { 1 }, a.ToArray());
         }
 
         [Test]
-        public void AddStartTestMethodOne()
+        public void AddStartShouldReturn1()
         {
-            a.Init(new[] {1});
+            a.Init(new[] { 1 });
             a.AddStart(1);
-            CollectionAssert.AreEqual(new[] {1, 1}, a.ToArray());
+            CollectionAssert.AreEqual(new[] { 1, 1 }, a.ToArray());
         }
 
         [Test]
-        public void AddStartTestMethodTwo()
+        public void AddStartShouldReturn2()
         {
-            a.Init(new[] {1, 2});
+            a.Init(new[] { 1, 2 });
             a.AddStart(1);
-            CollectionAssert.AreEqual(new[] {1, 1, 2}, a.ToArray());
+            CollectionAssert.AreEqual(new[] { 1, 1, 2 }, a.ToArray());
         }
 
         [Test]
-        public void AddStartTestMethodMany()
+        public void AddStartShouldReturnMany()
         {
-            a.Init(new[] {1, 2, 3, 4, 5, 6, 7});
+            a.Init(new[] { 1, 2, 3, 4, 5, 6, 7 });
             a.AddStart(1);
-            CollectionAssert.AreEqual(new[] {1, 1, 2, 3, 4, 5, 6, 7}, a.ToArray());
+            CollectionAssert.AreEqual(new[] { 1, 1, 2, 3, 4, 5, 6, 7 }, a.ToArray());
         }
 
         [Test]
-        public void AddEndTestMethodZero()
+        public void AddEndShouldReturn0()
         {
-            a.Init(new int[] {});
+            a.Init(new int[] { });
             a.AddEnd(1);
-            CollectionAssert.AreEqual(new[] {1}, a.ToArray());
+            CollectionAssert.AreEqual(new[] { 1 }, a.ToArray());
         }
 
         [Test]
-        public void AddEndTestMethodOne()
+        public void AddEndShouldReturn1()
         {
-            a.Init(new[] {1});
+            a.Init(new[] { 1 });
             a.AddEnd(1);
-            CollectionAssert.AreEqual(new[] {1, 1}, a.ToArray());
+            CollectionAssert.AreEqual(new[] { 1, 1 }, a.ToArray());
         }
 
         [Test]
-        public void AddEndTestMethodTwo()
+        public void AddEndShouldReturn2()
         {
-            a.Init(new[] {1, 2});
+            a.Init(new[] { 1, 2 });
             a.AddEnd(1);
-            CollectionAssert.AreEqual(new[] {1, 2, 1}, a.ToArray());
+            CollectionAssert.AreEqual(new[] { 1, 2, 1 }, a.ToArray());
         }
 
         [Test]
-        public void AddEndTestMethodMany()
+        public void AddEndShouldReturnMany()
         {
-            a.Init(new[] {1, 2, 3, 4, 5, 6, 7});
+            a.Init(new[] { 1, 2, 3, 4, 5, 6, 7 });
             a.AddEnd(1);
-            CollectionAssert.AreEqual(new[] {1, 2, 3, 4, 5, 6, 7, 1}, a.ToArray());
+            CollectionAssert.AreEqual(new[] { 1, 2, 3, 4, 5, 6, 7, 1 }, a.ToArray());
         }
 
 
         [Test]
-        public void AddPosTestMethodZero()
+        public void AddPosShouldReturn0()
         {
-            a.Init(new int[] {});
+            a.Init(new int[] { });
             a.AddPos(1, 1);
-            CollectionAssert.AreEqual(new[] {1}, a.ToArray());
+            CollectionAssert.AreEqual(new[] { 1 }, a.ToArray());
         }
 
         [Test]
-        public void AddPosTestMethodOne()
+        public void AddPosShouldReturn1()
         {
-            a.Init(new[] {1});
+            a.Init(new[] { 1 });
             a.AddPos(2, 1);
-            CollectionAssert.AreEqual(new[] {1, 1}, a.ToArray());
+            CollectionAssert.AreEqual(new[] { 1, 1 }, a.ToArray());
         }
 
         [Test]
-        public void AddPosTestMethodTwo()
+        public void AddPosShouldReturn2()
         {
-            a.Init(new[] {1, 2});
+            a.Init(new[] { 1, 2 });
             a.AddPos(2, 1);
-            CollectionAssert.AreEqual(new[] {1, 1, 2}, a.ToArray());
+            CollectionAssert.AreEqual(new[] { 1, 1, 2 }, a.ToArray());
         }
 
         [Test]
-        public void AddPosTestMethodMany()
+        public void AddPosShouldReturnMany()
         {
-            a.Init(new[] {1, 2, 3, 4, 5, 6, 7});
+            a.Init(new[] { 1, 2, 3, 4, 5, 6, 7 });
             a.AddPos(3, 1);
-            CollectionAssert.AreEqual(new[] {1, 2, 1, 3, 4, 5, 6, 7}, a.ToArray());
+            CollectionAssert.AreEqual(new[] { 1, 2, 1, 3, 4, 5, 6, 7 }, a.ToArray());
         }
 
         [Test]
-        public void AddPosTestMethodNonePos()
+        public void AddPosShouldRaiseIndexOutOfRangeException()
         {
-            a.Init(new[] {1, 2, 3, 4, 5, 6, 7});
+            a.Init(new[] { 1, 2, 3, 4, 5, 6, 7 });
             Assert.Throws<IndexOutOfRangeException>(() => a.AddPos(10, 1));
         }
 
 
         [Test]
-        public void DelStartTestMethodZero()
+        public void DelStartShouldRaiseIndexOutOfRangeException()
         {
-            a.Init(new int[] {});
+            a.Init(new int[] { });
             Assert.Throws<IndexOutOfRangeException>(() => a.DelStart());
         }
 
         [Test]
-        public void DelStartTestMethodOne()
+        public void DelStartShouldReturn1()
         {
-            a.Init(new[] {1});
+            a.Init(new[] { 1 });
             Assert.AreEqual(1, a.DelStart());
         }
 
         [Test]
-        public void DelStartTestMethodTwo()
+        public void DelStartShouldReturn2()
         {
-            a.Init(new[] {1, 2});
+            a.Init(new[] { 1, 2 });
             Assert.AreEqual(1, a.DelStart());
         }
 
         [Test]
-        public void DelStartTestMethodMany()
+        public void DelStartShouldReturnMany()
         {
-            a.Init(new[] {1, 2, 3, 4, 5, 6, 7});
+            a.Init(new[] { 1, 2, 3, 4, 5, 6, 7 });
             Assert.AreEqual(1, a.DelStart());
         }
 
         [Test]
-        public void DelEndTestMethodZero()
+        public void DelEndShouldRaiseIndexOutOfRangeException()
         {
-            a.Init(new int[] {});
+            a.Init(new int[] { });
             Assert.Throws<IndexOutOfRangeException>(() => a.DelEnd());
         }
 
         [Test]
-        public void DelEndTestMethodOne()
+        public void DelEndShouldReturn1()
         {
-            a.Init(new[] {1});
+            a.Init(new[] { 1 });
             Assert.AreEqual(1, a.DelEnd());
         }
 
         [Test]
-        public void DelEndTestMethodTwo()
+        public void DelEndShouldReturn2()
         {
-            a.Init(new[] {1, 2});
+            a.Init(new[] { 1, 2 });
             Assert.AreEqual(2, a.DelEnd());
         }
 
         [Test]
-        public void DelEndTestMethodMany()
+        public void DelEndShouldReturnMany()
         {
-            a.Init(new[] {1, 2, 3, 4, 5, 6, 7});
+            a.Init(new[] { 1, 2, 3, 4, 5, 6, 7 });
             Assert.AreEqual(7, a.DelEnd());
         }
 
         [Test]
-        public void DelPosTestMethodZero()
+        public void DelPosShouldRaiseIndexOutOfRangeException()
         {
-            a.Init(new int[] {});
+            a.Init(new int[] { });
             Assert.Throws<IndexOutOfRangeException>(() => a.DelPos(1));
         }
 
         [Test]
-        public void DelPosTestMethodOne()
+        public void DelPosShouldReturn1()
         {
-            a.Init(new[] {1});
+            a.Init(new[] { 1 });
             Assert.AreEqual(1, a.DelPos(1));
         }
 
         [Test]
-        public void DelPosTestMethodTwo()
+        public void DelPosShouldReturn2()
         {
-            a.Init(new[] {1, 2});
+            a.Init(new[] { 1, 2 });
             Assert.AreEqual(1, a.DelPos(1));
         }
 
         [Test]
-        public void DelPosTestMethodMany()
+        public void DelPosShouldReturnMany()
         {
-            a.Init(new[] {1, 2, 3, 4, 5, 6, 7});
+            a.Init(new[] { 1, 2, 3, 4, 5, 6, 7 });
             Assert.AreEqual(3, a.DelPos(3));
         }
 
         [Test]
-        public void SetTestMethodZero()
+        public void SetShouldRaiseIndexOutOfRangeException()
         {
-            a.Init(new int[] {});
+            a.Init(new int[] { });
             Assert.Throws<IndexOutOfRangeException>(() => a.Set(1, 1));
         }
 
         [Test]
-        public void SetTestMethodOne()
+        public void SetShouldReturn1()
         {
-            a.Init(new[] {1});
+            a.Init(new[] { 1 });
             a.Set(1, 2);
-            CollectionAssert.AreEqual(new[] {2}, a.ToArray());
+            CollectionAssert.AreEqual(new[] { 2 }, a.ToArray());
         }
 
         [Test]
-        public void SetTestMethodTwo()
+        public void SetShouldReturn2()
         {
-            a.Init(new[] {1, 2});
+            a.Init(new[] { 1, 2 });
             a.Set(1, 2);
-            CollectionAssert.AreEqual(new[] {2, 2}, a.ToArray());
+            CollectionAssert.AreEqual(new[] { 2, 2 }, a.ToArray());
         }
 
         [Test]
-        public void SetTestMethodMany()
+        public void SetShouldReturnMany()
         {
-            a.Init(new[] {1, 2, 3, 4, 5, 6, 7});
+            a.Init(new[] { 1, 2, 3, 4, 5, 6, 7 });
             a.Set(3, 1);
-            CollectionAssert.AreEqual(new[] {1, 2, 1, 4, 5, 6, 7}, a.ToArray());
+            CollectionAssert.AreEqual(new[] { 1, 2, 1, 4, 5, 6, 7 }, a.ToArray());
         }
 
         [Test]
-        public void GetTestMethodZero()
+        public void GetShouldRaiseIndexOutOfRangeException()
         {
-            a.Init(new int[] {});
+            a.Init(new int[] { });
             Assert.Throws<IndexOutOfRangeException>(() => a.Get(1));
         }
 
         [Test]
-        public void GetTestMethodOne()
+        public void GetShouldReturn1()
         {
-            a.Init(new[] {1});
+            a.Init(new[] { 1 });
             Assert.AreEqual(1, a.Get(1));
         }
 
         [Test]
-        public void GetTestMethodTwo()
+        public void GetShouldReturn2()
         {
-            a.Init(new[] {1, 2});
+            a.Init(new[] { 1, 2 });
             Assert.AreEqual(1, a.Get(1));
         }
 
         [Test]
-        public void GetTestMethodMany()
+        public void GetShouldReturnMany()
         {
-            a.Init(new[] {1, 2, 3, 4, 5, 6, 7});
+            a.Init(new[] { 1, 2, 3, 4, 5, 6, 7 });
             Assert.AreEqual(3, a.Get(3));
         }
 
         [Test]
-        public void ReverseTestMethodZero()
+        public void ReverseShouldReturn0()
         {
-            a.Init(new int[] {});
-            CollectionAssert.AreEqual(new int[] {}, a.Reverse());
+            a.Init(new int[] { });
+            CollectionAssert.AreEqual(new int[] { }, a.Reverse());
         }
 
         [Test]
-        public void ReverseTestMethodOne()
+        public void ReverseShouldReturn1()
         {
-            a.Init(new[] {1});
-            CollectionAssert.AreEqual(new[] {1}, a.Reverse());
+            a.Init(new[] { 1 });
+            CollectionAssert.AreEqual(new[] { 1 }, a.Reverse());
         }
 
         [Test]
-        public void ReverseTestMethodTwo()
+        public void ReverseShouldReturn2()
         {
-            a.Init(new[] {1, 2});
-            CollectionAssert.AreEqual(new[] {2, 1}, a.Reverse());
+            a.Init(new[] { 1, 2 });
+            CollectionAssert.AreEqual(new[] { 2, 1 }, a.Reverse());
         }
 
         [Test]
-        public void ReverseTestMethodMany()
+        public void ReverseShouldReturnMany()
         {
-            a.Init(new[] {1, 2, 3, 4, 5, 6, 7});
-            CollectionAssert.AreEqual(new[] {7, 6, 5, 4, 3, 2, 1}, a.Reverse());
+            a.Init(new[] { 1, 2, 3, 4, 5, 6, 7 });
+            CollectionAssert.AreEqual(new[] { 7, 6, 5, 4, 3, 2, 1 }, a.Reverse());
         }
 
         [Test]
-        public void HalfReverseTestMethodZero()
+        public void HalfReverseShouldReturn0()
         {
-            a.Init(new int[] {});
-            CollectionAssert.AreEqual(new int[] {}, a.HalfReverse());
+            a.Init(new int[] { });
+            CollectionAssert.AreEqual(new int[] { }, a.HalfReverse());
         }
 
         [Test]
-        public void HalfReverseTestMethodOne()
+        public void HalfReverseShouldReturn1()
         {
-            a.Init(new[] {1});
-            CollectionAssert.AreEqual(new[] {1}, a.HalfReverse());
+            a.Init(new[] { 1 });
+            CollectionAssert.AreEqual(new[] { 1 }, a.HalfReverse());
         }
 
         [Test]
-        public void HalfReverseTestMethodTwo()
+        public void HalfReverseShouldReturn2()
         {
-            a.Init(new[] {1, 2});
-            CollectionAssert.AreEqual(new[] {2, 1}, a.HalfReverse());
+            a.Init(new[] { 1, 2 });
+            CollectionAssert.AreEqual(new[] { 2, 1 }, a.HalfReverse());
         }
 
         [Test]
-        public void HalfReverseTestMethodMany()
+        public void HalfReverseShouldReturnMany()
         {
-            a.Init(new[] {1, 2, 3, 4, 5, 6, 7});
-            CollectionAssert.AreEqual(new[] {5, 6, 7, 4, 1, 2, 3}, a.HalfReverse());
+            a.Init(new[] { 1, 2, 3, 4, 5, 6, 7 });
+            CollectionAssert.AreEqual(new[] { 5, 6, 7, 4, 1, 2, 3 }, a.HalfReverse());
         }
 
         [Test]
-        public void MinMethodZero()
+        public void MinMethodShouldRaiseIndexOutOfRangeException()
         {
-            a.Init(new int[] {});
+            a.Init(new int[] { });
             Assert.Throws<IndexOutOfRangeException>(() => a.Min());
         }
 
         [Test]
-        public void MinTestMethodOne()
+        public void MinShouldReturn1()
         {
-            a.Init(new[] {1});
+            a.Init(new[] { 1 });
             Assert.AreEqual(1, a.Min());
         }
 
         [Test]
-        public void MinTestMethodTwo()
+        public void MinShouldReturn2()
         {
-            a.Init(new[] {1, 2});
+            a.Init(new[] { 1, 2 });
             Assert.AreEqual(1, a.Min());
         }
 
         [Test]
-        public void MinTestMethodMany()
+        public void MinShouldReturnMany()
         {
-            a.Init(new[] {1, 2, 3, 4, 5, 6, 7});
+            a.Init(new[] { 1, 2, 3, 4, 5, 6, 7 });
             Assert.AreEqual(1, a.Min());
         }
 
         [Test]
-        public void MaxMethodZero()
+        public void MaxShouldRaiseIndexOutOfRangeException()
         {
-            a.Init(new int[] {});
+            a.Init(new int[] { });
             Assert.Throws<IndexOutOfRangeException>(() => a.Max());
         }
 
         [Test]
-        public void MaxTestMethodOne()
+        public void MaxShouldReturn1()
         {
-            a.Init(new[] {1});
+            a.Init(new[] { 1 });
             Assert.AreEqual(1, a.Max());
         }
 
         [Test]
-        public void MaxTestMethodTwo()
+        public void MaxShouldReturn2()
         {
-            a.Init(new[] {1, 2});
+            a.Init(new[] { 1, 2 });
             Assert.AreEqual(2, a.Max());
         }
 
         [Test]
-        public void MaxTestMethodMany()
+        public void MaxShouldReturnMany()
         {
-            a.Init(new[] {1, 2, 3, 4, 5, 6, 7});
+            a.Init(new[] { 1, 2, 3, 4, 5, 6, 7 });
             Assert.AreEqual(7, a.Max());
         }
 
         [Test]
-        public void IndexMinMethodZero()
+        public void IndexMinShouldReturn0()
         {
-            a.Init(new int[] {});
+            a.Init(new int[] { });
             Assert.AreEqual(0, a.IndMin());
         }
 
         [Test]
-        public void IndexMinTestMethodOne()
+        public void IndexMinShouldReturn1()
         {
-            a.Init(new[] {1});
+            a.Init(new[] { 1 });
             Assert.AreEqual(0, a.IndMin());
         }
 
         [Test]
-        public void IndexMinTestMethodTwo()
+        public void IndexMinShouldReturn2()
         {
-            a.Init(new[] {1, 2});
+            a.Init(new[] { 1, 2 });
             Assert.AreEqual(0, a.IndMin());
         }
 
         [Test]
-        public void IndexMinTestMethodMany()
+        public void IndexMinShouldReturnMany()
         {
-            a.Init(new[] {1, 2, 3, 4, 5, 6, 7});
+            a.Init(new[] { 1, 2, 3, 4, 5, 6, 7 });
             Assert.AreEqual(0, a.IndMin());
         }
 
         [Test]
-        public void IndexMaxMethodZero()
+        public void IndexMaxMShould0()
         {
-            a.Init(new int[] {});
+            a.Init(new int[] { });
             Assert.AreEqual(0, a.IndMax());
         }
 
         [Test]
-        public void IndexMaxTestMethodOne()
+        public void IndexMaxShouldReturn1()
         {
-            a.Init(new[] {1});
+            a.Init(new[] { 1 });
             Assert.AreEqual(0, a.IndMax());
         }
 
         [Test]
-        public void IndexMaxTestMethodTwo()
+        public void IndexMaxShouldReturn2()
         {
-            a.Init(new[] {1, 2});
+            a.Init(new[] { 1, 2 });
             Assert.AreEqual(1, a.IndMax());
         }
 
         [Test]
-        public void IndexMaxTestMethodMany()
+        public void IndexMaxShouldReturnMany()
         {
-            a.Init(new[] {1, 2, 3, 4, 5, 6, 7});
+            a.Init(new[] { 1, 2, 3, 4, 5, 6, 7 });
             Assert.AreEqual(6, a.IndMax());
         }
 
         [Test]
-        public void SortTestMethodZero()
+        public void SortShouldReturn0()
         {
-            a.Init(new int[] {});
-            CollectionAssert.AreEqual(new int[] {}, a.Sort());
+            a.Init(new int[] { });
+            CollectionAssert.AreEqual(new int[] { }, a.Sort());
         }
 
         [Test]
-        public void SortReverseTestMethodOne()
+        public void SortReverseShouldReturn1()
         {
-            a.Init(new[] {1});
-            CollectionAssert.AreEqual(new[] {1}, a.Sort());
+            a.Init(new[] { 1 });
+            CollectionAssert.AreEqual(new[] { 1 }, a.Sort());
         }
 
         [Test]
-        public void SortReverseTestMethodTwo()
+        public void SortReverseShouldReturn2()
         {
-            a.Init(new[] {2, 1});
-            CollectionAssert.AreEqual(new[] {1, 2}, a.Sort());
+            a.Init(new[] { 2, 1 });
+            CollectionAssert.AreEqual(new[] { 1, 2 }, a.Sort());
         }
 
         [Test]
-        public void SortReverseTestMethodMany()
+        public void SortReverseShouldReturnMany()
         {
-            a.Init(new[] {5, 6, 7, 4, 1, 2, 3});
-            CollectionAssert.AreEqual(new[] {1, 2, 3, 4, 5, 6, 7}, a.Sort());
+            a.Init(new[] { 5, 6, 7, 4, 1, 2, 3 });
+            CollectionAssert.AreEqual(new[] { 1, 2, 3, 4, 5, 6, 7 }, a.Sort());
         }
     }
 }

@@ -10,25 +10,6 @@ namespace List.Core
         {
         }
 
-        public int Size()
-        {
-            return a.Length;
-        }
-
-        public void Clear()
-        {
-            a = new int[0];
-        }
-
-        public void Print()
-        {
-            for (int i = 0; i < a.Length; i++)
-            {
-                Console.Write(a[i] + " ");
-            }
-            Console.WriteLine();
-        }
-
         public void Init(int[] arr)
         {
             a = new int[arr.Length];
@@ -39,13 +20,23 @@ namespace List.Core
             }
         }
 
+        public int Size()
+        {
+            return a.Length;
+        }
+
+        public void Clear()
+        {
+            a = new int[0];
+        }
+
         public int[] ToArray()
         {
             return a;
         }
 
-        override 
-        public string ToString()
+        override
+            public string ToString()
         {
             string res = "";
 
@@ -57,59 +48,59 @@ namespace List.Core
             return res;
         }
 
-        public void AddStart(int val)
+        public void AddStart(int n)
         {
-            int[] tt = new int[a.Length + 1];
+            int[] temp = new int[a.Length + 1];
 
             for (int i = 0; i < a.Length; i++)
             {
-                tt[i + 1] = a[i];
+                temp[i + 1] = a[i];
             }
-            tt[0] = val;
-            a = tt;
+            temp[0] = n;
+            a = temp;
         }
 
-        public void AddEnd(int val)
+        public void AddEnd(int n)
         {
-            int[] tt = new int[a.Length + 1];
+            int[] temp = new int[a.Length + 1];
 
             for (int i = 0; i < a.Length; i++)
             {
-                tt[i] = a[i];
+                temp[i] = a[i];
             }
-            tt[tt.Length - 1] = val;
-            a = tt;
+            temp[temp.Length - 1] = n;
+            a = temp;
         }
 
-        public void AddPos(int pos, int val)
+        public void AddPos(int pos, int n)
         {
-            int[] tt = new int[a.Length + 1];
+            int[] temp = new int[a.Length + 1];
 
             for (int i = 0; i < a.Length; i++)
             {
                 if (i < pos - 1)
                 {
-                    tt[i] = a[i];
+                    temp[i] = a[i];
                 }
                 else if (i >= pos - 1)
                 {
-                    tt[i + 1] = a[i];
+                    temp[i + 1] = a[i];
                 }
             }
-            tt[pos - 1] = val;
-            a = tt;
+            temp[pos - 1] = n;
+            a = temp;
         }
 
         public int DelStart()
         {
             int res = a[0];
-            int[] tt = new int[a.Length - 1];
+            int[] temp = new int[a.Length - 1];
 
             for (int i = 0; i < a.Length - 1; i++)
             {
-                tt[i] = a[i + 1];
+                temp[i] = a[i + 1];
             }
-            a = tt;
+            a = temp;
 
             return res;
         }
@@ -117,13 +108,13 @@ namespace List.Core
         public int DelEnd()
         {
             int res = a[a.Length - 1];
-            int[] tt = new int[a.Length - 1];
+            int[] temp = new int[a.Length - 1];
 
             for (int i = 0; i < a.Length - 1; i++)
             {
-                tt[i] = a[i];
+                temp[i] = a[i];
             }
-            a = tt;
+            a = temp;
 
             return res;
         }
@@ -131,27 +122,27 @@ namespace List.Core
         public int DelPos(int pos)
         {
             int res = a[pos - 1];
-            int[] tt = new int[a.Length - 1];
+            int[] temp = new int[a.Length - 1];
 
             for (int i = 0; i < a.Length; i++)
             {
                 if (i < pos - 1)
                 {
-                    tt[i] = a[i];
+                    temp[i] = a[i];
                 }
                 else if (i >= pos)
                 {
-                    tt[i - 1] = a[i];
+                    temp[i - 1] = a[i];
                 }
             }
-            a = tt;
+            a = temp;
 
             return res;
         }
 
-        public void Set(int pos, int val)
+        public void Set(int pos, int n)
         {
-            a[pos - 1] = val;
+            a[pos - 1] = n;
         }
 
         public int Get(int pos)
@@ -173,9 +164,9 @@ namespace List.Core
 
         public int[] HalfReverse()
         {
-            int centr = a.Length / 2 + a.Length % 2;
+            int centr = a.Length/2 + a.Length%2;
 
-            for (int i = 0; i < (a.Length / 2); i++)
+            for (int i = 0; i < (a.Length/2); i++)
             {
                 int t = a[i];
                 a[i] = a[centr + i];
@@ -263,6 +254,15 @@ namespace List.Core
             }
 
             return res;
+        }
+
+        public void Print()
+        {
+            for (int i = 0; i < a.Length; i++)
+            {
+                Console.Write(a[i] + " ");
+            }
+            Console.WriteLine();
         }
     }
 }
