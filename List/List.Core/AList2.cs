@@ -2,209 +2,225 @@
 
 namespace List.Core
 {
-    public class AList1 : IList
+    public class AList2 : IList
     {
-        public int[] array = new int[10];
-        public int top = 0;
+        public int[] array = new int[30];
+        public int start = 15;
+        public int end = 15;
 
         public void Init(int[] ar)
         {
             if (ar == null) ar = new int[0];
 
             Clear();
-            top = ar.Length;
-
-            if (array.Length <= ar.Length)
-            {
-                array = new int[ar.Length + ar.Length / 2];
-            }
-
+            start = start - array.Length / 2;
             for (int i = 0; i < ar.Length; i++)
             {
-                array[i] = ar[i];
+                this.array[start + i] = ar[i];
             }
-            top = ar.Length;
+            end = start + ar.Length;
         }
 
         public void Clear()
         {
-            top = 0;
+            start = end = array.Length / 2;
         }
 
         public int[] ToArray()
         {
-            int[] ar = new int[top];
-            for (int i = 0; i < top; i++)
+            int[] ar = new int[end - start];
+            for (int i = start; i < end; i++)
             {
                 ar[i] = array[i];
             }
+
             return ar;
         }
 
         public int Size()
         {
-            if (array == null || top > array.Length || top < 0) throw new NullReferenceException();
+            if (array == null || end > array.Length || end < 0 || start > array.Length || start < 0) throw new NullReferenceException();
 
-            return top;
-        }
-
-        public void Set(int pos, int val)
-        {
-            if (pos > top || top == 0) throw new IndexOutOfRangeException();
-
-            array[pos] = val;
-        }
-        public int Get(int pos)
-        {
-            if (pos > top || top == 0) throw new IndexOutOfRangeException();
-
-            return array[pos];
+            return end - start;
         }
         
         public void AddStart(int val)
         {
-            Resize();
-            for (int i = top++; i > 0; i--)
+            if (Size() == array.Length || start == 0 || end == array.Length - 1)
+            {
+                Resize();
+            }
+            for (int i = end++; i > 0; i--)
             {
                 array[i] = array[i - 1];
             }
             array[0] = val;
         }
+
         public void AddEnd(int val)
         {
-            Resize();
-            array[top++] = val;
+            if (Size() == array.Length || start == 0 || end == array.Length - 1)
+            {
+                Resize();
+            }
+            array[end++] = val;
         }
+
         public void AddPos(int pos, int value)
         {
-            Resize();
-            if (pos > top) throw new IndexOutOfRangeException();
+            if (pos > end) throw new IndexOutOfRangeException();
 
-            top++;
-            for (int i = top; i > pos; i--)
+            if (Size() == array.Length || start == 0 || end == array.Length - 1)
+            {
+                Resize();
+            }
+
+            end++;
+            for (int i = end; i > pos; i--)
             {
                 array[i] = array[i - 1];
             }
             array[pos] = value;
         }
+
         public int DelStart()
         {
-            if (top == 0) throw new NullReferenceException();
+            if (end == 0) throw new NullReferenceException();
 
             int res = array[0];
-            for (int i = 0; i < top; i++)
+            for (int i = start; i < end; i++)
             {
                 array[i] = array[i + 1];
             }
-            top--;
+            end--;
+
             return res;
         }
+
         public int DelEnd()
         {
-            if (top == 0) throw new NullReferenceException();
+            if (end == 0) throw new NullReferenceException();
 
-            int a = array[top - 1];
-            top--;
-            return a;
+            return array[--end];
         }
+
         public int DelPos(int pos)
         {
-            if (pos >= top) throw new NullReferenceException();
+            if (pos >= end) throw new NullReferenceException();
 
             int res = array[pos];
-            for (int i = pos; i < top; i++)
+            for (int i = pos; i < end; i++)
             {
                 array[i] = array[i + 1];
             }
-            top--;
+            end--;
+
             return res;
+        }
+        
+        public void Set(int pos, int val)
+        {
+            if (pos > end || end == 0) throw new IndexOutOfRangeException();
+
+            array[start + pos] = val;
+        }
+        public int Get(int pos)
+        {
+            if (pos > end || end == 0) throw new IndexOutOfRangeException();
+
+            return array[pos];
         }
 
         public int Max()
         {
-            if (top == 0) throw new NullReferenceException();
+            if (end == 0) throw new NullReferenceException();
 
             int m = array[0];
-            for (int i = 1; i < top; i++)
+            for (int i = start; i < end; i++)
             {
                 if (array[i] > m)
                 {
                     m = array[i];
                 }
             }
+
             return m;
         }
 
         public int Min()
         {
-            if (top == 0) throw new NullReferenceException();
+            if (end == 0) throw new NullReferenceException();
 
             int m = array[0];
-            for (int i = 1; i < top; i++)
+            for (int i = start; i < end; i++)
             {
                 if (array[i] < m)
                 {
                     m = array[i];
                 }
             }
+
             return m;
         }
 
         public int IndMax()
         {
-            if (top == 0) throw new NullReferenceException();
+            if (end == 0) throw new NullReferenceException();
 
             int i = 0;
-            for (int j = 1; j < top; j++)
+            for (int j = start; j < end; j++)
             {
                 if (array[j] > array[i])
                 {
                     i = j;
                 }
             }
+
             return i;
         }
 
         public int IndMin()
         {
-            if (top == 0) throw new NullReferenceException();
+            if (end == 0) throw new NullReferenceException();
 
             int i = 0;
-            for (int j = 1; j < top; j++)
+            for (int j = start; j < end; j++)
             {
                 if (array[j] < array[i])
                 {
                     i = j;
                 }
             }
+
             return i;
         }
 
         public void Reverse()
         {
-            for (int i = 0; i < top / 2; i++)
+            for (int i = start; i < end / 2; i++)
             {
                 int tmp = array[i];
-                array[i] = array[top - i - 1];
-                array[top - i - 1] = tmp;
+                array[i] = array[end - i - 1];
+                array[end - i - 1] = tmp;
             }
         }
+
         public void HalfReverse()
         {
-            int j = (top % 2 == 0) ? 0 : 1;
-            for (int i = 0; i < top / 2; i++)
+            int j = (end % 2 == 0) ? 0 : 1;
+            for (int i = 0; i < end / 2; i++)
             {
                 int tmp = array[i];
-                array[i] = array[top / 2 + i + j];
-                array[top / 2 + i + j] = tmp;
+                array[i] = array[end / 2 + i + j];
+                array[end / 2 + i + j] = tmp;
             }
         }
-        
+
         public void Sort()
         {
-            for (int i = 0; i < top; i++)
+            for (int i = start; i < end; i++)
             {
-                for (int j = top - 1; j > i; j--)
+                for (int j = end - 1; j > i; j--)
                 {
                     if (array[i] > array[j])
                     {
@@ -215,20 +231,21 @@ namespace List.Core
                 }
             }
         }
-        
+
         public void Print()
         {
-            for (int i = 0; i < top; i++)
+            for (int i = start; i < end; i++)
             {
                 Console.Write(array[i] + " ");
             }
             Console.WriteLine();
         }
 
-        override public string ToString()
+        public override string ToString()
         {
             string ar = "";
-            for (int i = 0; i < top; i++)
+
+            for (int i = start; i < end; i++)
             {
                 ar += array[i] + " ";
             }
@@ -237,10 +254,13 @@ namespace List.Core
 
         private void Resize()
         {
-            if (top + 1 < array.Length) return;
+            int[] a = ToArray();
 
-            int[] tmp = array;
-            array = new int[Size() + (int)(Size() * 0.3)];
+            if (Size() == array.Length)
+            {
+                array = new int[(int)(array.Length + (array.Length * 0.3))];
+            }
+            Init(a);
         }
     }
 }

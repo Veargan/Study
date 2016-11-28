@@ -2,255 +2,271 @@
 
 namespace List.Core
 {
-    public class AList0
+    public class AList0 : IList
     {
-        private int[] a;
+        private int[] array = null;
 
-        private static void Main(string[] args)
+        public void Init(int [] ar)
         {
-        }
+            if (ar == null) ar = new int[0];
 
-        public void Init(int[] arr)
-        {
-            a = new int[arr.Length];
-
-            for (int i = 0; i < a.Length; i++)
+            array = new int[ar.Length];
+            for (int i = 0; i < array.Length; i++)
             {
-                a[i] = arr[i];
+                array[i] = ar[i];
             }
-        }
-
-        public int Size()
-        {
-            return a.Length;
         }
 
         public void Clear()
         {
-            a = new int[0];
+            array = new int[0];
         }
 
         public int[] ToArray()
         {
-            return a;
-        }
+            int[] ar = new int[array.Length];
 
-        override
-            public string ToString()
-        {
-            string res = "";
-
-            for (int i = 0; i < a.Length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
-                res += a[i] + " ";
+                ar[i] = array[i];
             }
 
-            return res;
+            return ar;
         }
 
-        public void AddStart(int n)
+        public int Size()
         {
-            int[] temp = new int[a.Length + 1];
+            return array.Length;
+        }
 
-            for (int i = 0; i < a.Length; i++)
+        public void AddStart(int val)
+        {
+            int[] a = new int[array.Length + 1];
+
+            for (int i = 1; i < a.Length; i++)
             {
-                temp[i + 1] = a[i];
+                a[i] = array[i - 1];
             }
-            temp[0] = n;
-            a = temp;
+
+            a[0] = val;
+            array = a;
         }
 
-        public void AddEnd(int n)
+        public void AddEnd(int val)
         {
-            int[] temp = new int[a.Length + 1];
+            int[] a = new int[array.Length + 1];
 
-            for (int i = 0; i < a.Length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
-                temp[i] = a[i];
+                a[i] = array[i];
             }
-            temp[temp.Length - 1] = n;
-            a = temp;
+
+            a[a.Length-1] = val;
+            array = a;
         }
 
-        public void AddPos(int pos, int n)
+        public void AddPos(int pos, int val)
         {
-            int[] temp = new int[a.Length + 1];
+            int[] a = new int[array.Length + 1];
 
             for (int i = 0; i < a.Length; i++)
             {
-                if (i < pos - 1)
+                if (i < pos)
                 {
-                    temp[i] = a[i];
+                    a[i] = array[i];
                 }
-                else if (i >= pos - 1)
+                else if (i == pos)
                 {
-                    temp[i + 1] = a[i];
+                    a[i] = val;
+                }
+                else if (i > pos)
+                {
+                    a[i] = array[i - 1];
                 }
             }
-            temp[pos - 1] = n;
-            a = temp;
+
+            array = a;
         }
 
         public int DelStart()
         {
-            int res = a[0];
-            int[] temp = new int[a.Length - 1];
+            if (array.Length == 0) throw new NullReferenceException();
 
-            for (int i = 0; i < a.Length - 1; i++)
+            int[] rt = new int[array.Length - 1];
+            int value = array[0];
+
+            for (int i = 0; i < rt.Length; i++)
             {
-                temp[i] = a[i + 1];
+                rt[i] = array[i + 1];
             }
-            a = temp;
+            array = rt;
 
-            return res;
+            return value;
         }
 
         public int DelEnd()
         {
-            int res = a[a.Length - 1];
-            int[] temp = new int[a.Length - 1];
+            if (array.Length == 0) throw new NullReferenceException();
 
-            for (int i = 0; i < a.Length - 1; i++)
+            int dd = array[array.Length - 1];
+
+            int[] tmp = new int[array.Length - 1];
+
+            for (int i = 0; i < tmp.Length; i++)
             {
-                temp[i] = a[i];
+                tmp[i] = array[i];
             }
-            a = temp;
 
-            return res;
+            array = tmp;
+
+            return dd;
         }
 
         public int DelPos(int pos)
         {
-            int res = a[pos - 1];
-            int[] temp = new int[a.Length - 1];
+            if (pos < 0 || pos >= array.Length) throw new NullReferenceException();
 
-            for (int i = 0; i < a.Length; i++)
+            int dd = array[pos];
+            int[] tmp = new int[array.Length - 1];
+
+            for (int i = 0; i < pos; i++)
             {
-                if (i < pos - 1)
-                {
-                    temp[i] = a[i];
-                }
-                else if (i >= pos)
-                {
-                    temp[i - 1] = a[i];
-                }
+                tmp[i] = array[i];
             }
-            a = temp;
 
-            return res;
+            for (int i = pos + 1; i < array.Length; i++)
+            {
+                tmp[i - 1] = array[i];
+            }
+
+            array = tmp;
+
+            return dd;
         }
 
-        public void Set(int pos, int n)
+        public void Set(int pos, int val)
         {
-            a[pos - 1] = n;
+            array[pos] = val;
         }
 
         public int Get(int pos)
         {
-            return a[pos - 1];
-        }
-
-        public int[] Reverse()
-        {
-            int[] arr = new int[a.Length];
-
-            for (int i = (a.Length - 1); i >= 0; i--)
-            {
-                arr[a.Length - i - 1] = a[i];
-            }
-
-            return arr;
-        }
-
-        public int[] HalfReverse()
-        {
-            int centr = a.Length/2 + a.Length%2;
-
-            for (int i = 0; i < (a.Length/2); i++)
-            {
-                int t = a[i];
-                a[i] = a[centr + i];
-                a[centr + i] = t;
-            }
-
-            return a;
-        }
-
-        public int Min()
-        {
-            int min = a[0];
-
-            for (int i = 1; i < a.Length; i++)
-            {
-                if (a[i] < min)
-                {
-                    min = a[i];
-                }
-            }
-
-            return min;
+            return array[pos];
         }
 
         public int Max()
         {
-            int max = a[0];
+            if (array.Length == 0) throw new NullReferenceException();
 
-            for (int i = 1; i < a.Length; i++)
+            int m = array[0];
+
+            for (int i = 1; i < array.Length; i++)
             {
-                if (a[i] > max)
+                if (array[i] > m)
                 {
-                    max = a[i];
+                    m = array[i];
                 }
             }
 
-            return max;
+            return m;
         }
 
-        public int IndMin()
+        public int Min()
         {
-            int index = 0;
+            if (array.Length == 0) throw new NullReferenceException();
 
-            for (int i = 1; i < a.Length; i++)
+            int m = array[0];
+
+            for (int i = 1; i < array.Length; i++)
             {
-                if (a[i] < a[index])
+                if (array[i] < m)
                 {
-                    index = i;
+                    m = array[i];
                 }
             }
 
-            return index;
+            return m;
         }
 
         public int IndMax()
         {
-            int index = 0;
+            if (array.Length == 0) throw new NullReferenceException();
 
-            for (int i = 1; i < a.Length; i++)
+            int i = 0;
+
+            for (int j = 1; j < array.Length; j++)
             {
-                if (a[i] > a[index])
+                if (array[j] > array[i])
                 {
-                    index = i;
+                    i = j;
                 }
             }
 
-            return index;
+            return i;
         }
 
-        public int[] Sort()
+        public int IndMin()
         {
-            int[] res = a;
+            if (array.Length == 0) throw new NullReferenceException();
 
-            for (int i = 0; i < res.Length; i++)
+            int i = 0;
+
+            for (int j = 1; j < array.Length; j++)
             {
-                for (int j = 0; j < res.Length - i - 1; j++)
+                if (array[j] < array[i])
                 {
-                    if (res[j] > res[j + 1])
+                    i = j;
+                }
+            }
+
+            return i;
+        }
+
+        public void Reverse()
+        {
+            for (int i = 0; i < array.Length / 2; i++)
+            {
+                int tmp = array[i];
+                array[i] = array[array.Length - 1 - i];
+                array[array.Length - 1 - i] = tmp;
+            }
+        }
+
+        public void HalfReverse()
+        {
+            int j = (array.Length % 2 == 0) ? 0 : 1;
+
+            for (int i = 0; i < array.Length / 2; i++)
+            {
+                int tmp = array[i];
+                array[i] = array[array.Length / 2 + i + j];
+                array[array.Length / 2 + i + j] = tmp;
+            }
+        }
+
+        public void Sort()
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                for (int j = array.Length - 1; j > i; j--)
+                {
+                    if (array[i] > array[j])
                     {
-                        int tmp = res[j];
-                        res[j] = res[j + 1];
-                        res[j + 1] = tmp;
+                        int tmp = array[i];
+                        array[i] = array[j];
+                        array[j] = tmp;
                     }
                 }
+            }
+        }
+
+        public override string ToString()
+        {
+            string res = "";
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                res += array[i] + " ";
             }
 
             return res;
@@ -258,11 +274,7 @@ namespace List.Core
 
         public void Print()
         {
-            for (int i = 0; i < a.Length; i++)
-            {
-                Console.Write(a[i] + " ");
-            }
-            Console.WriteLine();
+            Console.WriteLine(ToString());
         }
     }
 }
