@@ -4,7 +4,7 @@ namespace List.Core
 {
     public class AListR : IList
     {
-        public const int MaxLength = 10;
+        public const int MaxLength = 30;
         public int[] array = new int[MaxLength];
         public int start = MaxLength / 2;
         public int end = MaxLength / 2;
@@ -14,6 +14,7 @@ namespace List.Core
         {
             if (ar == null) ar = new int[0];
 
+            Clear();
             start = start - (ar.Length / 2);
             for (int i = 0; i < ar.Length; i++)
             {
@@ -41,14 +42,18 @@ namespace List.Core
 
         public int Size()
         {
+            int res = 0;
+
             if (flag)
             {
-                return array.Length - start + end;
+                res = array.Length - start + end;
             }
             else
             {
-                return end - start;
+                res = end - start;
             }
+
+            return res;
         }
         
         public void Set(int pos, int value)
@@ -82,6 +87,9 @@ namespace List.Core
         }
         public void AddEnd(int value)
         {
+            if (end == 0)
+                throw new NullReferenceException();
+
             if (end == start) Resize();
 
             if (end < array.Length)
@@ -148,7 +156,8 @@ namespace List.Core
 
         public int DelStart()
         {
-            if (start == 0) throw new NullReferenceException();
+            if (end == array.Length / 2)
+                throw new NullReferenceException();
 
             int deleted = array[start];
 
@@ -162,12 +171,14 @@ namespace List.Core
                 start = 0;
                 flag = false;
             }
+
             return deleted;
         }
-        
+
         public int DelEnd()
         {
-            if (end == 0) throw new NullReferenceException();
+            if (end == array.Length / 2)
+                throw new NullReferenceException();
 
             int deleted = array[end - 1];
 

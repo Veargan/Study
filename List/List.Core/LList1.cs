@@ -26,8 +26,10 @@ namespace List.Core
 
         public void Init(int[] ar)
         {
+            if (ar == null || ar.Length == 0)
+                ar = new int[0];
+
             Clear();
-            if (ar == null || ar.Length == 0) ar = new int[0];
 
             for (int i = 0; i < ar.Length; i++)
             {
@@ -44,7 +46,6 @@ namespace List.Core
         {
             int[] res = new int[Size()];
             int i = 0;
-
             Node tmp = root;
             while (tmp != null)
             {
@@ -69,33 +70,30 @@ namespace List.Core
 
         public void Set(int pos, int val)
         {
-            if (pos >= Size() || pos < 0) throw new IndexOutOfRangeException();
-            else
+            if (pos >= Size() || pos < 0)
+                throw new IndexOutOfRangeException();
+
+            Node tmp = root;
+            Node etmp = new Node(val);
+            for (int i = 1; i <= pos; i++)
             {
-                Node tmp = root;
-                Node etmp = new Node(val);
-                for (int i = 1; i <= pos; i++)
-                {
-                    tmp = tmp.next;
-                }
-                tmp.val = etmp.val;
+                tmp = tmp.next;
             }
+            tmp.val = etmp.val;
         }
 
         public int Get(int pos)
         {
-            int res = 0;
+            if (pos >= Size() || pos < 0)
+                throw new IndexOutOfRangeException();
 
-            if (pos >= Size() || pos < 0) throw new IndexOutOfRangeException();
-            else
+            int res = 0;
+            Node tmp = root;
+            for (int i = 1; i <= pos; i++)
             {
-                Node tmp = root;
-                for (int i = 1; i <= pos; i++)
-                {
-                    tmp = tmp.next;
-                }
-                res = tmp.val;
+                tmp = tmp.next;
             }
+            res = tmp.val;
 
             return res;
         }
@@ -112,45 +110,43 @@ namespace List.Core
             if (root == null)
             {
                 AddStart(val);
+                return;
             }
-            else
+
+            Node tmp = root;
+            while (tmp.next != null)
             {
-                Node tmp = root;
-                while (tmp.next != null)
-                {
-                    tmp = tmp.next;
-                }
-                tmp.next = new Node(val);
+                tmp = tmp.next;
             }
+            tmp.next = new Node(val);
         }
 
         public void AddPos(int pos, int val)
         {
-            if (pos < 0 || pos > Size()) throw new IndexOutOfRangeException();
+            if (pos < 0 || pos > Size())
+                throw new IndexOutOfRangeException();
+
             if (pos == 0)
             {
                 AddStart(val);
                 return;
             }
-            else
+            Node tmp = root;
+            Node etmp = new Node(val);
+            for (int i = 1; i < pos; i++)
             {
-                Node tmp = root;
-                Node etmp = new Node(val);
-
-                for (int i = 1; i < pos; i++)
-                {
-                    tmp = tmp.next;
-                }
-                etmp.next = tmp.next;
-                tmp.next = etmp;
+                tmp = tmp.next;
             }
+            etmp.next = tmp.next;
+            tmp.next = etmp;
         }
 
         public int DelStart()
         {
-            int res = 0;
-            if (root == null) throw new NullReferenceException();
+            if (root == null)
+                throw new NullReferenceException();
 
+            int res = 0;
             res = root.val;
             root = root.next;
 
@@ -159,9 +155,11 @@ namespace List.Core
 
         public int DelEnd()
         {
+            if (root == null)
+                throw new NullReferenceException();
+
             int res = 0;
 
-            if (root == null) throw new NullReferenceException();
             if (root.next == null)
             {
                 res = root.val;
@@ -169,25 +167,24 @@ namespace List.Core
 
                 return res;
             }
-            else
+            Node tmp = root;
+            for (int i = 1; i < Size() - 1; i++)
             {
-                Node tmp = root;
-                for (int i = 1; i < Size() - 1; i++)
-                {
-                    tmp = tmp.next;
-                }
-                res = tmp.next.val;
-                tmp.next = null;
-
-                return res;
+                tmp = tmp.next;
             }
+            res = tmp.next.val;
+            tmp.next = null;
+
+            return res;
         }
-        // ask about root -> null
+
         public int DelPos(int pos)
         {
+            if (pos < 0 || pos >= Size())
+                throw new NullReferenceException();
+
             int res = 0;
 
-            if (pos < 0 || pos >= Size()) throw new NullReferenceException();
             if (pos == 0)
             {
                 res = root.val;
@@ -196,27 +193,24 @@ namespace List.Core
 
                 return res;
             }
-            else
+            Node tmp = root;
+            for (int i = 1; i < pos; i++)
             {
-                Node tmp = root;
-                for (int i = 1; i < pos; i++)
-                {
-                    tmp = tmp.next;
-                }
-                res = tmp.next.val;
-                tmp.next = tmp.next.next;
-                tmp = null;
-
-                return res;
+                tmp = tmp.next;
             }
+            res = tmp.next.val;
+            tmp.next = tmp.next.next;
+            tmp = null;
+
+            return res;
         }
 
         public int Max()
         {
+            if (root == null)
+                throw new NullReferenceException();
+
             int max = 0;
-
-            if (root == null) throw new NullReferenceException();
-
             Node tmp = root;
             max = tmp.val;
             for (int i = 1; i < Size(); i++)
@@ -233,10 +227,10 @@ namespace List.Core
 
         public int Min()
         {
+            if (root == null)
+                throw new NullReferenceException();
+
             int min = 0;
-
-            if (root == null) throw new NullReferenceException();
-
             Node tmp = root;
             min = tmp.val;
             for (int i = 1; i < Size(); i++)
@@ -253,10 +247,10 @@ namespace List.Core
 
         public int IndMax()
         {
+            if (root == null)
+                throw new NullReferenceException();
+
             int index = 0;
-
-            if (root == null) throw new NullReferenceException();
-
             Node tmp = root;
             for (int i = 0; i < Size(); i++)
             {
@@ -272,10 +266,10 @@ namespace List.Core
 
         public int IndMin()
         {
+            if (root == null)
+                throw new NullReferenceException();
+
             int index = 0;
-
-            if (root == null) throw new NullReferenceException();
-
             Node tmp = root;
             for (int i = 0; i < Size(); i++)
             {
@@ -291,7 +285,8 @@ namespace List.Core
 
         public void Reverse()
         {
-            if (root == null) return;
+            if (root == null)
+                return;
 
             Node tmp = root;
             root = null;

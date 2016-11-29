@@ -272,9 +272,6 @@ namespace List.Core
             return res;
         }
 
-        public void Print()
-        {
-            Console.WriteLine(ToString());
-        }
+        
     }
 }

@@ -237,10 +237,13 @@ namespace List.Core
 
         private void Resize()
         {
-            if (top + 1 < array.Length) return;
+            int[] a = ToArray();
 
-            int[] tmp = array;
-            array = new int[Size() + (int)(Size() * 0.3)];
+            if (Size() == array.Length)
+            {
+                array = new int[(int)(array.Length + (array.Length * 0.3))];
+            }
+            Init(a);
         }
     }
 }
