@@ -48,6 +48,7 @@
     <Compile Include="AListR.cs" />
     <Compile Include="IList.cs" />
     <Compile Include="LList1.cs" />
+    <Compile Include="LList2.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
