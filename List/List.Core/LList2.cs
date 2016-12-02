@@ -25,27 +25,14 @@ namespace List.Core
 
         public void Init(int[] ar)
         {
+            Clear();
             if (ar == null || ar.Length == 0)
+                ar = new int[0];
+
+            for (int i = 0; i < ar.Length; i++)
             {
-                start = null;
-                return;
+                AddEnd(ar[i]);
             }
-            if (ar.Length == 1)
-            {
-                start = new Node(ar[0]);
-                size = 1;
-            }
-            start = new Node(ar[0]);
-            Node node = start;
-            int i = 1;
-            while (i < ar.Length)
-            {
-                node.next = new Node(ar[i++]);
-                node.prev = node;
-                node = node.next;
-                size++;
-            }
-            size++;
         }
 
         public void Clear()
@@ -58,11 +45,11 @@ namespace List.Core
         {
             int[] res = new int[Size()];
             int i = 0;
-            Node tmp = start;
-            while (tmp != null)
+            Node node = start;
+            while (node != null)
             {
-                res[i++] = tmp.val;
-                tmp = tmp.next;
+                res[i++] = node.val;
+                node = node.next;
             }
 
             return res;
@@ -72,11 +59,11 @@ namespace List.Core
         {
             int res = 0;
 
-            Node tmp = start;
-            while (tmp != null)
+            Node node = start;
+            while (node != null)
             {
+                node = node.next;
                 res++;
-                tmp = tmp.next;
             }
 
             return res;
@@ -116,14 +103,12 @@ namespace List.Core
             if (start == null)
             {
                 start = new Node(val);
-                size++;
                 return;
             }
             Node node = new Node(val);
             node.next = start;
             node.prev = node;
             start = node;
-            size++;
         }
 
         public void AddEnd(int val)
@@ -141,7 +126,6 @@ namespace List.Core
             Node tmp = new Node(val);
             node.next = tmp;
             tmp.prev = node;
-            size++;
         }
 
         public void AddPos(int pos, int val)
@@ -162,17 +146,15 @@ namespace List.Core
             tmp.next = node.next;
             tmp.prev = node;
             node.next = tmp;
-            size++;
         }
 
         public int DelStart()
         {
-            if (size == 0)
-                throw new IndexOutOfRangeException();
+            if (start == null)
+                throw new NullReferenceException();
 
             int res = start.val;
             start = start.next;
-            size--;
 
             return res;
         }
@@ -198,50 +180,41 @@ namespace List.Core
             }
             res = node.next.val;
             node.next = null;
-            size--;
 
             return res;
         }
 
         public int DelPos(int pos)
         {
-            if (pos < 0 || pos >= Size())
+            if (start == null || pos < 0 || pos >= Size())
                 throw new NullReferenceException();
 
             int res = 0;
-
             if (pos == 0)
             {
-                DelStart();
+                res = DelStart();
                 return res;
             }
+
             Node node = start;
-            for (int i = 1; i < pos; i++)
+            int i = 0;
+            while (i + 1 != pos)
             {
                 node = node.next;
+                i++;
             }
             res = node.next.val;
-
-            //tmp.prev = node;
-            //node.next = tmp.next;
-            size--;
+            if (node.next.next != null)
+            {
+                node.next = node.next.next;
+                node.next.prev = node;
+            }
+            else
+            {
+                node.next = null;
+            }
 
             return res;
-        //    while (current != null)
-        //    {
-        //        if (i == pos - 1)
-        //        {
-        //            Node1 curent2 = current.Next;
-        //            current.Next = curent2.Next;
-        //            curent2.Previous = current;
-        //            break;
-        //        }
-        //        current = current.Next;
-        //        i++;
-        //    }
-        //}
-        //size--;
-        //    return del;
         }
 
         public int Max()
@@ -402,6 +375,6 @@ namespace List.Core
             }
 
             return str.ToString();
-        } 
+        }
     }
 }

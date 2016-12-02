@@ -10,6 +10,7 @@ namespace List.NUnitTests
     [TestFixture(typeof(AListR))]
     [TestFixture(typeof(LList1))]
     [TestFixture(typeof(LList2))]
+    [TestFixture(typeof(LListR))]
 
     public class ListComplexTests<TList> where TList : IList, new()
     {

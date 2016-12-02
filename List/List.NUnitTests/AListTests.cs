@@ -10,6 +10,7 @@ namespace List.NUnitTests
     [TestFixture(typeof(AListR))]
     [TestFixture(typeof(LList1))]
     [TestFixture(typeof(LList2))]
+    [TestFixture(typeof(LListR))]
 
     public class AListTests<TList> where TList : IList, new()
     {
@@ -131,15 +132,6 @@ namespace List.NUnitTests
             CollectionAssert.AreEqual(exp, act);
         }
         #endregion
-
-        [TestCase(new int[] { 2 }, new int[] { 1, 2 }, 1, TestName = "AAListTest")]
-        public void TestAddStartLList2(int[] ar, int[] exp, int val)
-        {
-            list.Init(ar);
-            list.AddStart(val);
-            int[] act = list.ToArray();
-            CollectionAssert.AreEqual(exp, act);
-        }
 
         #region ADD_END
         [TestCase(new int[] { }, new int[] { 9 }, 9, 1, TestName = "AddEnd0")]
