@@ -1,0 +1,10 @@
+SELECT COUNT(id) FROM `person`
+SELECT AVG(Age) FROM `person`
+SELECT LastName FROM person ORDER BY LastName
+SELECT `LastName`, COUNT(LastName) FROM `person` GROUP by LastName
+SELECT FirstName FROM person WHERE FirstName LIKE "_%á%_" 
+SELECT * FROM person WHERE idStreet IS NULL 
+SELECT * FROM person,street WHERE street.id=person.idStreet AND street.Name = 'Pravda' AND person.age < 18
+SELECT street.Name, COUNT(person.idStreet) FROM street,person WHERE street.id=person.idStreet GROUP BY street.Name 
+SELECT Name FROM street WHERE CHAR_LENGTH(Name)=6 
+SELECT street.Name FROM street, person WHERE street.Id=person.idStreet GROUP BY street.Name HAVING 3> COUNT(person.idStreet)
