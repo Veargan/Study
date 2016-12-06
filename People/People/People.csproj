@@ -55,6 +55,7 @@
     <Compile Include="IPersonDAO_Mock.cs" />
     <Compile Include="IPersonDAO_MsSQL.cs" />
     <Compile Include="Person.cs" />
+    <Compile Include="PersonDAO_MongoDB.cs" />
     <Compile Include="PersonDAO_MySQL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
