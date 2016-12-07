@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Tree.Core
 {
-    public class BSTree : ITree
+    public class BSTree : ITree, IEnumerator, IEnumerable
     {
         public class Node
         {
@@ -18,6 +19,38 @@ namespace Tree.Core
         }
 
         private Node root = null;
+        private int index = -1;
+
+        public object Current
+        {
+            get
+            {
+                int result = 0;
+                int inIndex = 0;
+
+                NodeToEnumerator(root, ref result, ref inIndex, index);
+
+                return result;
+            }
+        }
+
+        private void NodeToEnumerator(Node node, ref int result, ref int index, int compareTo)
+        {
+            if (node == null)
+                return;
+
+            NodeToEnumerator(node.left, ref result, ref index, compareTo);
+
+            if (index == compareTo)
+            {
+                index++;
+                result = node.val;
+                return;
+            }
+
+            index++;
+            NodeToEnumerator(node.right, ref result, ref index, compareTo);
+        }
 
         public void Init(int[] ini)
         {
@@ -233,12 +266,127 @@ namespace Tree.Core
 
         public void DelNode(int val)
         {
-            throw new NotImplementedException();
+            if (root == null || Size() == 0)
+            {
+                throw new NullReferenceException();
+            }
+            DelNode(root, val);
+        }
+
+        private void DelNode(Node p, int val)
+        {
+            
+            Node move, back, temp;
+
+            if (p == null)
+            {
+                throw new NullReferenceException();
+            }
+            else
+            {
+                move = p;
+                back = move;
+
+                while (move.val != val)
+                {
+                    back = move;
+
+                    if (val < move.val)
+                    {
+                        move = move.left;
+                    }
+                    else
+                    {
+                        move = move.right;
+                    }
+                }
+
+                if (move.left != null && move.right != null)
+                {
+
+                    temp = move.right;
+
+                    while (temp.left != null)
+                    {
+                        back = temp;
+                        temp = temp.left;
+                    }
+
+                    move.val = temp.val;
+                    move = temp;
+                }
+
+                if (move.left == null && move.right == null)
+                {
+                    if (back.right == move)
+                    {
+                        back.right = null;
+                    }
+                    else
+                    {
+                        back.left = null;
+                    }
+
+
+                    return;
+                }
+
+                if (move.left == null && move.right != null)
+                {
+                    if (back.left == move)
+                    {
+                        back.left = move.right;
+                    }
+                    else
+                    {
+                        back.right = move.right;
+                    }
+
+
+                    return;
+                }
+
+                if (move.left != null && move.right == null)
+                {
+                    if (back.left == move)
+                    {
+                        back.left = move.left;
+                    }
+                    else
+                    {
+                        back.right = move.left;
+                    }
+
+                    return;
+                }
+            }
         }
 
         public Node GetNode()
         {
             return this.root;
+        }
+
+        public bool MoveNext()
+        {
+            if (index == Size() - 1)
+            {
+                Reset();
+                return false;
+            }
+
+            index++;
+            return true;
+        }
+
+        public void Reset()
+        {
+            this.index = -1;
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return this;
         }
     }
 }

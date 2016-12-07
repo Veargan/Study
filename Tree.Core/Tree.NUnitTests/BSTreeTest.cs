@@ -4,9 +4,11 @@ using System;
 
 namespace Tree.NUnitTests
 {
-    public class BSTreeTest
+    [TestFixture(typeof(BSTree))]
+    [TestFixture(typeof(BsTreeVis))]
+    public class BSTreeTest<TTree> where TTree : ITree, new()
     {
-        private BSTree list;
+        BSTree list;
 
         [SetUp]
         protected void SetUp()
@@ -149,7 +151,7 @@ namespace Tree.NUnitTests
         }
         [TestCase(new int[] { }, 0, TestName = "Width0")]
         [TestCase(new int[] { 1 }, 1, TestName = "Width1")]
-        [TestCase(new int[] { 1, 2 }, 1, TestName = "Width2")]
+        [TestCase(new int[] { 50, 25, 110 }, 2, TestName = "Width2")]
         [TestCase(new int[] { 50, 25, 11, 7, 30, 27, 40, 90, 80, 110 }, 4, TestName = "WidthMany")]
         public void TestWidth(int[] ar, int res)
         {
@@ -193,7 +195,7 @@ namespace Tree.NUnitTests
 
         #region DelNode
         [TestCase(null, TestName = "DelNull")]
-        [TestCase(new int[] { }, TestName = "Del0")]
+        
         public void TestDelNodeExp(int[] ar)
         {
             Assert.Throws<NullReferenceException>(() => list.Init(ar));
@@ -209,6 +211,24 @@ namespace Tree.NUnitTests
             int actSize = list.Size();
             Assert.AreEqual(actSize, expSize);
             CollectionAssert.AreEqual(exp, act);
+        }
+        #endregion
+
+        #region Enumerator
+        [TestCase(new int[] { }, new int[] { }, TestName = "Enumerator0")]
+        [TestCase(new int[] { 0 }, new int[] { 0 }, TestName = "Enumerator1")]
+        [TestCase(new int[] { 0, 1 }, new int[] { 0, 1 }, TestName = "Enumerator2")]
+        [TestCase(new int[] { 0, 1, 4, 3, 2, 5, 6, 7, 8 }, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 }, TestName = "EnumeratorMany")]
+        public void TestEnumerator(int[] array, int[] result)
+        {
+            list.Init(array);
+            int[] actual = new int[array.Length];
+            int iterator = 0;
+            foreach (var item in list)
+            {
+                actual[iterator++] = (int)item;
+            }
+            Assert.AreEqual(actual, result);
         }
         #endregion
     }
