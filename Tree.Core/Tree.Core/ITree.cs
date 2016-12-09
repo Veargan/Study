@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections;
 
 namespace Tree.Core
 {
@@ -18,7 +14,8 @@ namespace Tree.Core
         int Width();
         int Height();
         void Reverse();
-        void DelNode(int val);
+        void Del(int val);
         void Print();
+        IEnumerator GetEnumerator();
     }
 }

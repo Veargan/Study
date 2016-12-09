@@ -168,17 +168,12 @@ namespace Tree.Core
             if (p == null)
                 return 0;
 
-            if (p.left != null)
-                if (p.left.left != null || p.left.right != null)
-                    res++;
             NodeS(p.left, ref res);
-
-            if (p.right != null)
-                if (p.right.left != null || p.right.right != null)
-                    res++;
+            if (p.left != null || p.right != null)
+                res++;
             NodeS(p.right, ref res);
 
-            return res+1;
+            return res;
         }
 
         public int Leaves()
@@ -202,19 +197,33 @@ namespace Tree.Core
 
         public int Width()
         {
-            return Width(root);
+            int[] ar = new int[Height()];
+            Width(root, ar, 0);
+            return Max(ar);
         }
 
-        private int Width(Node p)
+        private void Width(Node p, int[] ar, int i)
         {
-            int res = 0;
-
             if (p == null)
-                return res;
+                return;
 
-            res = Height(root);
+            Width(p.left, ar, i + 1);
+            ar[i]++;
+            Width(p.right, ar, i + 1);
+        }
 
-            return res;
+        private int Max(int[] ar)
+        {
+            if (ar.Length == 0)
+                return 0;
+
+            int max = ar[0];
+            for (int i = 1; i < ar.Length; i++)
+            {
+                if (ar[i] > max)
+                    max = ar[i];
+            }
+            return max;
         }
 
         public int Height()
@@ -227,10 +236,7 @@ namespace Tree.Core
             if (p == null)
                 return 0;
 
-            int leftHeight = Height(p.left);
-            int rightHeight = Height(p.right);
-
-            return Math.Max(leftHeight, rightHeight) + 1;
+            return Math.Max(Height(p.left), Height(p.right)) + 1;
         }
 
         public void Reverse()
@@ -264,107 +270,51 @@ namespace Tree.Core
             Console.Write(p.val + " ");
         }
 
-        public void DelNode(int val)
+        public void Del(int val)
         {
-            if (root == null || Size() == 0)
-            {
-                throw new NullReferenceException();
-            }
-            DelNode(root, val);
+            root = Del(root, val);
+            var tmp = root;
         }
 
-        private void DelNode(Node p, int val)
+        private Node Del(Node p, int val)
         {
-            
-            Node move, back, temp;
-
             if (p == null)
             {
-                throw new NullReferenceException();
+                return p;
+            }
+            if (val < p.val)
+            {
+                p.left = Del(p.left, val);
+            }
+            else if (val > p.val)
+            {
+                p.right = Del(p.right, val);
             }
             else
             {
-                move = p;
-                back = move;
-
-                while (move.val != val)
+                if (p.left == null)
                 {
-                    back = move;
-
-                    if (val < move.val)
-                    {
-                        move = move.left;
-                    }
-                    else
-                    {
-                        move = move.right;
-                    }
+                    return p.right;
                 }
-
-                if (move.left != null && move.right != null)
+                else if (p.right == null)
                 {
-
-                    temp = move.right;
-
-                    while (temp.left != null)
-                    {
-                        back = temp;
-                        temp = temp.left;
-                    }
-
-                    move.val = temp.val;
-                    move = temp;
+                    return p.left;
                 }
-
-                if (move.left == null && move.right == null)
-                {
-                    if (back.right == move)
-                    {
-                        back.right = null;
-                    }
-                    else
-                    {
-                        back.left = null;
-                    }
-
-
-                    return;
-                }
-
-                if (move.left == null && move.right != null)
-                {
-                    if (back.left == move)
-                    {
-                        back.left = move.right;
-                    }
-                    else
-                    {
-                        back.right = move.right;
-                    }
-
-
-                    return;
-                }
-
-                if (move.left != null && move.right == null)
-                {
-                    if (back.left == move)
-                    {
-                        back.left = move.left;
-                    }
-                    else
-                    {
-                        back.right = move.left;
-                    }
-
-                    return;
-                }
+                p.val = Min(p.right);
+                p.right = Del(p.right, p.val);
             }
+            return p;
         }
 
-        public Node GetNode()
+        private int Min(Node p)
         {
-            return this.root;
+            int minv = p.val;
+            while (p.left != null)
+            {
+                minv = p.left.val;
+                p = p.left;
+            }
+            return minv;
         }
 
         public bool MoveNext()

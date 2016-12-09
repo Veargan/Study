@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections;
 
 namespace Tree.Core
 {
-    public class BsTreeVis : ITree
+    public class BSTreeVis : ITree, IEnumerator, IEnumerable
     {
         private class Node
         {
@@ -17,6 +18,38 @@ namespace Tree.Core
         }
 
         Node root = null;
+        private int index = -1;
+
+        public object Current
+        {
+            get
+            {
+                int result = 0;
+                int inIndex = 0;
+
+                NodeToEnumerator(root, ref result, ref inIndex, index);
+
+                return result;
+            }
+        }
+
+        private void NodeToEnumerator(Node node, ref int result, ref int index, int compareTo)
+        {
+            if (node == null)
+                return;
+
+            NodeToEnumerator(node.left, ref result, ref index, compareTo);
+
+            if (index == compareTo)
+            {
+                index++;
+                result = node.val;
+                return;
+            }
+
+            index++;
+            NodeToEnumerator(node.right, ref result, ref index, compareTo);
+        }
 
         public void Init(int[] ini)
         {
@@ -59,8 +92,8 @@ namespace Tree.Core
             if (p == null)
                 return;
 
-            Visit(p.left, v);
             v.Action(p);
+            Visit(p.left, v);
             Visit(p.right, v);
         }
 
@@ -95,7 +128,7 @@ namespace Tree.Core
             public String str = "";
             public void Action(Node p)
             {
-                str += p.val + ", ";
+                str += p.val + " ";
             }
         }
         private class VArray : Visitor
@@ -161,22 +194,134 @@ namespace Tree.Core
 
         public void Reverse()
         {
-            throw new NotImplementedException();
+            Reverse(root);
         }
 
-        public void DelNode(int val)
+        private void Reverse(Node p)
         {
-            throw new NotImplementedException();
+            if (p == null)
+                return;
+
+            Node tmp = p.right;
+            p.right = p.left;
+            p.left = tmp;
+            Reverse(p.left);
+            Reverse(p.right);
+        }
+
+        public void Del(int val)
+        {
+            root = Del(root, val);
+            var tmp = root;
+        }
+
+        private Node Del(Node p, int val)
+        {
+            if (p == null)
+            {
+                return p;
+            }
+            if (val < p.val)
+            {
+                p.left = Del(p.left, val);
+            }
+            else if (val > p.val)
+            {
+                p.right = Del(p.right, val);
+            }
+            else
+            {
+                if (p.left == null)
+                {
+                    return p.right;
+                }
+                else if (p.right == null)
+                {
+                    return p.left;
+                }
+                p.val = Min(p.right);
+                p.right = Del(p.right, p.val);
+            }
+            return p;
+        }
+
+        private int Min(Node p)
+        {
+            int minv = p.val;
+            while (p.left != null)
+            {
+                minv = p.left.val;
+                p = p.left;
+            }
+            return minv;
         }
 
         public int Width()
         {
-            throw new NotImplementedException();
+            int[] ar = new int[Height()];
+            Width(root, ar, 0);
+            return Max(ar);
+        }
+
+        private void Width(Node p, int[] ar, int i)
+        {
+            if (p == null)
+                return;
+
+            Width(p.left, ar, i + 1);
+            ar[i]++;
+            Width(p.right, ar, i + 1);
+        }
+
+        private int Max(int[] ar)
+        {
+            if (ar.Length == 0)
+                return 0;
+
+            int max = ar[0];
+            for (int i = 1; i < ar.Length; i++)
+            {
+                if (ar[i] > max)
+                    max = ar[i];
+            }
+            return max;
         }
 
         public void Print()
         {
-            throw new NotImplementedException();
+            PrintNode(root);
+        }
+
+        private void PrintNode(Node p)
+        {
+            if (p == null)
+                return;
+
+            PrintNode(p.left);
+            PrintNode(p.right);
+            Console.Write(p.val + " ");
+        }
+
+        public bool MoveNext()
+        {
+            if (index == Size() - 1)
+            {
+                Reset();
+                return false;
+            }
+
+            index++;
+            return true;
+        }
+
+        public void Reset()
+        {
+            this.index = -1;
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return this;
         }
     }
 }

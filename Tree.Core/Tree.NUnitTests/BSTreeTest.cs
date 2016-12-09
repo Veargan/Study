@@ -5,15 +5,16 @@ using System;
 namespace Tree.NUnitTests
 {
     [TestFixture(typeof(BSTree))]
-    [TestFixture(typeof(BsTreeVis))]
+    [TestFixture(typeof(BSTreeVis))]
+    [TestFixture(typeof(BSTreeLink))]
     public class BSTreeTest<TTree> where TTree : ITree, new()
     {
-        BSTree list;
+        private TTree list;
 
         [SetUp]
         protected void SetUp()
         {
-            list = new BSTree();
+            list = new TTree();
         }
 
         #region Init
@@ -42,7 +43,7 @@ namespace Tree.NUnitTests
         [TestCase(new int[] { }, 0, TestName = "Size0")]
         [TestCase(new int[] { 1 }, 1, TestName = "Size1")]
         [TestCase(new int[] { 1, 2 }, 2, TestName = "Size2")]
-        [TestCase(new int[] { 1, 2, 3, 2, 5, 6, 7 }, 7, TestName = "SizeMany")]
+        [TestCase(new int[] { 50, 25, 11, 7, 30, 27, 40, 90, 80, 110 }, 10, TestName = "SizeMany")]
         public void TestSize(int[] ar, int res)
         {
             list.Init(ar);
@@ -60,7 +61,7 @@ namespace Tree.NUnitTests
         [TestCase(new int[] { }, new int[] { }, TestName = "ToArray0")]
         [TestCase(new int[] { 1 }, new int[] { 1 }, TestName = "ToArray1")]
         [TestCase(new int[] { 1, 2 }, new int[] { 1, 2 }, TestName = "ToArray2")]
-        [TestCase(new int[] { 50, 25, 11, 7, 30, 27, 40, 90, 80, 100 }, new int[] { 50, 25, 11, 7, 30, 27, 40, 90, 80, 100 }, TestName = "ToArrayMany")]
+        [TestCase(new int[] { 50, 25, 11, 7, 30, 27, 40, 90, 80, 110 }, new int[] { 50, 25, 11, 7, 30, 27, 40, 90, 80, 110 }, TestName = "ToArrayMany")]
         public void TestToArray(int[] ar, int[] exp)
         {
             list.Init(ar);
@@ -115,7 +116,7 @@ namespace Tree.NUnitTests
         }
         [TestCase(new int[] { }, 0, TestName = "Leaves0")]
         [TestCase(new int[] { 1 }, 1, TestName = "Leaves1")]
-        [TestCase(new int[] { 1, 2 }, 1, TestName = "Leaves2")]
+        [TestCase(new int[] { 1, 2, 0 }, 2, TestName = "Leaves2")]
         [TestCase(new int[] { 50, 25, 11, 7, 30, 27, 40, 90, 80, 110 }, 5, TestName = "LeavesMany")]
         public void TestLeaves(int[] ar, int res)
         {
@@ -132,8 +133,8 @@ namespace Tree.NUnitTests
             Assert.Throws<NullReferenceException>(() => list.Init(ar));
         }
         [TestCase(new int[] { }, 0, TestName = "NodeS0")]
-        [TestCase(new int[] { 1 }, 1, TestName = "NodeS1")]
-        [TestCase(new int[] { 1, 2 }, 1, TestName = "Nodes2")]
+        [TestCase(new int[] { 1 }, 0, TestName = "NodeS1")]
+        [TestCase(new int[] { 1, 2, 3 }, 2, TestName = "Nodes2")]
         [TestCase(new int[] { 50, 25, 11, 7, 30, 27, 40, 90, 80, 110 }, 5, TestName = "NodeSMany")]
         public void TestNodeS(int[] ar, int res)
         {
@@ -193,10 +194,10 @@ namespace Tree.NUnitTests
         }
         #endregion
 
-        #region DelNode
+        #region Del
         [TestCase(null, TestName = "DelNull")]
         
-        public void TestDelNodeExp(int[] ar)
+        public void TestDelExp(int[] ar)
         {
             Assert.Throws<NullReferenceException>(() => list.Init(ar));
         }
@@ -206,7 +207,7 @@ namespace Tree.NUnitTests
         public void TestNode(int[] ar, int[] exp, int val, int expSize)
         {
             list.Init(ar);
-            list.DelNode(val);
+            list.Del(val);
             int[] act = list.ToArray();
             int actSize = list.Size();
             Assert.AreEqual(actSize, expSize);
