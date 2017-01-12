@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.vladislav.standartelements.MainActivity">
+
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="13dp"
+        android:id="@+id/textView" />
+
+    <Button
+        android:text="Button"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
+        android:layout_alignTop="@+id/textView"
+        android:layout_toEndOf="@+id/textView"
+        android:layout_marginStart="51dp"
+        android:id="@+id/button3" />
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
+        android:layout_alignTop="@+id/button3"
+        android:layout_toEndOf="@+id/button3"
+        android:layout_marginStart="47dp"
+        android:id="@+id/toggleButton2" />
+
+    <CheckBox
+        android:text="CheckBox"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginTop="21dp"
+        android:id="@+id/checkBox" />
+
+    <CheckedTextView
+        android:text="CheckedTextView"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
+        android:id="@+id/checkedTextView"
+        android:layout_alignBaseline="@+id/radioButton"
+        android:layout_alignBottom="@+id/radioButton"
+        android:layout_alignStart="@+id/toggleButton2" />
+
+    <RadioButton
+        android:text="RadioButton"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
+        android:id="@+id/radioButton"
+        android:layout_alignBaseline="@+id/checkBox"
+        android:layout_alignBottom="@+id/checkBox"
+        android:layout_alignStart="@+id/button3" />
+
+    <Spinner
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/checkBox"
+        android:layout_alignStart="@+id/checkBox"
+        android:layout_marginTop="19dp"
+        android:id="@+id/spinner" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyle"
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/spinner"
+        android:layout_alignStart="@+id/spinner"
+        android:layout_marginTop="11dp"
+        android:id="@+id/progressBar2" />
+
+    <SeekBar
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/progressBar2"
+        android:layout_alignStart="@+id/progressBar2"
+        android:layout_marginTop="19dp"
+        android:id="@+id/seekBar" />
+
+    <RatingBar
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_below="@+id/seekBar"
+        android:layout_alignStart="@+id/seekBar"
+        android:layout_marginTop="24dp"
+        android:id="@+id/ratingBar" />
+
+    <Switch
+        android:text="Switch"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_below="@+id/ratingBar"
+        android:layout_alignStart="@+id/ratingBar"
+        android:layout_marginTop="15dp"
+        android:id="@+id/switch1" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:layout_alignTop="@+id/switch1"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:id="@+id/editText"
+        android:layout_alignBottom="@+id/switch1" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        app:srcCompat="@android:drawable/btn_default"
+        android:layout_below="@+id/switch1"
+        android:layout_alignStart="@+id/switch1"
+        android:layout_marginTop="17dp"
+        android:id="@+id/imageButton" />
+
+    <VideoView
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_alignEnd="@+id/editText"
+        android:id="@+id/videoView" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        app:srcCompat="@android:drawable/arrow_up_float"
+        android:id="@+id/imageView"
+        android:layout_alignTop="@+id/imageButton"
+        android:layout_alignStart="@+id/radioButton" />
+
+    <SearchView
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_alignTop="@+id/seekBar"
+        android:layout_toEndOf="@+id/imageView" />
+
+    <SurfaceView
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_alignTop="@+id/spinner"
+        android:layout_alignStart="@+id/radioButton"
+        android:id="@+id/surfaceView" />
+
+    <QuickContactBadge
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        app:srcCompat="@android:drawable/bottom_bar"
+        android:id="@+id/quickContactBadge"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/gridView"
+        android:layout_marginBottom="16dp" />
+
+    <WebView
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_alignTop="@+id/quickContactBadge"
+        android:visibility="visible"
+        android:background="@android:color/holo_green_light" />
+
+    <ListView
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:id="@+id/listView"
+        android:layout_above="@+id/quickContactBadge"
+        android:layout_toStartOf="@+id/gridView"
+        android:layout_marginBottom="17dp"
+        tools:listitem="adasads"
+        android:visibility="visible"
+        android:background="@color/colorPrimaryDark" />
+
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chronometer2"
+        android:layout_alignBaseline="@+id/textClock"
+        android:layout_alignBottom="@+id/textClock"
+        android:layout_toEndOf="@+id/surfaceView" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ratingBar"
+        android:layout_alignEnd="@+id/textClock"
+        android:id="@+id/numberPicker5" />
+
+    <TextClock
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textClock"
+        android:layout_marginBottom="15dp"
+        android:layout_above="@+id/listView"
+        android:layout_toEndOf="@+id/imageButton" />
+
+    <GridView
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:id="@+id/gridView"
+        android:layout_alignTop="@+id/listView"
+        android:layout_toStartOf="@+id/chronometer2"
+        tools:listitem="sadad"
+        android:visibility="visible"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginLeft="20dp"/>
+
+    <AutoCompleteTextView
+        android:text="AutoCompleteTextView"
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/surfaceView"
+        android:layout_alignStart="@+id/surfaceView"
+        android:id="@+id/autoCompleteTextView" />
+
+</RelativeLayout>

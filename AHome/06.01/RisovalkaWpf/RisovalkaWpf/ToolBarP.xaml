@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="RisovalkaWpf.ToolBarP"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RisovalkaWpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="70" d:DesignWidth="300">
+    <Grid x:Name="grtb">
+        <ToolBar x:Name="toolBar" Background="White" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Height="37" Width="290"/>
+
+    </Grid>
+</UserControl>

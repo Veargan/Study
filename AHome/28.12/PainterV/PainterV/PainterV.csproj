@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C5918146-22E3-4310-B898-E87F50600E6B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PainterV</RootNamespace>
+    <AssemblyName>PainterV</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack, Version=4.5.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.4.5.4\lib\net45\ServiceStack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Client, Version=4.5.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Client.4.5.4\lib\net45\ServiceStack.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Common, Version=4.5.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Common.4.5.4\lib\net45\ServiceStack.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e06fbc6124f57c43, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Interfaces.4.5.4\lib\portable-wp80+sl5+net45+win8+wpa81+monotouch+monoandroid+xamarin.ios10\ServiceStack.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=4.5.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Text.4.5.4\lib\net45\ServiceStack.Text.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="YamlDotNet, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\YamlDotNet.4.0.0\lib\net35\YamlDotNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="API\DrawingVector2DTool.cs" />
+    <Compile Include="API\XActions.cs" />
+    <Compile Include="API\XCommand.cs" />
+    <Compile Include="Dialogs\IODialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\IODialog.Designer.cs">
+      <DependentUpon>IODialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ShapeTypeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ShapeTypeDialog.Designer.cs">
+      <DependentUpon>ShapeTypeDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\WidthDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\WidthDialog.Designer.cs">
+      <DependentUpon>WidthDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiniPaintV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MiniPaintV.Designer.cs">
+      <DependentUpon>MiniPaintV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\Menu\MainMenuVector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Menu\MainMenuVector.Designer.cs">
+      <DependentUpon>MainMenuVector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Menu\StatusBarVector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Menu\StatusBarVector.Designer.cs">
+      <DependentUpon>StatusBarVector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Menu\ToolBarVector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Menu\ToolBarVector.Designer.cs">
+      <DependentUpon>ToolBarVector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Menu\ToolBoxVector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Menu\ToolBoxVector.Designer.cs">
+      <DependentUpon>ToolBoxVector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\VectorElements\CanvasVector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\VectorElements\CanvasVector.Designer.cs">
+      <DependentUpon>CanvasVector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\VectorElements\ColorSelectorVector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\VectorElements\ColorSelectorVector.Designer.cs">
+      <DependentUpon>ColorSelectorVector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\VectorElements\Figures\SimpleFigures.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\VectorElements\Figures\SimpleFigures.Designer.cs">
+      <DependentUpon>SimpleFigures.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\VectorElements\PenWidthSelectorVector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\VectorElements\PenWidthSelectorVector.Designer.cs">
+      <DependentUpon>PenWidthSelectorVector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\VectorElements\SaveLoadVector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\VectorElements\SaveLoadVector.Designer.cs">
+      <DependentUpon>SaveLoadVector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\VectorElements\ShapeTypeSelectorVector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\VectorElements\ShapeTypeSelectorVector.Designer.cs">
+      <DependentUpon>ShapeTypeSelectorVector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="API\Figures\Figure.cs" />
+    <Compile Include="API\IO\FigureIO_CSV.cs" />
+    <Compile Include="API\IO\FigureIO_XML.cs" />
+    <Compile Include="API\IO\FigureIO_YML.cs" />
+    <Compile Include="API\IO\FigureIO_Selector.cs" />
+    <Compile Include="API\IO\FigureIO_JSON.cs" />
+    <Compile Include="API\Figures\IFigure.cs" />
+    <Compile Include="API\IO\FigureIO.cs" />
+    <Compile Include="API\IO\IFigureIO.cs" />
+    <Compile Include="API\XData.cs" />
+    <EmbeddedResource Include="Dialogs\IODialog.resx">
+      <DependentUpon>IODialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ShapeTypeDialog.resx">
+      <DependentUpon>ShapeTypeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\WidthDialog.resx">
+      <DependentUpon>WidthDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiniPaintV.resx">
+      <DependentUpon>MiniPaintV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UserControls\Menu\MainMenuVector.resx">
+      <DependentUpon>MainMenuVector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Menu\StatusBarVector.resx">
+      <DependentUpon>StatusBarVector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Menu\ToolBarVector.resx">
+      <DependentUpon>ToolBarVector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Menu\ToolBoxVector.resx">
+      <DependentUpon>ToolBoxVector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\VectorElements\CanvasVector.resx">
+      <DependentUpon>CanvasVector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\VectorElements\ColorSelectorVector.resx">
+      <DependentUpon>ColorSelectorVector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\VectorElements\Figures\SimpleFigures.resx">
+      <DependentUpon>SimpleFigures.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\VectorElements\PenWidthSelectorVector.resx">
+      <DependentUpon>PenWidthSelectorVector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\VectorElements\SaveLoadVector.resx">
+      <DependentUpon>SaveLoadVector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\VectorElements\ShapeTypeSelectorVector.resx">
+      <DependentUpon>ShapeTypeSelectorVector.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

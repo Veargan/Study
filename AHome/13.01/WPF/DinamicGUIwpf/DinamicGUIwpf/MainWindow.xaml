@@ -1,0 +1,12 @@
+﻿<Window x:Class="DinamicGUIwpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DinamicGUIwpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="552" Width="850">
+    <Grid Name="MainGrip">
+        <Button Name="btnSet" Click="Button_Click" Margin="44,28,580,437" Content="Set Markup"/>
+    </Grid>
+</Window>

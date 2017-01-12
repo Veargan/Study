@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">StandardDialogs</string>
+    <string name="tvTime">Time is</string>
+    <string name="btnTime">Time Picker Dialog</string>
+    <string name="btnDate">Date Picker Dialog</string>
+</resources>

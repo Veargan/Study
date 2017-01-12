@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SharedPreferencesCRUD</string>
+    <string name="txt_et_put_name">put name</string>
+    <string name="txt_et_put_id">put id</string>
+    <string name="txt_et_put_surname">put surname</string>
+    <string name="txt_et_put_number">put number</string>
+    <string name="txt_et_put_mail">put mail</string>
+    <string name="txt_et_put_skype">put skype</string>
+    <string name="txt_btn_save">Save</string>
+</resources>

@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="RisovalkaWpf.TypePanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RisovalkaWpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="200">
+    <Grid>
+        <Button x:Name="btnrect" Content="Rect" HorizontalAlignment="Left" Margin="61,10,0,0" VerticalAlignment="Top" Width="75" Tag="1"/>
+        <Button x:Name="btnel" Content="Ellipse" HorizontalAlignment="Left" Margin="61,48,0,0" VerticalAlignment="Top" Width="75" Tag="2"/>
+        <Button x:Name="btnrrect" Content="RoudRect" HorizontalAlignment="Left" Margin="61,86,0,0" VerticalAlignment="Top" Width="75" Tag="3"/>
+        <Button x:Name="btnline" Content="Line" HorizontalAlignment="Left" Margin="61,124,0,0" VerticalAlignment="Top" Width="75" Tag="4"/>
+        <Button x:Name="btncurve" Content="Curve" HorizontalAlignment="Left" Margin="61,163,0,0" VerticalAlignment="Top" Width="75" Tag="5"/>
+
+    </Grid>
+</UserControl>

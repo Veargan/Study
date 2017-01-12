@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS Paint</title>
+	<link href="css/style.css" rel="stylesheet">
+	<script src="js/draw.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/huebee@1/dist/huebee.min.css">
+	<script src="https://unpkg.com/huebee@1/dist/huebee.pkgd.min.js"></script>
+</head>
+<body onload="drawCustomLine()">
+	<canvas id="placeToDraw" width="800" height="400""></canvas> <br /> 
+	<input class="color-input" data-huebee />
+	<div class="ui-color-picker" data-topic="picker" data-mode="HSL"></div>
+	<select id="width">
+		<option value="1">1</option>
+		<option value="3">3</option>
+		<option value="5">5</option>
+		<option value="10">10</option>
+		<option value="15">15</option>
+	</select>
+</body>
+</html>
