@@ -1,3 +1,0 @@
-public static final String COMMAND_DELETE = "DROP TABLE IF EXISTS" + TABLE_PERSON;
-public static final String COOMAND  = "SELECT * FROM PERSON " + TABLE_PERSON;
-public static final int DB_VERSION = 5012017;

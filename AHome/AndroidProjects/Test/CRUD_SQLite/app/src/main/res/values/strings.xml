@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">CRUD_SQLite</string>
+    <string name="txt_et_put_id">put id</string>
+    <string name="txt_et_put_name">put name</string>
+    <string name="txt_et_put_surname">put surname</string>
+    <string name="txt_et_put_number">put number</string>
+    <string name="txt_et_put_mail">put mail</string>
+    <string name="txt_et_put_skype">put skype</string>
+    <string name="txt_btn_save">save</string>
+    <string name="txt_menu_list_persons">list persons</string>
+    <string name="txt_item_delete_all">delete all</string>
+    <string name="txt_item_delete_person">delete person</string>
+    <string name="txt_item_get_person">get person</string>
+    <string name="txt_item_update_person">update person</string>
+
+</resources>

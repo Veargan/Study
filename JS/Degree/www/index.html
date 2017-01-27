@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Degree</title>
+	<link href="css/style.css" rel="stylesheet">	
+	<script src="js/Loop.js"></script>
+	<script src="js/Recursive.js"></script>
+</head>
+<body>
+	<div class="calc-container">
+		<form name="calculator">
+			<input id="base" type="text"/> <br/>
+			<input id="exp" type="text"/> <br/>
+			<input id="oc" type="text" class="num" /> <br/>
+			<input id="btnLoop" type="button" value="Loop" onclick="oc.value=Loop(base.value, exp.value)"/>
+			<input id="btnRecursive" type="button" value="Recursive" onclick="oc.value=Recursive(base.value, exp.value)"/>
+		</form>
+	</div>
+</body>
+</html>

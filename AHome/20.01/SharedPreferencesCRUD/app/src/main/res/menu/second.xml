@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/action_dell_all"
+        android:orderInCategory="100"
+        android:title="delete all"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_dell_person"
+        android:orderInCategory="100"
+        android:title="delete person"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_get_person"
+        android:orderInCategory="100"
+        android:title="get person"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_update_person"
+        android:orderInCategory="100"
+        android:title="update person"
+        app:showAsAction="never" />
+
+</menu>

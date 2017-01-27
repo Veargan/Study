@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".SecondActivity">
+
+    <item
+        android:id="@+id/delete_all"
+        android:title="@string/txt_item_delete_all"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/delete_person"
+        android:title="@string/txt_item_delete_person"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/get_person"
+        android:title="@string/txt_item_get_person"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/update_person"
+        android:title="@string/txt_item_update_person"
+        app:showAsAction="never" />
+</menu>

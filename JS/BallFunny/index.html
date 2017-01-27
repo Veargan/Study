@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ball</title>
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<canvas id="canvas" width=500 height=500></canvas>
+</body>
+
+<script>
+	var canvas = document.getElementById('canvas');
+	var context = canvas.getContext('2d'); 
+	var posX, posY;
+	var dx, dy;
+	var radius;
+	var color;
+	var balls = [];
+	canvas.addEventListener('mousedown', mouseDown);
+
+	function Ball(x, y) {
+		posX = x;
+		posY = y;
+		radius = getRandomInt(10, 20);
+		color = getRandomColor();
+		dx = getRandomInt(-8, 8);
+		dy = getRandomInt(-8, 8);
+	}
+
+	function mouseDown(e)
+	{
+		// var myBall1 = new myBall(e.x, e.y);
+		balls.push(new Ball(e.x, e.y));
+		// drawBall();
+		animation();
+	}
+
+	function drawBall() {
+		context.fillStyle = color;
+		context.beginPath();
+		context.arc(posX, posY, radius, 0, Math.PI * 2, true);
+		context.fill();
+		context.closePath();
+	}
+
+	function checkHit() { 
+		posX += dx;
+		posY += dy;
+
+		if ((posX - radius <= 0) || posX + radius > canvas.width) {
+			dx = -dx;
+		}  
+		if ((posY - radius <= 0) || posY + radius > canvas.height) {
+			dy = -dy;
+		}
+	}
+
+	function animation() {
+		context.clearRect(0, 0, canvas.width, canvas.height);
+
+		
+		balls.forEach(function(item, i, balls) {
+			checkHit();
+			drawBall();
+		});
+		requestAnimationFrame(animation);
+	}
+	// animation();
+
+	function getRandomInt(min, max)
+	{
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+
+	function getRandomColor() {
+		var letters = '0123456789ABCDEF';
+		var color = '#';
+		for (var i = 0; i < 6; i++) {
+			color += letters[Math.floor(Math.random() * 16)];
+		}
+		return color;
+	}
+</script>
+
+</html>

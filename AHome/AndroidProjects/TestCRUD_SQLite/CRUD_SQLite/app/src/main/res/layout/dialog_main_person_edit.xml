@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/et_d_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txt_et_put_id" />
+
+    <EditText
+        android:id="@+id/et_d_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_d_id"
+        android:hint="@string/txt_et_put_name" />
+
+    <EditText
+        android:id="@+id/et_d_surname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_d_name"
+        android:hint="@string/txt_et_put_surname" />
+
+    <EditText
+        android:id="@+id/et_d_phone1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_d_surname"
+        android:hint="@string/txt_et_put_number" />
+
+    <EditText
+        android:id="@+id/et_d_mail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_d_phone1"
+        android:hint="@string/txt_et_put_mail" />
+
+    <EditText
+        android:id="@+id/et_d_skype"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_d_mail"
+        android:hint="@string/txt_et_put_skype" />
+
+</RelativeLayout>

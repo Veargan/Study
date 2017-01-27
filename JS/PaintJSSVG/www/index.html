@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS Paint</title>
+	<link href="css/style.css" rel="stylesheet">
+	<script src="js/draw.js"></script>
+	<script src="lib/FileSaver.min.js"></script>
+	<script src="lib/svg.min.js"></script>
+</head>
+<body onload="drawCustomLine()">
+	<svg id="svg" width="500" height="500" style="border: 2px solid black">
+        <path id="path" d="" fill="none" stroke-width="4" stroke="#000000"></path>
+    </svg> <br /> 
+	<input id="colorPicker" type="color" onchange="SetColor(colorPicker.value);" >
+	<input id="brushSize" type="range" min="1" max="20" value="1" onchange="SetWidth(brushSize.value);">
+	<input id="save" type="button" value="Save" onclick="SaveFile();">
+	<input id="Load" type="file" value="Load" onclick="LoadFile(Load.value);">
+</body>
+</html>

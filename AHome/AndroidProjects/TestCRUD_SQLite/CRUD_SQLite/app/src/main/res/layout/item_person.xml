@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/tv_name"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/tv_surname"
+        android:layout_below="@+id/tv_name"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/tv_phone"
+        android:layout_alignParentEnd="true"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/tv_mMail"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/tv_name"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/tv_skype"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/tv_surname"/>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/ibtn_item_delete"
+        android:background="@mipmap/ic_launcher"
+        android:layout_below="@+id/tv_surname"/>
+</RelativeLayout>
