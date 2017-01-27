@@ -1,0 +1,39 @@
+table.tableItem{
+    width: 500px; 
+    height: auto;
+}
+
+.tableItem{
+    border: black solid 1px;
+}
+
+#firstName{
+    position: absolute;
+    margin-top: -34px;
+    margin-left: 125px;
+}
+
+#lastName{
+    position: absolute;
+    margin-top: -34px;
+    margin-left: 250px;
+}
+
+#age{
+    position: absolute;
+    margin-top: -34px;
+    margin-left: 375px;
+}
+
+.personData{
+    width: 122px; 
+}
+
+.crudButton{
+    width: 122px; 
+}
+
+.personDataHeader{
+    width: 122px;
+}
+

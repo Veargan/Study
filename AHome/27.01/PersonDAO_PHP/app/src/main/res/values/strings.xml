@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">PersonDAO_PHP</string>
+    <string name="item_text_view_id">Id</string>
+    <string name="item_text_view_name">Name</string>
+    <string name="item_text_view_surname">Last name</string>
+    <string name="item_text_view_age">Age</string>
+    <string name="main_menu_create">Create person</string>
+    <string name="main_menu_read">Read all persons</string>
+    <string name="et_dialog_id">Put ID</string>
+    <string name="et_dialog_name">Put Name</string>
+    <string name="et_dialog_surname">Put Surname</string>
+    <string name="et_dialog_age">Put Age</string>
+</resources>

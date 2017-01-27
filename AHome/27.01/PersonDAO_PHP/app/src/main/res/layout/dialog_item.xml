@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/et_dialog_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/et_dialog_id"/>
+    <EditText
+        android:id="@+id/et_dialog_fName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_dialog_id"
+        android:hint="@string/et_dialog_name"/>
+    <EditText
+        android:id="@+id/et_dialog_lName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_dialog_fName"
+        android:hint="@string/et_dialog_surname"/>
+    <EditText
+        android:id="@+id/et_dialog_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_dialog_lName"
+        android:hint="@string/et_dialog_age"/>
+
+</RelativeLayout>

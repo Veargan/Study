@@ -126,7 +126,7 @@ IEEE 802, 7 OSI, Ethernet, LAN/MAN/WAN, Internet]
 [PHP (типы данных, операции над типами данных, выражения, условия, циклы, массивы, исключения, функции, объектная модель)]
 [Графы и как с ними работать]
 Android:
-[Builder, PaddingIntent, BroadcastReceiver, AsyncTask, Ретрофит адаптеры, ]
+[Builder, PaddingIntent, BroadcastReceiver, AsyncTask, Ретрофит адаптеры]
 -------------------------------------------------------------
 20.01.17
 Калькулятор php
@@ -157,4 +157,13 @@ PersonDAONet_Httpclient (Http соединение) сериал. arrayList<Person> обращ. к php
 4. Клиент Java Swing(таблица crud) сервер php
 5. Java Android + сервер php
 [Raid-массивы, SCSI диски, интерфейсы 123]
+-------------------------------------------------------------
+27.01.17
+ХО
+[AJAX-запросы, синхр. асинхр. xmlhttprequest, механизм работы тега Form в html, js (Можно ли на кнопку submit подцепить обработч. и как он работает
+push-notification: 1. android (от серв. к клиенту) 2. js webSocket (от клиента к серверу). IPv4 vs IPv6. Маршрутизация IP-пакетов]
+Android:
+[Service/IntentService threads, JSONObject, JSONArray, queryString, connectivityManager(users_perm(Internet, ChangeNetwork, GetType) intentFilter in onReceive, preferenciesActivity]
+Берем json выводим лист и согласно этой модель делаем модель и в зависимости от модели делаем ListView
+
 -------------------------------------------------------------
