@@ -165,5 +165,18 @@ push-notification: 1. android (от серв. к клиенту) 2. js webSocket (от клиента к
 Android:
 [Service/IntentService threads, JSONObject, JSONArray, queryString, connectivityManager(users_perm(Internet, ChangeNetwork, GetType) intentFilter in onReceive, preferenciesActivity]
 Берем json выводим лист и согласно этой модель делаем модель и в зависимости от модели делаем ListView
-
+-------------------------------------------------------------
+30.01.17
+XO C# web browser
+XO js+php
+[xmlhttprequestm android push notification, web socket, object model js]
+-------------------------------------------------------------
+1.02.17
+[keyword c#, localstorage, cookie, session, sessionstorage]
+-------------------------------------------------------------
+3.02.17
+admin может написать сообщение всем, может забанить/разбанить на какое-то время или навсегда, видит все сообщения[не приватные](забаненный, не может печатать/создавать)
+пользователь может отправлять приватные сообщения, приватные комнаты
+доделать веб-клиента с push-notification+websocket
+[uml, balzamic mockups]
 -------------------------------------------------------------
