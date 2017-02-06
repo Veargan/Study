@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">XZ</string>
+    <string name="txt_btn_authentication">authentication</string>
+    <string name="txt_tv_auth">Auth</string>
+</resources>
