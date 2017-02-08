@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Calculator_Http_Php</string>
+    <string name="value1">Put value</string>
+    <string name="operation">Put operation sign</string>
+    <string name="result">Result</string>
+    <string name="calculate">Calculate</string>
+</resources>

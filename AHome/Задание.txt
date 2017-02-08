@@ -181,7 +181,7 @@ admin может написать сообщение всем, может забанить/разбанить на какое-то время 
 [uml, balzamic mockups]
 -------------------------------------------------------------
 6.02.17
-Классовая, объектная, модельная XO, ChatRooms C#
+Классовая, объектная, пакетная XO, ChatRooms C#
 Отобразить UI в balzamic mockups XO, C#
 Общий код для 2-х прилож. XO, ChatRooms, Diagrams, UI(commentary)
 [object references(phantom, weak), nhibernate, entity]
