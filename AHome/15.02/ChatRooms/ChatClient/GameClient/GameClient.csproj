@@ -46,19 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UI\AskRequest.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\AskRequest.Designer.cs">
-      <DependentUpon>AskRequest.cs</DependentUpon>
-    </Compile>
     <Compile Include="Api\ClientManager.cs" />
-    <Compile Include="UI\GameXO.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\GameXO.Designer.cs">
-      <DependentUpon>GameXO.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,28 +59,32 @@
     <Compile Include="UI\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\PlayersList.cs">
+    <Compile Include="Api\RoomManager.cs" />
+    <Compile Include="UI\RoomForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\PlayersList.Designer.cs">
-      <DependentUpon>PlayersList.cs</DependentUpon>
+    <Compile Include="UI\RoomForm.Designer.cs">
+      <DependentUpon>RoomForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\RoomsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\RoomsList.Designer.cs">
+      <DependentUpon>RoomsList.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="UI\AskRequest.resx">
-      <DependentUpon>AskRequest.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\GameXO.resx">
-      <DependentUpon>GameXO.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\PlayersList.resx">
-      <DependentUpon>PlayersList.cs</DependentUpon>
+    <EmbeddedResource Include="UI\RoomForm.resx">
+      <DependentUpon>RoomForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\RoomsList.resx">
+      <DependentUpon>RoomsList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

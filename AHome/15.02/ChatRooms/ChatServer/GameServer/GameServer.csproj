@@ -44,18 +44,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authentication\Client.cs" />
-    <Compile Include="Api\CommandManager.cs" />
     <Compile Include="Authentication\ConnectionList.cs" />
-    <Compile Include="RealJob\IGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Lobby\InviteManager.cs" />
+    <Compile Include="Api\Room.cs" />
     <Compile Include="Api\ServerAPI.cs" />
-    <Compile Include="RealJob\XO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
