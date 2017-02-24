@@ -1,0 +1,606 @@
+<script type="text/javascript">
+		var ws;
+		var i = 0;
+		var k = 0;
+		var name = "";
+		var banname;
+		var username;
+		
+		function CorrectLogin(){
+			if(document.getElementById("label").innerHTML != username)
+				alert('Incorrect name or password or already logged in');
+		}
+		
+		function CorrectReg(){
+			if(document.getElementById("label").innerHTML != username)
+				alert('User already exists');
+		}
+		
+		
+        function connect(param) {
+			if(CheckName())
+			{
+				ws = new WebSocket("ws://localhost:8888");
+				
+				ws.onopen = function () {
+					username = "";
+					
+					var messageopen = new Request("auth","",document.getElementById("txt_login").value + "," + document.getElementById("txt_password").value + "," + param,"");		
+					var msgopen = JSON.stringify(messageopen);				
+					ws.send(msgopen);	
+					username = document.getElementById("txt_login").value;
+					if(param === "auth")
+					{
+						setTimeout(CorrectLogin,500);
+					}
+					else
+					{
+						setTimeout(CorrectReg,500);
+					}
+					
+				};
+
+				ws.onmessage = function (evt) {
+					//alert("About to receive data");
+					var received_msg = evt.data;				
+					//alert("Message received = "+received_msg);
+					listener(received_msg);
+				};
+				ws.onclose = function () {
+					// websocket is closed.
+					alert("Connection is closed...");
+				};
+			}
+		};
+		
+		
+		function CheckName(){
+			if(document.getElementById("txt_login").value.length == 0)
+			{
+				alert('Please enter username');
+				return false;
+			}
+			else if(document.getElementById("txt_password").value.length == 0)
+			{
+				alert('Please enter password');
+				return false;
+			}
+			else if(document.getElementById("txt_login").value.length > 10)
+			{
+				alert('Very long username! Enter username till 10 symbols.');
+				return false;
+			}
+			else if(document.getElementById("txt_password").value.length > 10)
+			{
+				alert('Very long password! Enter password till 10 symbols.');
+				return false;
+			}
+			else if(!(document.getElementById("txt_login").value.match(/\w+/g)))
+			{
+				alert('Username contains only english letters and numbers');
+				return false;
+			}
+			else if(!(document.getElementById("txt_password").value.match(/\w+/g)))
+			{
+				alert('Password contains only english letters and numbers');
+				return false;
+			}
+			else if(document.getElementById("txt_login").value.includes(" "))
+			{
+				alert('Username contains only english letters and numbers');
+				return false;
+			}
+			else if(document.getElementById("txt_password").value.includes(" "))
+			{
+				alert('Password contains only english letters and numbers');
+				return false;
+			}
+			return true;
+		}
+		
+		
+		function Refresh(type)
+		{
+			if(type === "Rooms")
+			{
+				var messageroom = new Request("lobby","refresh","","");		
+				var msgroom = JSON.stringify(messageroom);	
+				ws.send(msgroom);
+			}
+			else
+			{
+				var messageclient = new Request("lobby","refreshclients","","");		
+				var msgclient = JSON.stringify(messageclient);	
+				ws.send(msgclient);
+			}
+		}
+		
+		function Create(){
+			var roomname = prompt('Enter room name?', "");
+			
+			if(roomname != null && CheckRoom(roomname))
+			{
+				var messageroom = new Request("rooms","createroom",roomname,"");		
+				var msgroom = JSON.stringify(messageroom);	
+				ws.send(msgroom);
+			}
+		}
+		
+		function CheckRoom(rmname){
+			
+			if(rmname.length == 0)
+			{
+				alert('Please enter the room name');
+				return false;
+			}
+			else if(rmname.length > 20)
+			{
+				alert('Very long room name! Enter room name till 20 symbols.');
+				return false
+			}
+			else if(!(rmname.match(/\w+/g)))
+			{
+				alert('Room name contains only english letters and numbers');
+				return false;
+			}
+			return true;
+		}
+		
+		function Enter(){
+			if (document.getElementById("lst_room").selectedIndex == -1) {
+				alert("Please select room");
+			}
+			else
+			{			
+				index = document.getElementById("lst_room").selectedIndex;
+				var roomenter = document.getElementById("lst_room").options[index].value.split(' ');
+				var messageroom = new Request("rooms","enter",roomenter[0],"");		
+				var msgroom = JSON.stringify(messageroom);	
+				ws.send(msgroom);
+			}
+		}
+		
+		function listener(msg){
+			var tmp = JSON.parse(msg, function(k, v) {
+			return v;
+			});
+			switch(tmp.modul)
+			{
+				case "ok":
+					document.getElementById("dv1").style.visibility = "hidden";
+					document.getElementById("dv2").style.visibility = "visible";
+					var data = tmp.data.split(',');
+					document.getElementById("label").innerHTML = data[0];
+					if (data[0] == "admin")
+					{
+						document.getElementById("btn_ban").style.visibility = "visible";
+						document.getElementById("btn_unbun").style.visibility = "visible";
+					}
+					break;
+				case "refresh":
+					var splitrooms = tmp.data.split('.');
+					if (splitrooms[0] == "")
+					{
+						return;
+					}
+					var select = document.getElementById("lst_room");
+					var length = select.options.length;
+					for (j = 0; j < length; j++) {
+					  select.options[j] = null;
+					  i = 0;
+					}
+					for ( j = 0; j < splitrooms.length; j++)
+					{
+						if (!(splitrooms[j].includes('+')))
+						{
+							AddOpt = new Option(splitrooms[j],splitrooms[j]);
+							document.getElementById("lst_room").options[i++] = AddOpt;
+						}
+					}
+					break;
+				case "refreshclients":
+					var splitclients = tmp.data.split('.');
+					var select = document.getElementById("lst_client");
+					var length = select.options.length;
+					for (j = 0; j < length; j++) {
+					  select.options[j] = null;
+					  k = 0;
+					}
+					for ( j = 0; j < splitclients.length; j++)
+					{
+						AddOpt = new Option(splitclients[j],splitclients[j]);
+						document.getElementById("lst_client").options[k++] = AddOpt;
+					}
+					break;
+				case "enter":	
+					var enterstr = tmp.data.split(',');
+					if (enterstr[0] == "missed")
+					{
+						document.getElementById("txt_chat").innerHTML = "";
+						var entertmp = enterstr[1].split('.');
+						for (j = 0; j < entertmp.length; j++)
+						{
+							document.getElementById("txt_chat").innerHTML += entertmp[j] + "\n";
+							var txt = document.getElementById("txt_chat");
+						}
+					}
+					document.getElementById("dv2").style.visibility = "hidden";
+					document.getElementById("dv3").style.visibility = "visible";
+					name = tmp.command;
+					if(name.includes("+"))
+					{
+						document.getElementById("btn_exit").disabled = true;
+					}
+					else
+					{
+						document.getElementById("btn_exit").disabled = false;
+					}
+					break;
+				case "message":
+					document.getElementById("txt_chat").innerHTML += tmp.data + "\n";
+					break;
+				case "leave":
+					document.getElementById("dv3").style.visibility = "hidden";
+					document.getElementById("dv2").style.visibility = "visible";
+					break;
+				case "wrongroom":
+					alert('Error, room ' + tmp.data + ' has already been created.');
+					break;
+				case "youbanned":
+                    document.getElementById("txt_chat").innerHTML += tmp.data + "\n";
+                    break;	
+				case "alreadyenter":
+                    alert('You are already logged into this room.');
+                    break;
+				case "bancreate":
+                    alert('You have been banned for ' + tmp.data);
+                    break;
+				case "passive":
+					var a = -1;
+					for ( j = 0; j < i; j++)
+					{
+						var str1 = document.getElementById("lst_room").options[j].value.split(' ');
+						if (str1[0] == tmp.command)
+							a = j;
+					}
+					if (a != -1)
+					{
+						if(tmp.data === "0" && tmp.time != "True")
+						{
+							var newroom = tmp.command + "  ";
+							AddOpt = new Option(newroom,newroom);
+							document.getElementById("lst_room").options[a] = AddOpt;	
+							document.getElementById("lst_room").options[a].style = "font-weight: bold;";
+						}
+						else if(tmp.data != "0")
+						{
+							var newroom = tmp.command + "   +" + tmp.data;
+							AddOpt = new Option(newroom,newroom);
+							document.getElementById("lst_room").options[a] = AddOpt;	
+							document.getElementById("lst_room").options[a].style = "font-weight: bold;";
+						}
+						
+					}		
+					else
+					{
+						if(tmp.data != "0")
+						{
+							var newroom = tmp.command + "   +" + tmp.data;
+							AddOpt = new Option(newroom,newroom);
+							var ind = i++;
+							document.getElementById("lst_room").options[ind] = AddOpt;	
+							document.getElementById("lst_room").options[ind].style = "font-weight: bold;";
+						}
+					}
+					break;
+			}
+			
+			
+		}
+		
+		function Request(modul,command,data,time) {
+	
+			this.modul = modul;
+			this.command = command;
+			this.data = data;
+			this.time = time;
+			
+		}
+		
+		function Send(){
+			if(document.getElementById("txt_message").value.length > 500)
+			{
+				alert('Please enter message lesser then 500 symbols.');
+			}
+			else if(document.getElementById("txt_message").value === "")
+			{
+				alert('Please enter message.');
+			}
+			else
+			{
+				var messageroom = new Request("rooms","message",document.getElementById("txt_message").value,name);		
+				var msgroom = JSON.stringify(messageroom);	
+				ws.send(msgroom);
+				document.getElementById("txt_message").value = "";
+			}
+		}
+		
+		function Close(){
+			var messageroom = new Request("rooms","leave",name,"");		
+			var msgroom = JSON.stringify(messageroom);	
+			ws.send(msgroom);
+			document.getElementById("txt_message").value = "";
+			
+		}
+		
+		function Ban(){
+			if (document.getElementById("lst_client").selectedIndex == -1) {
+				alert("Please select user");
+			}
+			else
+			{		
+				index = document.getElementById("lst_client").selectedIndex;			
+				banname = document.getElementById("lst_client").options[index].value;
+				document.getElementById("labelban").innerHTML = "Do you want ban " + banname + "?";
+				modalban.style.display = "block";
+			}
+		}
+
+		
+		function BanPerm(){
+			var messagebanperm= new Request("lobby","ban",banname,"permanent");		
+			var msgbanperm = JSON.stringify(messagebanperm);	
+			ws.send(msgbanperm);
+			modalban.style.display = "none";
+		}
+		
+		function BanTime(){
+			if(CheckTime())
+			{
+				var messagebanperm= new Request("lobby","ban",banname,document.getElementById("txt_ban").value);		
+				var msgbanperm = JSON.stringify(messagebanperm);	
+				ws.send(msgbanperm);
+				modalban.style.display = "none";
+			}
+		}
+		
+		function CheckTime(){
+			if(!(document.getElementById("txt_login").value.match(/\d+/g)))
+			{
+				alert('Please enter only numbers');
+				return false;
+			}
+		    if(Number(document.getElementById("txt_ban").value) < 60)
+			{
+				alert('Minimum ban time 60');
+				return false;
+			}
+			if(Number(document.getElementById("txt_ban").value) > 9999)
+			{
+				alert('Maximum ban time 9999');
+				return false;
+			}
+			return true;
+		}
+		
+		function Unban(){
+			if (document.getElementById("lst_client").selectedIndex == -1) {
+				alert("Please select user");
+			}
+			else
+			{		
+				index = document.getElementById("lst_client").selectedIndex;			
+				banname = document.getElementById("lst_client").options[index].value;
+				document.getElementById("labelunban").innerHTML = "Do you want unban " + banname + "?";
+				modalunban.style.display = "block";
+			}
+		}
+
+		
+		function UnbanUser(){
+			var messageunbanperm= new Request("lobby","unban",banname,"");		
+			var msgunbanperm = JSON.stringify(messageunbanperm);	
+			ws.send(msgunbanperm);
+			modalunban.style.display = "none";
+		}
+		
+		function Cancel(){
+			modalunban.style.display = "none";
+		}
+		
+		function PrivateRoom(){
+			if (document.getElementById("lst_client").selectedIndex == -1) {
+				alert('Please select user');
+			}
+			else
+			{			
+				index = document.getElementById("lst_client").selectedIndex;
+				var roomenterprivate = document.getElementById("lst_client").options[index].value.split(' ');
+				var messageroomprivate = new Request("rooms","privateroom",roomenterprivate[0],"");		
+				var msgroomprivate = JSON.stringify(messageroomprivate);	
+				ws.send(msgroomprivate);
+			}
+		}
+		
+		function ExitRoom(){
+			var messageexit= new Request("rooms","exit",name,"");		
+			var msgexit = JSON.stringify(messageexit);	
+			ws.send(msgexit);
+		}
+		
+		function Logout(){
+			var messagelogout = new Request("auth","exit","","");		
+			var msglogout = JSON.stringify(messagelogout);	
+			ws.send(msglogout);
+			document.getElementById("dv2").style.visibility = "hidden";
+			document.getElementById("dv1").style.visibility = "visible";
+			document.getElementById("txt_login").value = "";
+			document.getElementById("txt_password").value = "";
+		}
+
+		window.addEventListener('beforeunload', function (e) { 
+		
+		Logout();
+		}, false);
+		
+		
+</script>
+
+
+<div id="banModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+	<span class="close" id="banspan">&times;</span>
+	<label id="labelban" class="lb"></label>
+    <input type="text" class="bantime" id="txt_ban" />
+	<input type="button" class="perm" id="btn_perm" value="Permanent" onclick="BanPerm()">
+	<input type="button" class="fortime" id="btn_fortime" value="For time" onclick="BanTime()">
+  </div>
+
+</div>
+
+<div id="unbanModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+	<span class="close" id="unbanspan">&times;</span>
+	<label id="labelunban" class="lb"></label>
+    <input type="text" class="bantime" id="txt_ban" style="visibility: hidden"/>
+	<input type="button" class="perm" id="btn_unban" value="Unban" onclick="UnbanUser()">
+	<input type="button" class="fortime" id="btn_cancel" value="Cancel" onclick="Cancel()">
+  </div>
+
+</div>
+
+<style>
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+	height: 40%;
+}
+
+/* The Close Button */
+.close {
+	margin-top: -20px;
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.lb {
+	margin-top: 175px;
+    margin-left: 200px;
+}
+
+.bantime {
+	margin-top: 75px;
+	margin-bottom: 100px;
+	margin-right: 150px;
+    margin-left: 200px;
+	width: 150px;
+    height: 20px;
+}
+
+.perm {
+	
+    margin-left: 100px;
+	width: 120px;
+    height: 20px;
+}
+
+.fortime {
+	
+    margin-left: 100px;
+	width: 120px;
+    height: 20px;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
+
+<script>
+// Get the modal
+var modalban = document.getElementById('banModal');
+
+var modalunban = document.getElementById('unbanModal');
+
+// Get the <span> element that closes the modal
+var banspan = document.getElementById("banspan");
+
+var unbanspan = document.getElementById("unbanspan");
+
+
+banspan.onclick = function() {
+    modalban.style.display = "none";
+}
+
+unbanspan.onclick = function() {
+    modalunban.style.display = "none";
+}
+
+// When the user clicks on <span> (x), close the modal
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modalban) {
+        modalban.style.display = "none";
+    }
+	if (event.target == modalunban) {
+        modalunban.style.display = "none";
+    }
+}
+</script>
+
+<div id="dv1">
+	<input type="text" id="txt_login" />
+	<input type="button" id="btn_login" value="Login" onclick="connect('auth')"></br></br>
+	<input type="text" id="txt_password" />	
+	<input type="button" id="btn_reg" value="Registration" onclick="connect('reg')">
+</div>
+<div id="dv2" style="visibility: hidden; margin-top: -25px">
+	<label id="label"></label>
+	<input type="button" id="btn_login" value="Logout" onclick="Logout()" /><br>
+	<select id="lst_room" style="overflow-y: auto; margin: 20px; width: 200px; height: 200px; max-height: 200px; " multiple>
+	<option value="empty"></select>
+	<select id="lst_client" style="overflow-y: auto; margin: 20px; width: 200px; height: 200px; max-height: 200px; " multiple>
+	<option value="empty"></select></br>
+	<input type="button" id="btn_create" value="Create room" style="margin-left: 75px;" onclick="Create()" />
+	<input type="button" id="btn_private" value="Private room" style="margin-left: 150px;" onclick="PrivateRoom()" /><br><br>
+	<input type="button" id="btn_enter" value="Enter the room" style="margin-left: 75px;" onclick="Enter()" /><br><br>
+	<input type="button" id="btn_refreshrooms" value="Refresh rooms" style="margin-left: 75px;" onclick="Refresh('Rooms')" />	
+	<input type="button" id="btn_refreshclients" value="Refresh clients" style="margin-left: 130px;" onclick="Refresh('Clients')" /><br><br>
+	<input type="button" id="btn_ban" value="Ban" style="margin-left: 335px;" onclick="Ban()" style="visibility: hidden" /><br><br>
+	<input type="button" id="btn_unbun" value="Unbun" style="margin-left: 335px;" onclick="Unban()"  style="visibility: hidden"/>	
+</div>
+<div id="dv3" style="visibility: hidden; margin-top: -400px;">
+	<textarea id="txt_chat" style="width: 400px; height: 300px;" readonly = true></textarea>
+	<input type="button" id="btn_close" value="Close" onclick="Close()" />
+	<input type="button" id="btn_exit" value="Exit room" onclick="ExitRoom()" /></br>
+	<input type="text" id="txt_message" />	
+	<input type="button" id="btn_send" value="Send" onclick="Send()" />	
+</div>

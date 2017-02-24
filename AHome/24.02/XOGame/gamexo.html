@@ -1,0 +1,139 @@
+<script type="text/javascript">
+		var ws;
+		var i = 0;
+		function Invite() {
+		  if (document.getElementById("lstValue").selectedIndex == -1) {
+          alert("Please select any item from the ListBox");
+         }
+		 Index = document.getElementById("lstValue").selectedIndex;
+		 ws.send("lobby,invite," + document.getElementById("label").innerHTML + "," + document.getElementById("lstValue").options[Index].value + ",XO");
+		}
+		
+		function SendInfo(name){
+			ws.send("games,gamexo," + document.getElementById("label").innerHTML + "," + name);
+		}
+		
+		function ReceiveGameData(output){
+			var msg = output.split(',');
+			if(msg[1] === "victory")
+			{
+				alert("Won");
+				document.getElementById("dv3").style.visibility = "hidden";
+				document.getElementById("dv2").style.visibility = "visible";
+				return;
+			}
+			else if(msg[1] === "fail")
+			{
+				alert("Lost");
+				document.getElementById("dv3").style.visibility = "hidden";
+				document.getElementById("dv2").style.visibility = "visible";
+				return;
+			}
+			else if(msg[1] === "standoff")
+			{
+				alert("Draw");
+				document.getElementById("dv3").style.visibility = "hidden";
+				document.getElementById("dv2").style.visibility = "visible";
+				return;
+			}
+			if(msg[1] === "yourturn")
+			{
+				document.getElementById("labelturn").innerHTML = "Choose your cell";
+				return;
+			}
+			if(msg[1] === "notyourturn")
+			{
+				document.getElementById("labelturn").innerHTML = "Not your turn";
+				return;
+			}
+			
+			document.getElementById(msg[1]).value = msg[2];
+			document.getElementById(msg[1]).disabled = true;
+			
+		}
+		
+        function connect() {
+            ws = new WebSocket("ws://localhost:8888");
+			
+			ws.onopen = function () {
+				var message = document.getElementById("txt_login").value + "," + document.getElementById("txt_password").value + ",0,auth";
+				ws.send(/*unescape(encodeURIComponent(*/message/*))*/);
+			};
+
+			ws.onmessage = function (evt) {
+				alert("About to receive data");
+				var received_msg = evt.data;				
+				alert("Message received = "+received_msg);
+				listener(received_msg);
+			};
+			ws.onclose = function () {
+				// websocket is closed.
+				alert("Connection is closed...");
+			};
+		};
+
+		function send(message){
+			ws.send(message);
+		}
+		
+		function listener(msg){
+			var tmp = msg.split(',');
+			switch(tmp[0])
+			{
+				case "name":
+					document.getElementById("label").innerHTML = tmp[1];
+					document.getElementById("dv1").style.visibility = "hidden";
+					document.getElementById("dv2").style.visibility = "visible";
+					break;
+				case "list":
+					for (var j = 1; j < tmp.length; j++)
+					{
+						var statuscont = tmp[j].split('#');
+						if(statuscont[1]!="1")
+						{
+							AddOpt = new Option(statuscont[0], statuscont[0]);
+							document.getElementById("lstValue").options[i++] = AddOpt;
+						}
+					}
+					break;
+				case "ask":
+					if(tmp[1] === "XO")
+					{
+						document.getElementById("dv2").style.visibility = "hidden";
+						document.getElementById("dv3").style.visibility = "visible";
+					}
+					break;
+				case "gamexo":
+					ReceiveGameData(msg);
+					break;
+			}
+		}
+		
+		
+</script>
+
+<div id="dv1">
+	<input type="text" id="txt_login" /></br>
+	<input type="text" id="txt_password" /></br>
+	<input type="button" id="btn_login" value="Login" onclick="connect()"></br>
+	<input type="button" id="btn_reg" value="Registration" onclick="connect()"></br>
+</div>
+<div id="dv2" style="visibility: hidden">
+	<label id="label"></label><br>
+	<input type="button" id="invite" value="Invite" onclick="Invite();" />
+	<select id="lstValue" multiple>
+	<option value="empty"></select>
+</div>
+
+<div id="dv3" style="visibility: hidden">
+	<label id="labelturn"></label><br>
+	<input type="button" id="0" value="" onclick="SendInfo(0)" />
+	<input type="button" id="1" value="" onclick="SendInfo(1)" />
+	<input type="button" id="2" value="" onclick="SendInfo(2)" /></br>
+	<input type="button" id="3" value="" onclick="SendInfo(3)" />
+	<input type="button" id="4" value="" onclick="SendInfo(4)" />
+	<input type="button" id="5" value="" onclick="SendInfo(5)" /></br>
+	<input type="button" id="6" value="" onclick="SendInfo(6)" />
+	<input type="button" id="7" value="" onclick="SendInfo(7)" />
+	<input type="button" id="8" value="" onclick="SendInfo(8)" />		
+</div>

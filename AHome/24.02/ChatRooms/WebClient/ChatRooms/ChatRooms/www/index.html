@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Chatrooms</title>
+    <link href="style.css" rel="stylesheet">
+    <script src="chatrooms.js"></script>
+</head>
+<body>
+    <div id="authentication">
+        <input id="login" type="text" placeholder="Enter login" />
+        <input id="password" type="text" placeholder="Enter password" />
+        <input id="auth" type="button" value="Sign in" onclick="connect();"/>
+        <input id="reg" type="button" value="Sign up" onclick="connect();"/>
+    </div>
+
+    <div id="room">
+        <select id="roomlist" multiple>
+            <option value="empty"></option>
+        </select>
+        <input id="roomname" type="text" placeholder="Enter room name" />
+        <input id="newroom" type="button" value="New room" onclick="createRoom(document.getElementById('roomname').value);" />
+        <input id="connectroom" type="button" value="Connect" onclick="connectToRoom();" />
+        <input id="unsubscribe" type="button" value="Unsubscribe" />
+        <select id="clientlist" multiple>
+            <option value="empty"></option>
+        </select>
+        <input id="privatemsg" type="text" placeholder="Write down private message" />
+        <input id="sendprivatemsg" type="button" value="Send" onclick="sendPrivateMsg(document.getElementById('privatemsg').value)" />
+        <input id="logout" type="button" value="Log out" />
+    </div>
+
+    <div id="chat">
+        <select id="msglist" multiple>
+            <option value="empty"></option>
+        </select>
+        <input id="exit" type="button" value="Exit" />
+        <input id="roommsg" type="text" placeholder="Write down room message" />
+        <input id="sendroommsg" type="button" value="Send" />
+    </div>
+</body>
+</html>
