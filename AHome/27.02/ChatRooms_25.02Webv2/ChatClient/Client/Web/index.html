@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Chatrooms</title>
+    <link href="style.css" rel="stylesheet">
+    <script src="chatrooms.js"></script>
+</head>
+<body>
+    <div id="authentication">
+        <input id="login" type="text" placeholder="Enter login" />
+        <input id="password" type="text" placeholder="Enter password" />
+        <input id="auth" type="button" value="Sign in" onclick="onAuthorization();" />
+        <input id="reg" type="button" value="Sign up" onclick="onRegistration();" />
+        <input id="forgot" type="button" value="Forgot password" onclick="showForgotPassPage();" />
+    </div>
+
+    <div id="room">
+        <select id="roomlist" multiple>
+            <option value="empty"></option>
+        </select>
+        <input id="roomname" type="text" placeholder="Enter room name" />
+        <input id="newroom" type="button" value="New room" onclick="createRoom(document.getElementById('roomname').value);" />
+        <input id="connectroom" type="button" value="Connect" onclick="connectToRoom();" />
+        <input id="unsubscribe" type="button" value="Unsubscribe" onclick="unsubscribe();" />
+        <select id="clientlist" multiple>
+            <option value="empty"></option>
+        </select>
+        <input id="privatemsg" type="text" placeholder="Write down private message" />
+        <input id="sendprivatemsg" type="button" value="Send" onclick="sendPrivateMsg(document.getElementById('privatemsg').value)" />
+        <input id="logout" type="button" value="Log out" onclick="logout()" />
+        <input id="changepassbtn" type="button" value="Change password" onclick="showChangePassPage()" />
+    </div>
+
+    <div id="admintools">
+		<input id="bantime" type="text" placeholder="Enter ban time" />
+        <input id="ban" type="button" value="Ban" onclick="ban(document.getElementById('bantime').value)" />
+        <input id="unban" type="button" value="Unban" onclick="unban()" />
+    </div>
+
+    <div id="chat">
+        <textarea id="txt_chat" style="width: 400px; height: 300px;" readonly></textarea>
+        <input id="exit" type="button" value="Exit" onclick="exitRoom()" />
+        <input id="roommsg" type="text" placeholder="Write down room message" />
+        <input id="sendroommsg" type="button" value="Send" onclick="sendMsgInRoom(document.getElementById('roommsg').value)" />
+    </div>
+
+    <div id="changepass">
+        <input id="oldpassword" type="text"  placeholder="Old password" />
+        <input id="newpassword" type="text"  placeholder="New password" />
+        <input id="changepass" type="button"  value="Change password" onclick="onChangePass()" />
+    </div>
+
+    <div id="forgotpass">
+        <input id="loginforgot" type="text" placeholder="Login" />
+        <input id="emailforgot" type="text" placeholder="Email" />
+        <input id="remind" type="button" value="Restore password" onclick="onForgotPass()">
+    </div>
+</body>
+</html>
