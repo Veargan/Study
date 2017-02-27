@@ -1,0 +1,385 @@
+<html>
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style>
+#lstPlayers {width: 100px;
+			 height: 200px;}
+             
+#lstGames {width: 100px;}
+.btn {width: 30px; height: 30px;}
+th, td {border: 0px solid black;}
+.lbl {cursor: pointer; color: blue; font: 12px arial;}
+.lbl {}
+
+div{visibility: hidden;
+    //height: 600px;
+    //width: 300px;
+	margin: auto;
+	border: 3px solid #73AD21;}
+
+</style>
+
+<script type="text/javascript">
+		var ws;
+		var i = 0;
+		function Invite()
+        {
+		 	if (document.getElementById("lstPlayers").selectedIndex == -1) {
+         	alert("Please select any item from the ListBox");
+         	}
+		 	Index = document.getElementById("lstPlayers").selectedIndex;
+		 	ws.send("lobby,invite," + document.getElementById("lbl_Name").innerHTML + "," + document.getElementById("lstPlayers").options[Index].value + ",XO");
+		}
+		
+		function SendInfo(btn)
+        {
+			ws.send("games,gamexo," + document.getElementById("lbl_Name").innerHTML + "," + btn);
+		}
+		
+		function ReceiveGameData(output)
+        {
+			var msg = output.split(',');
+			if(msg[1] === "victory")
+			{
+				alert("Won");
+				ws.send("list,");
+				document.getElementById("gameField").style.visibility = "hidden";
+				document.getElementById("playerList").style.visibility = "visible";
+				return;
+			}
+			else if(msg[1] === "fail")
+			{
+				alert("Lost");
+				ws.send("list,");
+				document.getElementById("gameField").style.visibility = "hidden";
+				document.getElementById("playerList").style.visibility = "visible";
+				return;
+			}
+			else if(msg[1] === "standoff")
+			{
+				alert("Draw");
+				ws.send("list,");
+				document.getElementById("gameField").style.visibility = "hidden";
+				document.getElementById("playerList").style.visibility = "visible";
+				return;
+			}
+			if(msg[1] === "yourturn")
+			{
+				document.getElementById("lbl_turn").innerHTML = "Your turn";
+				return;
+			}
+			if(msg[1] === "notyourturn")
+			{
+				document.getElementById("lbl_turn").innerHTML = "Not your turn";
+				return;
+			}
+			
+			document.getElementById(msg[1]).value = msg[2];
+			document.getElementById(msg[1]).disabled = true;
+			
+		}
+		
+		function logout() 
+        {        	
+        	ws.send("logout,");
+        }
+
+        function connect() 
+        {
+        	if(ws !== undefined)
+        		logout();
+            ws = new WebSocket("ws://localhost:8888");
+            
+			//ws.onopen = function () {
+			//	ws.send(/*unescape(encodeURIComponent(*/"connect"/*))*/);
+
+			//};
+
+			ws.onmessage = function (tmp) {
+				//alert("About to receive data");
+				var received_msg = tmp.data;				
+				//alert("Message received = " + received_msg);
+				listener(received_msg);
+			};
+			ws.onclose = function () {
+				// websocket is closed.
+				alert("Connection is closed...");
+				if (document.getElementById("playerList").style.visibility === "visible")
+				location.reload();
+			};
+		};
+
+		function back(field) 
+        {
+        	document.getElementById(field).style.visibility = "hidden";
+        	document.getElementById("login").style.visibility = "visible";
+        }
+		function login() 
+        {
+        	if(document.getElementById("txt_login1").value)
+        	connect();
+        	ws.onopen = function()
+        		{ws.send("login," + document.getElementById("txt_login1").value + "," +document.getElementById("txt_password").value);};
+        }
+        
+		function register() 
+        {
+        	connect();
+        	ws.onopen = function()
+        		{
+        			if(document.getElementById("txt_password1").value !== document.getElementById("txt_password2").value)
+        			{
+            			alert("Passwords are not equal!");
+                		document.getElementById("txt_password1").value = "";
+						document.getElementById("txt_password2").value = "";   
+                		return;
+            		}
+            		ws.send("reg," + document.getElementById("txt_login2").value + "," +document.getElementById("txt_password2").value);
+        		};
+        }
+        
+        function changePas() 
+        {           
+        	connect();
+        	ws.onopen = function()
+        		{
+            		ws.send("change," + document.getElementById("txt_login3").value + "," + 
+            		document.getElementById("txt_oldPas").value + "," + document.getElementById("txt_newPas").value);
+            	};
+        }
+        
+        function sendPas() 
+        {            
+        	connect();
+        	ws.onopen = function()
+        		{
+            		ws.send("forgot," + document.getElementById("txt_login4").value + "," + document.getElementById("txt_email").value);
+            	};
+        }
+        
+		function showReg() 
+        {
+        	document.getElementById("login").style.visibility = "hidden";
+			document.getElementById("register").style.visibility = "visible";
+        }
+        
+        window.onbeforeunload = function() {
+    		if(ws !== undefined)
+    		{
+    			ws.send("games,gamexo," + document.getElementById("lbl_Name").innerHTML + "," + "StopGame")
+    			ws.send("logout,");
+    		}
+    	}
+    		
+        function showChange() 
+        {
+        	document.getElementById("login").style.visibility = "hidden";
+			document.getElementById("changePas").style.visibility = "visible";
+        }
+        
+        function showSend() 
+        {
+        	document.getElementById("login").style.visibility = "hidden";
+			document.getElementById("forgotPas").style.visibility = "visible";
+        }
+		
+		function listener(msg)
+        {
+			var tmp = msg.split(',');
+			switch(tmp[0])
+			{
+			    case "login":
+			        if (tmp[1] === "Y") {
+			            document.getElementById("lbl_Name").innerHTML = document.getElementById("txt_login1").value;
+
+			            document.getElementById("login").style.visibility = "hidden";
+			            document.getElementById("txt_login1").value = "";
+			            document.getElementById("txt_password").value = "";
+			            document.getElementById("playerList").style.visibility = "visible";
+			            break;
+			        }
+			        else
+			        {
+			            if (tmp[3] === "1")
+			                alert("User with name \"" + document.getElementById("txt_login1").value + "\" isn't registed yet!");
+
+			            else
+			                alert("User with name \"" + document.getElementById("txt_login1").value + "\" is already in the game!");
+			        }
+			        break;
+
+			    case "reg":
+			        if (tmp[1] === "Y") 
+			        {
+			            document.getElementById("lbl_Name").innerHTML = document.getElementById("txt_login2").value;
+			            alert(document.getElementById("txt_login2").value + ", you are successfully registed!");
+
+			            document.getElementById("register").style.visibility = "hidden";			            
+			            document.getElementById("txt_login2").value = "";
+			            document.getElementById("txt_password1").value = "";
+			            document.getElementById("txt_password2").value = "";
+			            document.getElementById("playerList").style.visibility = "visible";
+			            break;
+			        }
+			        else 
+			            alert("User with name \"" + document.getElementById("txt_login2").value + "\" already excists!");
+			        break;
+                    
+                case "change":
+                	if (tmp[1] === "Y")
+                	{
+                		alert("Your password was successfully changed!");
+                    	document.getElementById("changePas").style.visibility = "hidden";
+                    	document.getElementById("txt_login3").value = "";
+						document.getElementById("txt_oldPas").value = "";
+						document.getElementById("txt_newPas").value = "";
+                    	ws.close();
+                    	document.getElementById("login").style.visibility = "visible";  
+                	}
+                	else
+                	{
+                		alert("Failed to change your password. Check whether login and old password are correct!");    
+                    	ws.close();
+                	}
+                	break;
+
+                case "send":
+                	if (tmp[1] === "Y")
+                	{
+                		alert("Password was sent to your Email.");
+                    	document.getElementById("forgotPas").style.visibility = "hidden";
+                    	document.getElementById("txt_login4").value = "";
+						document.getElementById("txt_email").value = "";
+                    
+                    	ws.close();
+                    	document.getElementById("login").style.visibility = "visible";  
+                	}
+                	else
+                	{
+                		alert("Failed to send your password. Check whether login is correct!");    
+                    	ws.close();
+                	}
+                	break;
+
+				case "list":
+					document.getElementById("lstPlayers").innerHTML = "123";
+					for (var j = 1; j < tmp.length; j++)
+					{
+						var statuscont = tmp[j].split('#');
+						if(statuscont[1]!="1")
+						{
+							var opt = document.createElement('option');
+    						opt.value = statuscont[0];
+    						opt.innerHTML = statuscont[0];
+    						document.getElementById("lstPlayers").appendChild(opt);
+							//AddOpt = new Option(statuscont[0], statuscont[0]);
+							//document.getElementById("lstPlayers").options[i++] = AddOpt;
+						}
+					}
+					break;
+                    
+				case "invite":
+					if(tmp[1] === "XO")
+					{
+						var ask;
+						if(confirm("Player " + tmp[2] + " invites you to play XO game. Accept an invitation?"))
+							ask = "Yes";						
+						else
+							ask = "No";
+
+						ws.send("games,ask," + ask + "," + tmp[3] + "," + tmp[2] + ",XO");						
+					}
+					break;
+				case "ask":
+					if(tmp[1] === "XO")
+					{
+						document.getElementById("playerList").style.visibility = "hidden";
+						document.getElementById("gameField").style.visibility = "visible";
+					}
+                    
+				case "gamexo":
+					ReceiveGameData(msg);
+					break;
+            }
+		}
+</script>
+</head>
+<body>
+<div id="login" style ="visibility: visible;">
+	<input type ="text"       maxlength="20" id    ="txt_login1"    placeholder ="Login"   /></br>
+	<input type ="password"   maxlength="20" id    ="txt_password"  placeholder ="Password"/></br>
+	<input type ="button"     id    ="btn_login"     value	     ="Login"        onclick="login()"></br>
+	<input type ="button"     id    ="btn_reg"       value	     ="Registration" onclick="showReg()"></br>
+    <label id   ="lbl_change" class ="lbl"           onClick 	 ="showChange()">Change password</label><br>
+    <label id   ="lbl_forgot" class ="lbl"           onClick 	 ="showSend()">Forgot password</label><br>
+</div>
+
+<div id="register">
+	<input type ="text"     maxlength="20"    id      ="txt_login2"    placeholder ="Login"	  /></br>
+	<input type="password""     maxlength="20"    id      ="txt_password1" placeholder ="Password"       /></br>
+	<input type ="password"     maxlength="20"    id      ="txt_password2" placeholder ="Repeat password"/></br>
+	<input type ="button"   id    ="btn_reg" value   ="Register"      onclick     ="register()"/>
+	<label id   ="lbl_back" class ="lbl"     onClick ="back(this.parentElement.id)">Back</label><br>
+</div>
+
+<div id="changePas">
+	<input type ="text"     cmaxlength="20"       id      ="txt_login3"      placeholder ="Login"/></br>
+	<input type ="password"     maxlength="20"       id      ="txt_oldPas"      placeholder ="Old password"/></br>
+	<input type ="password"     maxlength="20"       id      ="txt_newPas"      placeholder ="New password"/></br>
+	<input type ="button"   id    ="btn_change" value   ="Change password" onclick="changePas()"/>
+	<label id   ="lbl_back" class ="lbl"        onClick ="back(this.parentElement.id)">Back</label><br>
+</div>
+
+<div id="forgotPas">
+	<input type ="text"     maxlength ="20"        id          ="txt_login4" placeholder ="Login"/></br>
+	<input type ="text"     id        ="txt_email" placeholder ="Email"/></br>
+	<input type ="button"   id        ="btn_send"  value       ="Send" onclick = "sendPas()">
+	<label id   ="lbl_back" class     ="lbl"       onClick     ="back(this.parentElement.id)">Back</label><br>
+</div>
+
+<div id="playerList">
+	<label id="lbl_Name"></label><br>	
+    <table>
+    	<tr>
+    		<td rowspan="2">
+				<select id="lstPlayers" multiple>
+    			</select><br>    
+    		</td>
+    		<td valign = "top">
+            	<select id="lstGames">
+					<option value="XO">XO</option>
+    			</select><br>
+    			<input type="button" id="invite" value="Invite" onclick="Invite();" /><br>
+    		</td>
+        </tr>
+        <tr>
+        	<td valign = "bottom">
+            	<input type="button" id="logout" value="Logout" onclick="logout();" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id ="gameField">
+	<label id   ="lbl_turn"></label><br>
+	<input type ="button" id ="0" class = "btn" value ="" onclick ="SendInfo(0)"/>
+	<input type ="button" id ="1" class = "btn" value ="" onclick ="SendInfo(1)"/>
+	<input type ="button" id ="2" class = "btn" value ="" onclick ="SendInfo(2)"/></br>
+	<input type ="button" id ="3" class = "btn" value ="" onclick ="SendInfo(3)"/>
+	<input type ="button" id ="4" class = "btn" value ="" onclick ="SendInfo(4)"/>
+	<input type ="button" id ="5" class = "btn" value ="" onclick ="SendInfo(5)"/></br>
+	<input type ="button" id ="6" class = "btn" value ="" onclick ="SendInfo(6)"/>
+	<input type ="button" id ="7" class = "btn" value ="" onclick ="SendInfo(7)"/>
+	<input type ="button" id ="8" class = "btn" value ="" onclick ="SendInfo(8)"/>		
+</div>
+<br>
+</body>
+</html>
