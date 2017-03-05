@@ -1,0 +1,23 @@
+﻿#authentication{
+    display: flex;
+}
+
+#room{
+    display: none;
+}
+
+#chat{
+    display: none;
+}
+
+#changepass{
+    display: none;
+}
+
+#forgotpass{
+    display: none;
+}
+
+#admintools{
+    display: none;
+}
