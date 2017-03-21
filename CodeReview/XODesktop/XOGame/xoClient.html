@@ -1,0 +1,103 @@
+<html>
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="API.js"></script>
+<script src="dispatch.js"></script>
+<script src="config.js"></script>
+
+<style>
+#lstPlayers {width: 100px;
+			 height: 200px;}
+             
+#lstGames {width: 100px;}
+.btn {width: 30px; height: 30px;}
+th, td {border: 0px solid black;}
+.lbl {cursor: pointer; color: blue; font: 12px arial;}
+.lbl {}
+
+div{visibility: hidden;
+    //height: 600px;
+    //width: 300px;
+	margin: auto;
+	border: 3px solid #73AD21;}
+
+</style>
+</head>
+<body>
+<div id="login" style ="visibility: visible;">
+	<input type ="text"       maxlength ="20" 		 id      ="txt_login1"    placeholder ="Login"   /></br>
+	<input type ="password"   maxlength ="20" 		 id      ="txt_password"  placeholder ="Password"/></br>
+	<input type ="button"     id        ="btn_login" value	 ="Login"         onclick="login()"></br>
+	<input type ="button"     id        ="btn_reg"   value	 ="Registration"  onclick="hideShow('login','register')"></br>
+    <label id   ="lbl_change" class     ="lbl"       onClick ="hideShow('login','changePas')">Change password</label><br>
+    <label id   ="lbl_forgot" class     ="lbl"       onClick ="hideShow('login','forgotPas')">Forgot password</label><br>
+</div>
+
+<div id="register">
+	<input type ="text"     maxlength="20"      id      ="txt_login2"    placeholder ="Login"	  /></br>
+	<input type ="password" maxlength="20"      id      ="txt_password1" placeholder ="Password"       /></br>
+	<input type ="password"	maxlength="20"      id      ="txt_password2" placeholder ="Repeat password"/></br>
+	<input type ="button"   id    	 ="btn_reg" value   ="Register"      onclick     ="register()"/>
+	<label id   ="lbl_back" class 	 ="lbl"     onClick ="hideShow('register','login')">Back</label><br>
+</div>
+
+<div id="changePas">
+	<input type ="text"     maxlength="20"         id      ="txt_login3"      placeholder ="Login"/></br>
+	<input type ="password" maxlength="20"         id      ="txt_oldPas"      placeholder ="Old password"/></br>
+	<input type ="password" maxlength="20"         id      ="txt_newPas"      placeholder ="New password"/></br>
+	<input type ="button"   id    	 ="btn_change" value   ="Change password" onclick="changePas()"/>
+	<label id   ="lbl_back" class 	 ="lbl"        onClick ="hideShow('changePas','login')">Back</label><br>
+</div>
+
+<div id="forgotPas">
+	<input type ="text"     maxlength ="20"        id          ="txt_login4" placeholder ="Login"/></br>
+	<input type ="text"     id        ="txt_email" placeholder ="Email"/></br>
+	<input type ="button"   id        ="btn_send"  value       ="Send" onclick = "sendPas()">
+	<label id   ="lbl_back" class     ="lbl"       onClick     ="hideShow('forgotPas','login')">Back</label><br>
+</div>
+
+<div id="playerList">
+	<label id="lbl_Name"></label><br>	
+    <table>
+    	<tr>
+    		<td rowspan="2">
+				<select id="lstPlayers" multiple>
+    			</select><br>    
+    		</td>
+    		<td valign = "top">
+            	<select id="lstGames">
+					<option value="XO">XO</option>
+    			</select><br>
+    			<input type="button" id="invite" value="Invite" onclick="Invite();" /><br>
+    		</td>
+        </tr>
+        <tr>
+        	<td valign = "bottom">
+            	<input type="button" id="logout" value="Logout" onclick="logout();" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id ="gameField">
+	<label id   ="lbl_turn"></label><br>
+	<input type ="button" id ="0" class = "btn" value ="" onclick ="SendInfo(0)"/>
+	<input type ="button" id ="1" class = "btn" value ="" onclick ="SendInfo(1)"/>
+	<input type ="button" id ="2" class = "btn" value ="" onclick ="SendInfo(2)"/></br>
+	<input type ="button" id ="3" class = "btn" value ="" onclick ="SendInfo(3)"/>
+	<input type ="button" id ="4" class = "btn" value ="" onclick ="SendInfo(4)"/>
+	<input type ="button" id ="5" class = "btn" value ="" onclick ="SendInfo(5)"/></br>
+	<input type ="button" id ="6" class = "btn" value ="" onclick ="SendInfo(6)"/>
+	<input type ="button" id ="7" class = "btn" value ="" onclick ="SendInfo(7)"/>
+	<input type ="button" id ="8" class = "btn" value ="" onclick ="SendInfo(8)"/>		
+</div>
+<br>
+</body>
+</html>

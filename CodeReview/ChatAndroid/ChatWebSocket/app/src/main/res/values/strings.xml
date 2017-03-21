@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">ChatWebSocket</string>
+    <string name="button_login">Log in</string>
+    <string name="button_logout">Log out</string>
+    <string name="button_change">Change password</string>
+    <string name="button_create">Create room</string>
+    <string name="button_enter">Enter the room</string>
+    <string name="button_refreshrooms">Refresh rooms</string>
+    <string name="button_refreshclients">Refresh clients</string>
+    <string name="button_ban">Ban</string>
+    <string name="button_unban">Unban</string>
+    <string name="button_private">Private room</string>
+    <string name="edittext_username">Enter username</string>
+    <string name="edittext_password">Enter password</string>
+    <string name="button_reg">Registration</string>
+    <string name="button_auth">Authorization</string>
+    <string name="button_forgotPass">Forgot password</string>
+    <string name="button_changePass">Change password</string>
+    <string name="button_empty" />
+    <string name="textview_statusbar">Shape Type:</string>
+    <string name="button_exit">Exit</string>
+</resources>

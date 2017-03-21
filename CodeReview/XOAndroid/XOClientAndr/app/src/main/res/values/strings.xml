@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">XOClient</string>
+    <string name="button_login">Log in</string>
+    <string name="button_logout">Log out</string>
+    <string name="edittext_username">Enter username</string>
+    <string name="edittext_password">Enter password</string>
+    <string name="button_reg">Registration</string>
+    <string name="button_auth">Authorization</string>
+    <string name="button_forgotPass">Forgot password?</string>
+    <string name="button_changePass">Change password</string>
+    <string name="button_empty" />
+    <string name="textview_statusbar">Shape Type:</string>
+    <string name="button_exit">Exit</string>
+    <string name="edittext_newPassword">Enter new password</string>
+    <string name="textview_lobby_statusbar">Waiting for connection to the server...</string>
+    <string name="textview_lobby_statusbar_name">Your name:</string>
+    <string name="lobby_list_item_name">Name</string>
+    <string name="facebook_app_id">1613160242032150</string>
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_ra"
+    android:screenOrientation="portrait"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".ui.MainActivity">
+
+    <EditText
+        android:id="@+id/fragment_change_etOldpass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter oldpassword" />
+
+    <EditText
+        android:id="@+id/fragment_change_etNewpass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_change_etOldpass"
+        android:hint="Enter newpass"
+        android:password="true" />
+
+    <EditText
+        android:id="@+id/fragment_change_etNewpassConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_change_etNewpass"
+        android:hint="Enter newpass"
+        android:password="true" />
+
+    <Button
+        android:id="@+id/fragment_change_bConfirm"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_change_etNewpassConfirm"
+        android:text="Change" />
+
+
+
+</RelativeLayout>
