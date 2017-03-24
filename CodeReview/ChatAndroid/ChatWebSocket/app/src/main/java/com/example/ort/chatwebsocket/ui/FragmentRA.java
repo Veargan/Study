@@ -1,4 +1,4 @@
-package com.example.vladislav.chatwebsocket.ui;
+package com.example.ort.chatwebsocket.ui;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -14,18 +14,14 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.vladislav.chatwebsocket.R;
-import com.example.vladislav.chatwebsocket.ui.api.Request;
+import com.example.ort.chatwebsocket.R;
+import com.example.ort.chatwebsocket.ui.api.Request;
 import com.google.gson.Gson;
 
 import org.java_websocket.client.WebSocketClient;
 
-import static com.example.vladislav.chatwebsocket.ui.MainActivity.context;
-import static com.example.vladislav.chatwebsocket.ui.Websockets.mWebSocketClient;
-
-/**
- * Created by Vladislav on 26.02.2017.
- */
+import static com.example.ort.chatwebsocket.ui.MainActivity.context;
+import static com.example.ort.chatwebsocket.ui.Websockets.mWebSocketClient;
 
 public class FragmentRA extends Fragment {
     @Nullable
@@ -57,9 +53,6 @@ public class FragmentRA extends Fragment {
                 if(CheckName(etUsername.getText().toString(),etPassword.getText().toString())) {
                     MainActivity.connectWebSocket(etUsername.getText().toString(), etPassword.getText().toString(), "", "auth");
                 }
-                //FragmentTransaction transaction = getFragmentManager().beginTransaction();
-               // transaction.replace(R.id.main_activity_fragment_placeholder, MainActivity.fragments.get(1));
-                //transaction.commit();
             }
         });
 
@@ -79,7 +72,6 @@ public class FragmentRA extends Fragment {
             }
         });
 
-
         return view;
     }
 
@@ -90,8 +82,7 @@ public class FragmentRA extends Fragment {
 
         ad = new AlertDialog.Builder(context);
 
-        ad.setTitle(title);  // заголовок
-        // ad.setMessage(message); // сообщение
+        ad.setTitle(title); 
         ad.setPositiveButton(button1String, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int arg1) {
                 if(CheckForgot(input.getText().toString())) {
@@ -109,7 +100,6 @@ public class FragmentRA extends Fragment {
                 input.setText("");
             }
         });
-
 
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,

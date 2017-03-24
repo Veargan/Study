@@ -29,67 +29,13 @@ namespace GameClient
         }
 
         public void ShowForm()
-        {
-           
-           
+        {                   
                 this.ShowDialog();
-             
-           
-        }
-        
-       
-        private void button7_Click(object sender, EventArgs e)
-        {
-         
-            SendInfo("6");
         }
 
-        private void btn1_Click(object sender, EventArgs e)
+        private void btnXO_Click(object sender, EventArgs e)
         {
-          
-            SendInfo("0");
-        }
-
-        private void btn2_Click(object sender, EventArgs e)
-        {
-           
-            SendInfo("1");
-        }
-
-        private void btn3_Click(object sender, EventArgs e)
-        {
-          
-            SendInfo("2");
-        }
-
-        private void btn4_Click(object sender, EventArgs e)
-        {
-          
-            SendInfo("3");
-        }
-
-        private void btn5_Click(object sender, EventArgs e)
-        {
-           
-            SendInfo("4");
-        }
-
-        private void btn6_Click(object sender, EventArgs e)
-        {
-          
-            SendInfo("5");
-        }
-
-        private void btn8_Click(object sender, EventArgs e)
-        {
-           
-            SendInfo("7");
-        }
-
-        private void btn9_Click(object sender, EventArgs e)
-        {
-           
-            SendInfo("8");
+            SendInfo((sender as Button).Tag.ToString());
         }       
 
         public void SendInfo(string btnname)
@@ -123,8 +69,7 @@ namespace GameClient
                 return;
             }
             if(msg[1] == "yourturn")
-            {
-               
+            {               
                 lb_turn.Text = "Choose the cell";
                 return;
             }
@@ -138,8 +83,7 @@ namespace GameClient
             var controls = this.Controls.Find(message, true);
             var btn = controls[0] as Button;
             if (msg[1] != null)
-            {
-               
+            {               
                 btn.Text = msg[2];
                 btn.Enabled = false;
             }

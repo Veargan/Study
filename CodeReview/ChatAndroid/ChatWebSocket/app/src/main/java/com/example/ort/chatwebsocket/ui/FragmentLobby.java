@@ -1,4 +1,4 @@
-package com.example.vladislav.chatwebsocket.ui;
+package com.example.ort.chatwebsocket.ui;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -24,21 +24,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.vladislav.chatwebsocket.R;
-import com.example.vladislav.chatwebsocket.ui.api.MyAdapter;
-import com.example.vladislav.chatwebsocket.ui.api.Request;
-import com.example.vladislav.chatwebsocket.ui.api.Rooms;
+import com.example.ort.chatwebsocket.R;
+import com.example.ort.chatwebsocket.ui.api.MyAdapter;
+import com.example.ort.chatwebsocket.ui.api.Request;
+import com.example.ort.chatwebsocket.ui.api.Rooms;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
-import static com.example.vladislav.chatwebsocket.ui.MainActivity.context;
-import static com.example.vladislav.chatwebsocket.ui.MainActivity.fragments;
-import static com.example.vladislav.chatwebsocket.ui.Websockets.mWebSocketClient;
-
-/**
- * Created by Vladislav on 26.02.2017.
- */
+import static com.example.ort.chatwebsocket.ui.MainActivity.context;
+import static com.example.ort.chatwebsocket.ui.MainActivity.fragments;
+import static com.example.ort.chatwebsocket.ui.Websockets.mWebSocketClient;
 
 public class FragmentLobby extends Fragment {
 
@@ -77,9 +73,6 @@ public class FragmentLobby extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_lobby, container, false);
-
-
-
         lastposition = -1;
         lastpositionuser = -1;
         input = new EditText(MainActivity.context);
@@ -230,7 +223,6 @@ public class FragmentLobby extends Fragment {
 
             public void onItemClick(AdapterView<?> adapter, View v, int position, long id) {
 
-               // TextView textview1 = (TextView) v.findViewById(R.id.tvRoom);
                 String[] splitrooms = lvRooms.getItemAtPosition(position).toString().split(" ");;
                 roomname = splitrooms[0];
                 lvRooms.setItemChecked(position,true);
@@ -265,8 +257,7 @@ public class FragmentLobby extends Fragment {
 
         ad = new AlertDialog.Builder(context);
 
-        ad.setTitle(title);  // заголовок
-        // ad.setMessage(message); // сообщение
+        ad.setTitle(title);
         ad.setPositiveButton(button1String, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int arg1) {
                 Request modelObject = new Request("rooms","createroom",input.getText().toString(),"");
@@ -307,8 +298,7 @@ public class FragmentLobby extends Fragment {
 
         ban = new AlertDialog.Builder(context);
 
-        ban.setTitle(title);  // заголовок
-        // ad.setMessage(message); // сообщение
+        ban.setTitle(title);
         ban.setPositiveButton(button1String, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int arg1) {
                 Request modelObject = new Request("lobby","ban",username,"permanent");
@@ -378,8 +368,7 @@ public class FragmentLobby extends Fragment {
 
         unban = new AlertDialog.Builder(context);
 
-        unban.setTitle(title);  // заголовок
-        // ad.setMessage(message); // сообщение
+        unban.setTitle(title);
         unban.setPositiveButton(button1String, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int arg1) {
                 Request modelObject = new Request("lobby","unban",username,"");
@@ -405,32 +394,12 @@ public class FragmentLobby extends Fragment {
 
     }
 
-//    public void CreateLobby(String data) throws InterruptedException {
-//        //Thread.sleep(500);
-//        try {
-//            FragmentTransaction transaction = MainActivity.fragments.get(0).getFragmentManager().beginTransaction();
-//            transaction.replace(R.id.main_activity_fragment_placeholder, MainActivity.fragments.get(1));
-//            transaction.commit();
-//            if (data.equals("admin")) {
-//                bban = true;
-//                bunban = true;
-//            }
-//        }
-//        catch(Exception ex)
-//        {
-//
-//        }
-//        //tvName.setText(data);
-//    }
-
-    public void CreateLobby() throws InterruptedException {
-        //Thread.sleep(500);
+    public void CreateLobby(String data) throws InterruptedException {
         try {
             FragmentTransaction transaction = MainActivity.fragments.get(0).getFragmentManager().beginTransaction();
             transaction.replace(R.id.main_activity_fragment_placeholder, MainActivity.fragments.get(1));
             transaction.commit();
-
-            if (tvName.getText().toString().equals("admin")) {
+            if (data.equals("admin")) {
                 bban = true;
                 bunban = true;
             }
@@ -439,30 +408,17 @@ public class FragmentLobby extends Fragment {
         {
 
         }
-        //tvName.setText(data);
     }
 
     public void SetRooms(String[] data, Context ctx)
     {
-        //ArrayList<Rooms> arrayOfUsers = new ArrayList<Rooms>();
-       // for(int i = 0; i < data.length; i++) {
-       //     arrayOfUsers.add(new Rooms(data[i]));
-       // }
-// Create the adapter to convert the array to views
-       // MyAdapter adapter = new MyAdapter(MainActivity.context, arrayOfUsers);
-// Attach the adapter to a ListView
-       // lvRooms.setAdapter(adapter);
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(ctx,android.R.layout.simple_list_item_activated_1,data);
-
         lvRooms.setAdapter(adapter);
     }
 
     public void SetClients(String[] data, Context ctx)
     {
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(ctx,android.R.layout.simple_list_item_activated_1,data);
-
         lvClients.setAdapter(adapter);
     }
 
@@ -481,42 +437,15 @@ public class FragmentLobby extends Fragment {
         }
         if (a != -1)
         {
-
-
             if (dat.equals("0") && !(tm.equals("True"))) {
                 data[a] = cmd + " ";
-
-              //  ArrayList<Rooms> arrayOfUsers = new ArrayList<Rooms>();
-               // for(int i = 0; i < data.length; i++) {
-              //      arrayOfUsers.add(new Rooms(data[i]));
-              //  }
-// Create the adapter to convert the array to views
-             //   MyAdapter adapter1 = new MyAdapter(MainActivity.context, arrayOfUsers);
-// Attach the adapter to a ListView
-               // lvRooms.setAdapter(adapter1);
-
-
                 adapter = new ArrayAdapter<String>(ctx,android.R.layout.simple_list_item_activated_1,data);
-
                 lvRooms.setAdapter(adapter);
             }
             else if (!(dat.equals("0"))) {
                 data[a] = cmd + "   +" + dat;
-
-
-              //  ArrayList<Rooms> arrayOfUsers = new ArrayList<Rooms>();
-              //  for(int i = 0; i < data.length; i++) {
-              //      arrayOfUsers.add(new Rooms(data[i]));
-              //  }
-// Create the adapter to convert the array to views
-               // MyAdapter adapter2 = new MyAdapter(MainActivity.context, arrayOfUsers);
-// Attach the adapter to a ListView
-               // lvRooms.setAdapter(adapter2);
                 adapter = new ArrayAdapter<String>(ctx,android.R.layout.simple_list_item_activated_1,data);
-
                 lvRooms.setAdapter(adapter);
-
-//                ((TextView) lvRooms.getChildAt(0).findViewById(R.id.tv_item)).setTypeface(null, Typeface.BOLD);
             }
         }
         else
@@ -527,18 +456,7 @@ public class FragmentLobby extends Fragment {
                 newdata[i] = data[i];
             }
             newdata[data.length] = cmd + "   +" + dat;
-
-
-            //ArrayList<Rooms> arrayOfUsers = new ArrayList<Rooms>();
-           // for(int i = 0; i < newdata.length; i++) {
-            //    arrayOfUsers.add(new Rooms(newdata[i]));
-           // }
-// Create the adapter to convert the array to views
-           // MyAdapter adapter3 = new MyAdapter(MainActivity.context, arrayOfUsers);
-// Attach the adapter to a ListView
-           // lvRooms.setAdapter(adapter3);
             ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(ctx,android.R.layout.simple_list_item_activated_1,newdata);
-
             lvRooms.setAdapter(adapter1);
         }
     }

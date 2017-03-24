@@ -12,24 +12,16 @@ namespace GameClient
 {
     public partial class FormRestorePassword : Form
     {
-        FormLogin FL;
-        public FormRestorePassword(FormLogin FL)
+        API_Auth api;
+        public FormRestorePassword(API_Auth api)
         {
             InitializeComponent();
-            this.FL = FL;
+            this.api = api;
         }
 
         private void tbRestore_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (FL.Checkinput(tbLogin2) && FL.Checkinput(tbEmail))
-                {
-                    FL.cm.Connect(FL.pl);
-                    FL.cm.Restore(tbLogin2.Text, tbEmail.Text);
-                }
-            }
-            catch { MessageBox.Show("Server not found", "ERROR"); }
+            api.RestorePass(tbLogin2.Text, tbEmail.Text);
         }
     }
 }

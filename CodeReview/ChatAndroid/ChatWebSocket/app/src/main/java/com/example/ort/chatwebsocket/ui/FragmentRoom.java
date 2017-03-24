@@ -1,4 +1,4 @@
-package com.example.vladislav.chatwebsocket.ui;
+package com.example.ort.chatwebsocket.ui;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -15,15 +15,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.vladislav.chatwebsocket.R;
-import com.example.vladislav.chatwebsocket.ui.api.Request;
+import com.example.ort.chatwebsocket.R;
+import com.example.ort.chatwebsocket.ui.api.Request;
 import com.google.gson.Gson;
 
-import static com.example.vladislav.chatwebsocket.ui.Websockets.mWebSocketClient;
-
-/**
- * Created by Vladislav on 26.02.2017.
- */
+import static com.example.ort.chatwebsocket.ui.Websockets.mWebSocketClient;
 
 public class FragmentRoom extends Fragment {
     @Nullable
@@ -103,9 +99,7 @@ public class FragmentRoom extends Fragment {
         });
 
         String[] tmpadadapter = this.data.split("\\~");
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.context,android.R.layout.simple_list_item_activated_1,tmpadadapter);
-
         lvMessages.setAdapter(adapter);
 
         return view;
@@ -121,13 +115,6 @@ public class FragmentRoom extends Fragment {
             {
                 this.data += tmp[i] + "~";
             }
-
-           // String[] tmpadadapter = this.data.split("\\~");
-
-            //ArrayAdapter<String> adapter = new ArrayAdapter<String>(ctx,android.R.layout.simple_list_item_activated_1,tmpadadapter);
-
-           // lvMessages.setAdapter(adapter);
-
         }
     }
 

@@ -12,24 +12,16 @@ namespace GameClient
 {
     public partial class FormChangePass : Form
     {
-        FormLogin FL;
-        public FormChangePass(FormLogin FL)
+        API_Auth api;
+        public FormChangePass(API_Auth api)
         {
             InitializeComponent();
-            this.FL = FL;
+            this.api = api;
         }
 
         private void tbChange_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (FL.Checkinput(tbLogin1) && FL.Checkinput(tboldPas) && FL.Checkinput(tbnewPas))
-                {
-                    FL.cm.Connect(FL.pl);
-                    FL.cm.ChangePas(tbLogin1.Text, tboldPas.Text, tbnewPas.Text);
-                }
-            }
-            catch { MessageBox.Show("Server not found", "ERROR"); }
+            api.ChangePass(tbLogin1.Text, tboldPas.Text, tbnewPas.Text);
         }        
     }
 }

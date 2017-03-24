@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API_Auth.cs" />
     <Compile Include="ExternalAuth.cs" />
     <Compile Include="FormChangePass.cs">
       <SubType>Form</SubType>

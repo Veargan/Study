@@ -16,9 +16,9 @@ namespace GameClient
         TcpClient client;
         public NetworkStream netStream;
         PlayersList playersList;
-        IGame game;     
-      
-
+        IGame game;
+        Thread receiveThread;
+                
         public ClientManager(){}
 
         public void Connect(PlayersList pl)
@@ -28,9 +28,9 @@ namespace GameClient
             client.Connect(ipe);
             netStream = client.GetStream();
             StreamWriter sw = new StreamWriter(netStream);
-            sw.WriteLine("connect"); //просто нужно написать какую-то хуйню, чтоб он приконектился
+            sw.WriteLine("connect");
             sw.Flush();
-            Thread receiveThread = new Thread(new ThreadStart(ReceiveData));
+            receiveThread = new Thread(new ThreadStart(ReceiveData));
             receiveThread.Start();
             this.playersList = pl;            
         }
@@ -156,6 +156,7 @@ namespace GameClient
             sw.WriteLine("logout");
             sw.Flush();
             client.Close();
+            receiveThread.Abort();
         }
     }
 }

@@ -1,6 +1,4 @@
-package com.example.vladislav.chatwebsocket.ui;
-
-
+package com.example.ort.chatwebsocket.ui;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -12,8 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.vladislav.chatwebsocket.R;
-import com.example.vladislav.chatwebsocket.ui.api.Request;
+import com.example.ort.chatwebsocket.R;
+import com.example.ort.chatwebsocket.ui.api.Request;
 import com.google.gson.Gson;
 
 import org.java_websocket.client.WebSocketClient;
@@ -23,8 +21,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
-import static com.example.vladislav.chatwebsocket.ui.MainActivity.context;
-import static com.example.vladislav.chatwebsocket.ui.Websockets.mWebSocketClient;
+import static com.example.ort.chatwebsocket.ui.MainActivity.context;
+import static com.example.ort.chatwebsocket.ui.Websockets.mWebSocketClient;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -68,8 +66,7 @@ public class MainActivity extends AppCompatActivity {
         final Gson gson = new Gson();
 
         try {
-            uri = new URI("ws://192.168.7.101:1488/");
-//            uri = new URI("ws://192.168.1.69:1488/");
+            uri = new URI("ws://10.0.2.2:8888/");
         } catch (URISyntaxException e) {
             e.printStackTrace();
             return;
@@ -79,10 +76,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onOpen(ServerHandshake serverHandshake) {
                 Log.i("Websocket", "Opened");
-                String message = name + "^" + password + "^0^auth";
-//                Request modelObject = new Request("auth","",name + "," + password + "," + mail +"," + param,"");
-//                String json = gson.toJson(modelObject);
-                mWebSocketClient.send(message);
+                Request modelObject = new Request("auth","",name + "," + password + "," + mail +"," + param,"");
+                String json = gson.toJson(modelObject);
+                mWebSocketClient.send(json);
             }
 
             @Override
@@ -114,84 +110,73 @@ public class MainActivity extends AppCompatActivity {
         mWebSocketClient.connect();
     }
 
-    private static void Listener(String output, Context context) throws InterruptedException {
-//        Request req = new Gson().fromJson(message, Request.class);
-        String[] message = output.split("^");
-        switch(message[0])
+    private static void Listener(String message, Context context) throws InterruptedException {
+        Request req = new Gson().fromJson(message, Request.class);
+        switch(req.modul)
         {
-            case "success":
+            case "ok":
                 FragmentLobby g = (FragmentLobby)fragments.get(1);
-//                String[] str = req.data.split(",");
-                g.CreateLobby();
+                String[] str = req.data.split(",");
+                g.CreateLobby(str[0]);
                 break;
-            case "authfail":
-                Toast.makeText(context, "Invalid login or password", Toast.LENGTH_LONG).show();
-                break;
-            case "regfail":
-                Toast.makeText(context, "This username already exists. Choose another name!", Toast.LENGTH_LONG).show();
+            case "notok":
+                if(req.data.equals("reg"))
+                {
+                    Toast.makeText(context, "User already exist",
+                            Toast.LENGTH_LONG).show();
+                }
+                if(req.data.equals("auth"))
+                {
+                    Toast.makeText(context, "Incorrect name or password",
+                            Toast.LENGTH_LONG).show();
+                }
                 break;
             case "refresh":
                 FragmentLobby er = (FragmentLobby)fragments.get(1);
-//                String[] splitrooms = req.data.split("\\.");
-                ArrayList<String> splitrooms = new ArrayList<String>();
-                for (int i = 1; i < message.length; i++) {
-                    if (message[i] != "") {
-                        int j = 0;
-//                        splitrooms[j] = message[i];
-                        splitrooms.add(j, message[i]);
-                    }
-                }
-                er.SetRooms((String[]) splitrooms.toArray(), context);
+                String[] splitrooms = req.data.split("\\.");
+                er.SetRooms(splitrooms, context);
                 break;
             case "refreshclients":
                 FragmentLobby erc = (FragmentLobby)fragments.get(1);
-//                String[] splitclients = req.data.split("\\.");
-                ArrayList<String> splitclients = new ArrayList<String>();
-                for (int i = 1; i < message.length; i++) {
-                    if (message[i] != "") {
-                        int j = 0;
-//                        splitrooms[j] = message[i];
-                        splitclients.add(j, message[i]);
-                    }
-                }
-                erc.SetClients((String[]) splitclients.toArray(), context);
+                String[] splitclients = req.data.split("\\.");
+                erc.SetClients(splitclients, context);
                 break;
-//            case "enter":
-//                FragmentRoom rf = (FragmentRoom)fragments.get(2);
-//                rf.CreateRoom(req.data, req.command, context);
-//                break;
-//            case "message":
-//                FragmentRoom ms = (FragmentRoom)fragments.get(2);
-//                ms.SetMessage(req.data, context);
-//                break;
-//            case "leave":
-//                FragmentRoom lv = (FragmentRoom)fragments.get(2);
-//                lv.Leave();
-//                break;
-//            case "wrongroom":
-//                Toast.makeText(context, "Error, room " + req.data + " has already been created.", Toast.LENGTH_LONG)
-//                        .show();
-//                break;
-//            case "youbanned":
-//                FragmentRoom yb = (FragmentRoom)fragments.get(2);
-//                yb.SetMessage(req.data, context);
-//                break;
+            case "enter":
+                FragmentRoom rf = (FragmentRoom)fragments.get(2);
+                rf.CreateRoom(req.data, req.command, context);
+                break;
+            case "message":
+                FragmentRoom ms = (FragmentRoom)fragments.get(2);
+                ms.SetMessage(req.data, context);
+                break;
+            case "leave":
+                FragmentRoom lv = (FragmentRoom)fragments.get(2);
+                lv.Leave();
+                break;
+            case "wrongroom":
+                Toast.makeText(context, "Error, room " + req.data + " has already been created.", Toast.LENGTH_LONG)
+                        .show();
+                break;
+            case "youbanned":
+                FragmentRoom yb = (FragmentRoom)fragments.get(2);
+                yb.SetMessage(req.data, context);
+                break;
             case "alreadyenter":
                 Toast.makeText(context, "You are already logged into this room.", Toast.LENGTH_LONG)
                         .show();
                 break;
-//            case "bancreate":
-//                Toast.makeText(context, "You have been banned for " + req.data, Toast.LENGTH_LONG)
-//                        .show();
-//                break;
-//            case "passive":
-//                FragmentLobby ps = (FragmentLobby)fragments.get(1);
-//                ps.Passive(req.command, req.data, req.time, context);
-//                break;
-//            case "newpass":
-//                Toast.makeText(context, "Password changed", Toast.LENGTH_LONG)
-//                        .show();
-//                break;
+            case "bancreate":
+                Toast.makeText(context, "You have been banned for " + req.data, Toast.LENGTH_LONG)
+                        .show();
+                break;
+            case "passive":
+                FragmentLobby ps = (FragmentLobby)fragments.get(1);
+                ps.Passive(req.command, req.data, req.time, context);
+                break;
+            case "newpass":
+                Toast.makeText(context, "Password changed", Toast.LENGTH_LONG)
+                        .show();
+                break;
             case "wrongnewpass":
                 Toast.makeText(context, "Incorrect old password", Toast.LENGTH_LONG)
                         .show();

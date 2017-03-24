@@ -1,4 +1,4 @@
-package com.example.vladislav.chatwebsocket.ui;
+package com.example.ort.chatwebsocket.ui;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -10,16 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.vladislav.chatwebsocket.R;
-import com.example.vladislav.chatwebsocket.ui.api.Request;
+import com.example.ort.chatwebsocket.R;
+import com.example.ort.chatwebsocket.ui.api.Request;
 import com.google.gson.Gson;
 
-import static com.example.vladislav.chatwebsocket.ui.MainActivity.context;
-import static com.example.vladislav.chatwebsocket.ui.Websockets.mWebSocketClient;
-
-/**
- * Created by Vladislav on 28.02.2017.
- */
+import static com.example.ort.chatwebsocket.ui.MainActivity.context;
+import static com.example.ort.chatwebsocket.ui.Websockets.mWebSocketClient;
 
 public class FragementReg extends Fragment {
 

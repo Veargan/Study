@@ -23,9 +23,7 @@ namespace GameClient
             InitializeComponent();
             cbGame.SelectedIndex = 0;
             CheckForIllegalCrossThreadCalls = false;
-        }
-        
-
+        }     
         public void AddList(string[] items)
         {
            
@@ -47,7 +45,6 @@ namespace GameClient
             }
             else return false;
         }
-
         private void btnInvite_Click(object sender, EventArgs e)
         {
             inviteClick();
@@ -63,7 +60,6 @@ namespace GameClient
                 MessageBox.Show("Please choose player firstly");
             }
         }    
-
         public void SendInvite(string player1, string player2, string gameid)
         {
             StreamWriter sw = new StreamWriter(stream);
@@ -71,7 +67,6 @@ namespace GameClient
             sw.Flush();
             Thread.Sleep(100);
         }
-
         private void PlayersList_FormClosed(object sender, FormClosedEventArgs e)
         {
             StreamWriter sw = new StreamWriter(stream);
@@ -82,9 +77,7 @@ namespace GameClient
             }
             catch (IOException)
             { }      
-        }
-        
-
+        }       
         private void RefreshPlayers_Click(object sender, EventArgs e)
         {
             RefreshPlayer();
@@ -96,7 +89,6 @@ namespace GameClient
             sw.Flush();
             Thread.Sleep(100);
         }
-
         private void PlayersList_FormClosing(object sender, FormClosingEventArgs e)
         {
             StreamWriter sw = new StreamWriter(stream);
@@ -112,7 +104,6 @@ namespace GameClient
                 return;
             }
         }
-
         private void btLogout_Click(object sender, EventArgs e)
         {
             StreamWriter sw = new StreamWriter(stream);

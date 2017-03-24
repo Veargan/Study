@@ -127,26 +127,6 @@ namespace Client
                         lf.rl.Hide();
                         break;
 
-                    case "authfailfb":
-                        MessageBox.Show("Invalid login or password");
-                        lf.rl.Hide();
-                        break;
-
-                    case "regfailfb":
-                        MessageBox.Show("This username already exists. Choose another name!");
-                        lf.rl.Hide();
-                        break;
-
-                    case "authfailgl":
-                        MessageBox.Show("Invalid login or password");
-                        lf.rl.Hide();
-                        break;
-
-                    case "regfailgl":
-                        MessageBox.Show("This username already exists. Choose another name!");
-                        lf.rl.Hide();
-                        break;
-
                     case "alreadyinside":
                         MessageBox.Show("This user already in the chat. Don't distract him!");
                         lf.rl.Hide();
@@ -167,6 +147,7 @@ namespace Client
                     case "unban":
                         MessageBox.Show("You have been unbanned!");
                         break;
+                        
                     case "changepasssuccess":
                         MessageBox.Show("With God help. Password has been successfully changed");
                         break;
